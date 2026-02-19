@@ -1,0 +1,23 @@
+{
+  "name": "ufo-lamps-homepage",
+  "version": "1.0.0",
+  "description": "Premium lamp store homepage with MVC structure",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node --watch app.js"
+  },
+  "keywords": [
+    "mvc",
+    "express",
+    "ejs",
+    "frontend"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2"
+  }
+}
+

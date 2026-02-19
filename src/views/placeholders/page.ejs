@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <%- include("../partials/head", { pageTitle }) %>
+  </head>
+  <body>
+    <main class="placeholder-page">
+      <section class="container placeholder-box reveal">
+        <p class="section-label"><%= pageName %></p>
+        <h1><%= placeholderLead %></h1>
+        <p><%= placeholderBody %></p>
+        <a class="btn btn-solid" href="<%= actionHref %>"><%= actionLabel %></a>
+      </section>
+    </main>
+    <%- include("../partials/footer", {}) %>
+  </body>
+</html>
+

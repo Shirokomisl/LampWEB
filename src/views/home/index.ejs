@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <%- include("../partials/head", { pageTitle }) %>
+  </head>
+  <body>
+    <div class="page-overlay"></div>
+    <header class="site-header">
+      <div class="container header-content">
+        <a class="brand" href="/">
+          <span class="brand-mark"><%= yearLabel %></span>
+          <span class="brand-name"><%= brandName %></span>
+        </a>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Открыть меню">
+          Меню
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+          <a href="/">Главная</a>
+          <a href="/catalog">Каталог</a>
+          <a href="/projects">Проекты</a>
+          <a href="/designers">Для дизайнеров</a>
+          <a href="/about">О бренде</a>
+          <a href="/contacts">Контакты</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section
+        class="hero section-pad"
+        style="--hero-image: url('<%= hero.backgroundImage %>')"
+      >
+        <div class="container hero-grid reveal">
+          <div class="hero-content">
+            <p class="hero-eyebrow"><%= hero.eyebrow %></p>
+            <h1><%= hero.title %></h1>
+            <p class="hero-text"><%= hero.description %></p>
+            <div class="hero-actions">
+              <a class="btn btn-solid" href="<%= hero.primaryCta.href %>">
+                <%= hero.primaryCta.label %>
+              </a>
+              <a class="btn btn-outline" href="<%= hero.secondaryCta.href %>">
+                <%= hero.secondaryCta.label %>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-pad brand-motto-zone">
+        <div class="motto-container reveal">
+          <article class="motto-card">
+            <div class="motto-grid">
+              <div class="motto-top-left">
+                <span class="motto-logo"><%= brandMotto.logoSign %></span>
+                <span class="motto-brand"><%= brandMotto.logoName %></span>
+              </div>
+
+              <figure class="motto-side-image-wrap">
+                <img
+                  class="motto-side-image"
+                  src="<%= brandMotto.sideImage %>"
+                  alt="Имидж-заглушка бренда"
+                />
+              </figure>
+
+              <h2 class="motto-title"><%= brandMotto.title %></h2>
+              <p class="motto-est"><%= brandMotto.est %></p>
+
+              <div class="motto-lines">
+                <% brandMotto.shortLines.forEach((lineText) => { %>
+                  <p><%= lineText %></p>
+                <% }) %>
+              </div>
+
+              <a class="motto-about-link" href="<%= brandMotto.aboutHref %>">
+                <%= brandMotto.aboutLabel %>
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-pad" id="catalog-preview">
+        <!-- Карточки сделаны ссылками: весь блок кликабелен -->
+        <div class="collection-grid-wrap">
+          <p class="section-label">Product Focus</p>
+          <div class="collection-grid">
+            <% productCollections.forEach((collection, index) => { %>
+              <a
+                class="collection-card reveal"
+                style="--delay: <%= index * 130 %>ms"
+                href="<%= collection.href %>"
+                aria-label="<%= collection.categoryTitle %>"
+              >
+                <div class="collection-image-wrap">
+                  <img src="<%= collection.coverImage %>" alt="<%= collection.categoryTitle %>" />
+                </div>
+                <div class="collection-shutter"></div>
+                <div class="collection-title">
+                  <span><%= collection.categoryTitle %></span>
+                </div>
+              </a>
+            <% }) %>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-pad trust-zone">
+        <div class="trust-grid-wrap">
+          <div class="trust-grid">
+            <% trustBlocks.forEach((block, index) => { %>
+              <article class="trust-card reveal" style="--delay: <%= index * 110 %>ms">
+                <div class="trust-image-wrap">
+                  <img src="<%= block.image %>" alt="<%= block.title %>" />
+                </div>
+                <h3 class="trust-title"><%= block.title %></h3>
+              </article>
+            <% }) %>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-pad statement-zone">
+        <div class="statement-wrap reveal">
+          <p class="section-label">Fact Corner</p>
+          <h2 class="statement-lead"><%= brandStatement.lead %></h2>
+
+          <div class="statement-bottom">
+            <p class="statement-fact"><%= brandStatement.sideFact %></p>
+            <div class="statement-copy">
+              <% brandStatement.paragraphs.forEach((textBlock) => { %>
+                <p><%= textBlock %></p>
+              <% }) %>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-pad contact-zone" id="contact-point">
+        <div class="container contact-grid">
+          <div class="contact-content reveal">
+            <p class="section-label">Contact Point</p>
+            <h2><%= contactPoint.title %></h2>
+            <p><%= contactPoint.description %></p>
+            <div class="contact-list">
+              <a href="tel:+70000000000"><%= contactPoint.phone %></a>
+              <a href="mailto:<%= contactPoint.email %>"><%= contactPoint.email %></a>
+            </div>
+          </div>
+          <div class="contact-form-wrap reveal">
+            <form class="contact-form" action="#" method="post">
+              <!-- Заглушка формы: подключите backend endpoint в action -->
+              <label for="name">Имя</label>
+              <input id="name" name="name" type="text" placeholder="[Имя]" />
+
+              <label for="phone">Телефон</label>
+              <input id="phone" name="phone" type="tel" placeholder="[+7 ...]" />
+
+              <label for="comment">Комментарий</label>
+              <textarea
+                id="comment"
+                name="comment"
+                rows="4"
+                placeholder="[Текст-заглушка для задачи клиента]"
+              ></textarea>
+
+              <button type="submit" class="btn btn-solid">Отправить (заглушка)</button>
+            </form>
+            <p class="form-note"><%= contactPoint.formPlaceholder %></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <%- include("../partials/footer", { brandName, footerNote }) %>
+  </body>
+</html>
