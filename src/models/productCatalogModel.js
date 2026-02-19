@@ -1,13 +1,13 @@
 const getHomePageData = () => {
   return {
     pageTitle: "UFO Atelier | Главная",
-    brandName: "UFO Atelier",
-    yearLabel: "2026 Collection",
+    brandName: "Géometria",
+    yearLabel: "UFO Collection",
     hero: {
-      eyebrow: "Сдержанная премиальная эстетика света",
-      title: "[Заголовок-заглушка: сильное УТП в 1 строку]",
+      eyebrow: "Light has the form",
+      title: "GÉOMETRIA",
       description:
-        "[Текст-заглушка] Здесь будет короткое описание ценности для дизайнеров, комплектаторов и частных клиентов 24+.",
+        "Универсальное решение для любого интерьера\nСвет, который движется вместе с вами",
       primaryCta: {
         label: "Связаться с экспертом",
         href: "#contact-point"
@@ -16,61 +16,61 @@ const getHomePageData = () => {
         label: "Открыть каталог-заглушку",
         href: "/catalog"
       },
-      backgroundImage: "https://picsum.photos/seed/ufo-premium-hero/1800/1200"
+      backgroundImage: "/images/studio-head.jpg"
     },
     // Блок девиза бренда перед витриной линеек.
     brandMotto: {
-      logoSign: "UA",
-      logoName: "UFO Atelier",
+      logoSign: "/images/logo-cube.png",
+      logoName: "GÉOMETRIA",
       est: "EST 2025",
       title: "THE LIGHT HAS ITS FORM",
       shortLines: [
-        "[Короткое предложение-заглушка] Каждая линия света собрана как интерьерный объект.",
-        "[Короткое предложение-заглушка] Форма и материал работают на статус пространства."
+        "В своей работе мы соединяем воедино столярное искусство со столетними традициями и смелость современных материалов, таких как керамика и металл.",
+        "От классики до современности, от традиционных до самых смелых решений – мы создае для вас те изделия, которые удовлетворят именно ваши представления о прекрасном."
       ],
-      sideImage: "https://picsum.photos/seed/ufo-brand-motto/520/340",
+      sideImage: "/images/motto.PNG",
       aboutLabel: "ПОДРОБНЕЕ О БРЕНДЕ",
       aboutHref: "/about"
     },
     productCollections: [
       {
         categoryTitle: "Подвесные светильники UFO Hanging",
-        coverImage: "https://picsum.photos/seed/ufo-hanging/1600/1300",
+        coverImage: "/images/hanging.jpg",
         href: "/catalog"
       },
       {
         categoryTitle: "Настенные светильники UFO Wall",
-        coverImage: "https://picsum.photos/seed/ufo-wall/1600/1300",
+        coverImage: "/images/pandora.JPG",
         href: "/catalog"
       },
       {
         categoryTitle: "Торшер Dea",
-        coverImage: "https://picsum.photos/seed/dea-floor-lamp/1600/1300",
+        coverImage: "/images/dea.jpg",
         href: "/catalog"
       }
     ],
     trustBlocks: [
       {
-        title: "[Преимущество-заглушка 01]",
-        image: "https://picsum.photos/seed/ufo-trust-01/900/700"
+        title: "УНИКАЛЬНАЯ ТЕКСТУРА МАТЕРИАЛА",
+        image: "/images/texture.jpg"
       },
       {
-        title: "[Преимущество-заглушка 02]",
-        image: "https://picsum.photos/seed/ufo-trust-02/900/700"
+        title: "РУЧНАЯ РАБОТА",
+        image: "/images/hand-work.jpg"
       },
       {
-        title: "[Преимущество-заглушка 03]",
-        image: "https://picsum.photos/seed/ufo-trust-03/900/700"
+        title: "ВЫСОКОКАЧЕСТВЕННОЕ СЫРЬЕ",
+        image: "/images/quality.jpg"
       }
     ],
     brandStatement: {
       lead:
-        "UFO Atelier — [текст-заглушка] премиальная студия света для интерьеров с выразительным характером и архитектурной глубиной.",
+        "GÉOMETRIA — мастерская авторских светильников ручной работы, основанная в 2019 году на базе экспериментальной студии предметного дизайна.",
       sideFact:
-        "[Факт-заглушка] более 40 специалистов разного профиля работают над коллекциями и проектами бренда.",
+        "Более 20 мастеров и специалистов различных направлений участвуют в создании каждого изделия, объединяя ремесленные традиции и современные технологии.",
       paragraphs: [
-        "[Абзац-заглушка] Мы объединяем ремесленную точность, технологичные материалы и художественный подход к форме света.",
-        "[Абзац-заглушка] Каждая модель проектируется как самостоятельный объект и как часть цельного интерьерного сценария."
+        "За годы работы команда GÉOMETRIA достигла высокого уровня в обработке металла, стекла и акрила, продолжая ежедневно разрабатывать новые формы, конструкции и световые решения.",
+        "Коллекция GÉOMETRIA регулярно пополняется уникальными моделями, при создании которых используются качественные материалы, ручная сборка и авторские методы обработки, обеспечивающие выразительный внешний вид и долговечность каждого светильника."
       ]
     },
     contactPoint: {
