@@ -1,0 +1,20 @@
+<header class="site-header">
+  <div class="container header-content">
+    <a class="brand" href="/">
+      <span class="brand-mark"><%= yearLabel || "Collection" %></span>
+      <span class="brand-name"><%= brandName || "Geometria" %></span>
+    </a>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Открыть меню">
+      Меню
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+      <a class="<%= activePage === 'about' ? 'is-active' : '' %>" href="/about">О бренде</a>
+      <a class="<%= activePage === 'home' ? 'is-active' : '' %>" href="/">Главная</a>
+      <a class="<%= activePage === 'catalog' ? 'is-active' : '' %>" href="/catalog">Каталог</a>
+      <a class="<%= activePage === 'projects' ? 'is-active' : '' %>" href="/projects">Проекты</a>
+      <a class="<%= activePage === 'designers' ? 'is-active' : '' %>" href="/designers">Для дизайнеров</a>
+      <a class="<%= activePage === 'contacts' ? 'is-active' : '' %>" href="/contacts">Контакты</a>
+    </nav>
+  </div>
+</header>
+

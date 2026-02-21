@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <%- include("../partials/head", { pageTitle }) %>
+  </head>
+  <body class="catalog-page">
+    <%- include("../partials/header", { brandName, yearLabel, activePage: "catalog" }) %>
+
+    <main class="catalog-main">
+      <section class="catalog-hero" style="--catalog-hero-image: url('<%= hero.image %>')">
+        <div class="catalog-hero-overlay"></div>
+        <div class="catalog-hero-content reveal">
+          <p><%= hero.eyebrow %></p>
+          <h1><%= hero.title %></h1>
+        </div>
+      </section>
+
+      <section class="catalog-listing section-pad">
+        <div class="catalog-shell">
+          <nav class="catalog-type-nav reveal" aria-label="Фильтр по типу">
+            <% catalogTypes.forEach((typeItem) => { %>
+              <a
+                class="<%= typeItem.isActive ? 'is-active' : '' %>"
+                href="<%= typeItem.href %>"
+              >
+                <span><%= typeItem.label %></span>
+              </a>
+            <% }) %>
+          </nav>
+
+          <div class="catalog-controls reveal">
+            <div class="catalog-price-dropdown" data-price-dropdown>
+              <button
+                type="button"
+                class="catalog-price-filter"
+                data-price-toggle
+                aria-expanded="false"
+              >
+                <span><%= selectedPriceLabel %></span>
+                <span class="catalog-price-arrow">▼</span>
+              </button>
+              <ul class="catalog-price-menu" data-price-menu>
+                <% priceRanges.forEach((rangeItem) => { %>
+                  <li>
+                    <a class="<%= rangeItem.isActive ? 'is-active' : '' %>" href="<%= rangeItem.href %>">
+                      <%= rangeItem.label %>
+                    </a>
+                  </li>
+                <% }) %>
+              </ul>
+            </div>
+
+            <div class="catalog-grid-control">
+              <span>ВИД:</span>
+              <div class="catalog-view-switcher" data-view-switcher>
+                <button type="button" data-view-size="small">МЕЛКИЕ</button>
+                <button type="button" class="is-active" data-view-size="medium">СРЕДНИЕ</button>
+                <button type="button" data-view-size="large">БОЛЬШИЕ</button>
+              </div>
+            </div>
+          </div>
+
+          <p class="catalog-selected-type reveal"><%= filterLabel %></p>
+
+          <% if (products.length === 0) { %>
+            <p class="catalog-empty-state reveal">
+              По выбранному интервалу стоимости пока нет товаров.
+            </p>
+          <% } else { %>
+            <div class="catalog-products-grid is-medium" data-catalog-grid>
+              <% products.forEach((productItem, index) => { %>
+                <a
+                  class="catalog-product-card reveal"
+                  style="--delay: <%= index * 65 %>ms"
+                  href="<%= productItem.href %>"
+                  aria-label="<%= productItem.name %>"
+                >
+                  <div class="catalog-product-image">
+                    <img src="<%= productItem.image %>" alt="<%= productItem.name %>" />
+                  </div>
+                  <h2><%= productItem.name %></h2>
+                </a>
+              <% }) %>
+            </div>
+          <% } %>
+        </div>
+      </section>
+    </main>
+
+    <%- include("../partials/footer", { brandName, footerNote }) %>
+  </body>
+</html>
+

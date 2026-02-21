@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <%- include("../partials/head", { pageTitle }) %>
+  </head>
+  <body class="catalog-page catalog-product-page">
+    <%- include("../partials/header", { brandName, yearLabel, activePage: "catalog" }) %>
+
+    <main class="catalog-product-main">
+      <section class="catalog-product-hero">
+        <div class="catalog-product-hero-image reveal">
+          <img src="<%= product.image %>" alt="<%= product.name %>" />
+        </div>
+      </section>
+
+      <section class="catalog-product-info section-pad">
+        <div class="catalog-product-info-wrap reveal">
+          <p class="catalog-product-label">Карточка товара</p>
+          <h1><%= product.name %></h1>
+          <p><%= product.description %></p>
+          <div class="catalog-product-actions">
+            <a href="<%= backToTypeHref %>">Вернуться к типу: <%= backToTypeLabel %></a>
+            <a href="/catalog">Открыть весь каталог</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <%- include("../partials/footer", { brandName, footerNote }) %>
+  </body>
+</html>
+

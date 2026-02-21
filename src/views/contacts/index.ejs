@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <%- include("../partials/head", { pageTitle }) %>
+  </head>
+  <body class="contacts-page">
+    <%- include("../partials/header", { brandName, yearLabel, activePage: "contacts" }) %>
+
+    <main class="contacts-main">
+      <section class="contacts-hero">
+        <video
+          class="contacts-hero-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          poster="<%= hero.poster %>"
+        >
+          <source src="<%= hero.videoSrc %>" type="video/MOV" />
+        </video>
+        <div class="contacts-hero-shade"></div>
+        <div class="contacts-hero-content reveal">
+          <p class="contacts-hero-brand"><%= hero.brandLine %></p>
+          <h1><%= hero.title %></h1>
+        </div>
+      </section>
+
+      <section class="contacts-details section-pad">
+        <div class="contacts-details-grid">
+          <aside class="contacts-info-card reveal">
+            <a class="contacts-phone" href="tel:<%= contactInfo.phoneLink %>">
+              <%= contactInfo.phoneDisplay %>
+            </a>
+            <p class="contacts-email"><%= contactInfo.email %></p>
+            <div class="contacts-addresses">
+              <% contactInfo.addressLines.forEach((line) => { %>
+                <p><%= line %></p>
+              <% }) %>
+            </div>
+            <div class="contacts-socials">
+              <% contactInfo.socials.forEach((social) => { %>
+                <a href="<%= social.href %>" aria-label="<%= social.name %>">
+                  <span><%= social.short %></span>
+                </a>
+              <% }) %>
+            </div>
+            <div class="contacts-legal">
+              <% contactInfo.legalLines.forEach((line) => { %>
+                <p><%= line %></p>
+              <% }) %>
+            </div>
+          </aside>
+
+          <div class="contacts-office-media reveal">
+            <img src="<%= contactInfo.officeImage %>" alt="Офис и шоурум" />
+          </div>
+
+          <div class="contacts-form-card reveal">
+            <h2><%= formBlock.title %></h2>
+            <p class="contacts-form-intro"><%= formBlock.subtitle %></p>
+
+            <form class="contacts-form" action="#" method="post">
+              <div class="contacts-form-row">
+                <label for="contact-name">Имя *</label>
+                <input id="contact-name" name="name" type="text" />
+              </div>
+              <div class="contacts-form-row">
+                <label for="contact-phone">Телефон *</label>
+                <input id="contact-phone" name="phone" type="tel" />
+              </div>
+              <div class="contacts-form-row contacts-form-row-wide">
+                <label for="contact-message">Опишите свой вопрос *</label>
+                <textarea id="contact-message" name="message" rows="3"></textarea>
+              </div>
+              <button type="submit"><%= formBlock.submitLabel %></button>
+            </form>
+
+            <p class="contacts-form-policy"><%= formBlock.policyText %></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="contacts-map">
+        <div class="contacts-map-surface">
+          <img src="<%= mapBlock.mapImage %>" alt="Карта локации шоурума" />
+          <article class="contacts-map-pin reveal">
+            <img src="<%= mapBlock.pinImage %>" alt="Локация шоурума" />
+            <p><%= mapBlock.addressLabel %></p>
+          </article>
+          <a href="<%= mapBlock.mapLink %>" target="_blank" rel="noopener noreferrer">
+            <%= mapBlock.mapLinkLabel %>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <%- include("../partials/footer", { brandName, footerNote }) %>
+  </body>
+</html>
+

@@ -5,25 +5,7 @@
   </head>
   <body>
     <div class="page-overlay"></div>
-    <header class="site-header">
-      <div class="container header-content">
-        <a class="brand" href="/">
-          <span class="brand-mark"><%= yearLabel %></span>
-          <span class="brand-name"><%= brandName %></span>
-        </a>
-        <button class="menu-toggle" id="menu-toggle" aria-label="Открыть меню">
-          Меню
-        </button>
-        <nav class="site-nav" id="site-nav" aria-label="Main navigation">
-          <a href="/">Главная</a>
-          <a href="/catalog">Каталог</a>
-          <a href="/projects">Проекты</a>
-          <a href="/designers">Для дизайнеров</a>
-          <a href="/about">О бренде</a>
-          <a href="/contacts">Контакты</a>
-        </nav>
-      </div>
-    </header>
+    <%- include("../partials/header", { brandName, yearLabel, activePage: "home" }) %>
 
     <main>
       <section

@@ -1,8 +1,8 @@
 const getHomePageData = () => {
   return {
-    pageTitle: "UFO Atelier | Главная",
-    brandName: "Géometria",
-    yearLabel: "UFO Collection",
+    pageTitle: "GÉOMETRIA | Главная",
+    brandName: "GÉOMETRIA",
+    yearLabel: "UFO & Dea Collection",
     hero: {
       eyebrow: "Light has the form",
       title: "GÉOMETRIA",
@@ -35,18 +35,18 @@ const getHomePageData = () => {
     productCollections: [
       {
         categoryTitle: "Подвесные светильники UFO Hanging",
-        coverImage: "/images/hanging.jpg",
-        href: "/catalog"
+        coverImage: "/images/interier-hanging.jpg",
+        href: "/catalog/type/hanging"
       },
       {
         categoryTitle: "Настенные светильники UFO Wall",
-        coverImage: "/images/pandora.JPG",
-        href: "/catalog"
+        coverImage: "/images/wall-card-engle.jpg",
+        href: "/catalog/type/wall"
       },
       {
         categoryTitle: "Торшер Dea",
         coverImage: "/images/dea.jpg",
-        href: "/catalog"
+        href: "/catalog/type/floor"
       }
     ],
     trustBlocks: [
@@ -77,8 +77,8 @@ const getHomePageData = () => {
       title: "[Точка контакта: заголовок-заглушка]",
       description:
         "[Текст-заглушка] Оставьте контакт, чтобы получить подборку света под ваш интерьерный проект.",
-      phone: "+7 (000) 000-00-00",
-      email: "hello@ufo-atelier.example",
+      phone: "7 (900) 325-47-10",
+      email: "geometria_orders@mail.ru",
       formPlaceholder:
         "[Форма-заглушка] Функциональная отправка будет добавлена на следующем этапе."
     },
@@ -87,6 +87,56 @@ const getHomePageData = () => {
   };
 };
 
+const getContactsPageData = () => {
+  return {
+    pageTitle: "GÉOMETRIA | Контакты",
+    brandName: "GÉOMETRIA",
+    yearLabel: "UFO & Dea Collection",
+    footerNote:
+      "[Юридическая заглушка] ООО «Название компании». ИНН/ОГРН и документы добавляются на этапе запуска.",
+    hero: {
+      brandLine: "GÉOMETRIA",
+      title: "КОНТАКТЫ",
+      // Временный loop-видео источник. Можно заменить на локальный mp4 в public/videos.
+      videoSrc: "/videos/contacts-video.MOV",
+      poster: "/images/studio-head.jpg"
+    },
+    contactInfo: {
+      phoneDisplay: "7 900 325 47 10",
+      phoneLink: "+79003254710",
+      email: "geometria_orders@mail.ru",
+      addressLines: [
+        "Казань, Проспект Победы, 159"
+      ],
+      socials: [
+        { name: "Instagram", short: "IG", href: "#" },
+        { name: "Telegram", short: "TG", href: "#" },
+        { name: "Pinterest", short: "PN", href: "#" },
+        { name: "YouTube", short: "YT", href: "#" }
+      ],
+      legalLines: ["ИП Пикулева Карина Ильдаровна", "ОГРНИП 320169000078972"],
+      officeImage: "/images/IMG_6454.jpg"
+    },
+    formBlock: {
+      title: "НАПИШИТЕ НАМ",
+      subtitle:
+        "Пожалуйста, направьте ваш запрос по форме, представленной ниже. Мы свяжемся с вами в ближайшее время.",
+      submitLabel: "ОТПРАВИТЬ",
+      policyText:
+        "Нажимая кнопку «Отправить», вы соглашаетесь на обработку персональных данных"
+    },
+    mapBlock: {
+      mapImage:
+        "/images/yandex-cards.png",
+      pinImage: "/images/office-image.jpg",
+      addressLabel: "ПРОСПЕКТ ПОБЕДЫ, 159",
+      mapLinkLabel: "ОТКРЫТЬ В ЯНДЕКС КАРТАХ",
+      mapLink: "https://yandex.com/maps/org/salon_m_z_gallery_tts_mzlife/1131107486/?ll=49.211029%2C55.799493&z=17.2"
+    }
+  };
+};
+
 module.exports = {
-  getHomePageData
+  getHomePageData,
+  getContactsPageData
 };
