@@ -14,10 +14,11 @@
           muted
           loop
           playsinline
-          preload="metadata"
+          preload="auto"
           poster="<%= hero.poster %>"
         >
-          <source src="<%= hero.videoSrc %>" type="video/MOV" />
+          <source src="<%= hero.videoSrc %>" type="<%= hero.videoType %>" />
+          <source src="<%= hero.videoSrc %>" />
         </video>
         <div class="contacts-hero-shade"></div>
         <div class="contacts-hero-content reveal">
@@ -98,4 +99,3 @@
     <%- include("../partials/footer", { brandName, footerNote }) %>
   </body>
 </html>
-

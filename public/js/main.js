@@ -178,6 +178,137 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  const stickyVisual = document.querySelector(".catalog-product-sticky-visual");
+  const largeLead = document.querySelector("#about-product .catalog-product-lead");
+  const aboutSection = document.querySelector("#about-product");
+  const priceSection = document.querySelector("#product-price");
+  const stickyVisualImage = stickyVisual ? stickyVisual.querySelector("img") : null;
+  const tabsBar = document.querySelector(".catalog-product-tabs");
+  const desktopStickyMediaQuery = window.matchMedia("(min-width: 1025px)");
+
+  if (stickyVisual && largeLead && aboutSection && priceSection) {
+    let stickyState = "pre";
+    let naturalDocumentTop = 0;
+
+    const getStartThreshold = () => {
+      const tabsBottom = tabsBar ? tabsBar.getBoundingClientRect().bottom : 0;
+      return Math.max(0, tabsBottom + 6);
+    };
+
+    const getTargetTop = () => {
+      const stickyHeight = stickyVisual.getBoundingClientRect().height;
+      const minTop = getStartThreshold() + 8;
+      const maxTop = Math.max(minTop, window.innerHeight - stickyHeight - 24);
+      const dividerViewportY = priceSection.getBoundingClientRect().top;
+      return Math.max(minTop, Math.min(maxTop, dividerViewportY - stickyHeight / 2));
+    };
+
+    const refreshStickyMetrics = () => {
+      const stickyHeight = stickyVisual.getBoundingClientRect().height;
+      const aboutRect = aboutSection.getBoundingClientRect();
+      const priceRect = priceSection.getBoundingClientRect();
+      const dividerWithinAbout = priceRect.top - aboutRect.top;
+      const initialMarginTop = Math.max(0, dividerWithinAbout - stickyHeight / 2);
+
+      stickyVisual.style.marginTop = `${initialMarginTop}px`;
+      stickyVisual.style.setProperty("--sticky-target-top", `${getTargetTop()}px`);
+      naturalDocumentTop = stickyVisual.getBoundingClientRect().top + window.scrollY;
+    };
+
+    const enterPreState = () => {
+      stickyState = "pre";
+      stickyVisual.classList.remove("is-sticky-ready", "is-sticky-ended");
+      stickyVisual.style.removeProperty("--sticky-lock-y");
+      stickyVisual.style.top = "";
+      stickyVisual.style.transform = "";
+      refreshStickyMetrics();
+    };
+
+    const enterActiveState = () => {
+      const currentTop = stickyVisual.getBoundingClientRect().top;
+      const targetTop = getTargetTop();
+
+      stickyState = "active";
+      stickyVisual.classList.remove("is-sticky-ended");
+      stickyVisual.style.removeProperty("--sticky-lock-y");
+      stickyVisual.style.top = `${currentTop}px`;
+      stickyVisual.style.setProperty("--sticky-target-top", `${targetTop}px`);
+      stickyVisual.classList.add("is-sticky-ready");
+
+      requestAnimationFrame(() => {
+        stickyVisual.style.top = `${targetTop}px`;
+      });
+    };
+
+    const enterPostState = () => {
+      const currentTop = stickyVisual.getBoundingClientRect().top;
+      const naturalViewportTop = naturalDocumentTop - window.scrollY;
+      const lockOffset = currentTop - naturalViewportTop;
+
+      stickyState = "post";
+      stickyVisual.classList.remove("is-sticky-ready");
+      stickyVisual.classList.add("is-sticky-ended");
+      stickyVisual.style.top = "";
+      stickyVisual.style.setProperty("--sticky-lock-y", `${lockOffset}px`);
+    };
+
+    const updateStickyState = () => {
+      if (!desktopStickyMediaQuery.matches) {
+        stickyVisual.classList.remove("is-sticky-ready", "is-sticky-ended");
+        stickyVisual.style.top = "";
+        stickyVisual.style.transform = "";
+        stickyVisual.style.removeProperty("--sticky-lock-y");
+        stickyVisual.style.marginTop = "";
+        return;
+      }
+
+      const leadBottom = largeLead.getBoundingClientRect().bottom;
+      const priceBottom = priceSection.getBoundingClientRect().bottom;
+      const startThreshold = getStartThreshold();
+      const startReached = leadBottom <= startThreshold;
+      const endReached = priceBottom <= startThreshold;
+
+      if (!startReached) {
+        if (stickyState !== "pre") {
+          enterPreState();
+        } else {
+          refreshStickyMetrics();
+        }
+        return;
+      }
+
+      if (!endReached) {
+        if (stickyState !== "active") {
+          enterActiveState();
+        }
+        return;
+      }
+
+      if (stickyState !== "post") {
+        enterPostState();
+      }
+    };
+
+    const syncSticky = () => {
+      refreshStickyMetrics();
+      updateStickyState();
+    };
+
+    refreshStickyMetrics();
+    updateStickyState();
+
+    window.addEventListener("scroll", updateStickyState, { passive: true });
+    window.addEventListener("resize", syncSticky);
+
+    if (stickyVisualImage) {
+      if (stickyVisualImage.complete) {
+        syncSticky();
+      } else {
+        stickyVisualImage.addEventListener("load", syncSticky, { once: true });
+      }
+    }
+  }
+
   const sizeButtons = Array.from(document.querySelectorAll("[data-size-option]"));
 
   if (sizeButtons.length > 0) {
@@ -199,29 +330,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (track && prevButton && nextButton && slides.length > 0) {
       let currentIndex = 0;
+      const slideShare = 100 / slides.length;
+
+      track.style.width = `${slides.length * 100}%`;
+      slides.forEach((slideItem) => {
+        slideItem.style.flex = `0 0 ${slideShare}%`;
+      });
 
       const updateGallery = () => {
-        const slideWidth = slides[0].getBoundingClientRect().width;
-        const gapValue = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || "0");
-        const nextOffset = (slideWidth + gapValue) * currentIndex;
-
-        track.style.transform = `translateX(${-nextOffset}px)`;
-        prevButton.disabled = currentIndex === 0;
-        nextButton.disabled = currentIndex === slides.length - 1;
+        track.style.transform = `translateX(-${currentIndex * slideShare}%)`;
       };
 
       prevButton.addEventListener("click", () => {
-        if (currentIndex > 0) {
-          currentIndex -= 1;
-          updateGallery();
-        }
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateGallery();
       });
 
       nextButton.addEventListener("click", () => {
-        if (currentIndex < slides.length - 1) {
-          currentIndex += 1;
-          updateGallery();
-        }
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateGallery();
       });
 
       window.addEventListener("resize", updateGallery);

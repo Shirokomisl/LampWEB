@@ -19,7 +19,7 @@ const CATALOG_PRODUCTS = [
     name: "UFO Glass",
     typeSlug: "hanging",
     price: 68000,
-    image: "/images/Handing-Card.jpg",
+    image: "/images/glass_hanging-catalog.png",
     description: "[Описание-заглушка] Подвесная модель с акцентом на чистую геометрию."
   },
   {
@@ -27,15 +27,15 @@ const CATALOG_PRODUCTS = [
     name: "UFO Myst",
     typeSlug: "hanging",
     price: 89000,
-    image: "/images/hanging.jpg",
+    image: "/images/myst_hanging-catalog.png",
     description: "[Описание-заглушка] Мягкий световой сценарий для обеденных зон."
   },
   {
-    slug: "ufo-portofino",
-    name: "UFO Portofino",
+    slug: "ufo-potrofino",
+    name: "UFO Potrofino",
     typeSlug: "hanging",
     price: 126000,
-    image: "/images/interier-hanging.jpg",
+    image: "/images/potrofino-catalog.png",
     description: "[Описание-заглушка] Серия подвесов для премиальных пространств."
   },
   {
@@ -59,7 +59,7 @@ const CATALOG_PRODUCTS = [
     name: "UFO Pandora",
     typeSlug: "wall",
     price: 112000,
-    image: "/images/pandora-catalog.png",
+    image: "/images/pandora-catalog-cube.png",
     description: "[Описание-заглушка] Архитектурный свет для акцентной подсветки."
   },
   {
