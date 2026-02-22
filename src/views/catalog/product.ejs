@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
   <head>
     <%- include("../partials/head", { pageTitle }) %>
@@ -7,26 +7,160 @@
     <%- include("../partials/header", { brandName, yearLabel, activePage: "catalog" }) %>
 
     <main class="catalog-product-main">
-      <section class="catalog-product-hero">
-        <div class="catalog-product-hero-image reveal">
-          <img src="<%= product.image %>" alt="<%= product.name %>" />
+      <section
+        class="catalog-product-hero-v2"
+        style="--product-hero-image: url('<%= product.heroBackdropImage %>')"
+      >
+        <div class="catalog-product-hero-v2-overlay"></div>
+        <div class="catalog-product-hero-v2-content reveal">
+          <p class="catalog-product-breadcrumbs">
+            <a href="/">ГЛАВНАЯ</a>
+            <span>/</span>
+            <a href="/catalog">КАТАЛОГ</a>
+          </p>
+          <h1><%= product.name %></h1>
+          <p class="catalog-product-year"><%= product.yearLabel %></p>
         </div>
       </section>
 
-      <section class="catalog-product-info section-pad">
-        <div class="catalog-product-info-wrap reveal">
-          <p class="catalog-product-label">Карточка товара</p>
-          <h1><%= product.name %></h1>
-          <p><%= product.description %></p>
-          <div class="catalog-product-actions">
-            <a href="<%= backToTypeHref %>">Вернуться к типу: <%= backToTypeLabel %></a>
-            <a href="/catalog">Открыть весь каталог</a>
+      <nav class="catalog-product-tabs" aria-label="Разделы карточки товара">
+        <div class="catalog-product-tabs-inner">
+          <% tabs.forEach((tabItem, index) => { %>
+            <a
+              class="<%= index === 0 ? 'is-active' : '' %>"
+              href="#<%= tabItem.id %>"
+              data-product-tab
+            >
+              <%= tabItem.label %>
+            </a>
+          <% }) %>
+        </div>
+      </nav>
+
+      <section class="catalog-product-detail-wrap">
+        <div class="catalog-product-detail-grid">
+          <aside class="catalog-product-sticky-visual reveal">
+            <img src="<%= product.stickyImage %>" alt="<%= product.name %>" />
+          </aside>
+
+          <div class="catalog-product-detail-content">
+            <section id="about-product" class="catalog-product-section reveal">
+              <h2 class="catalog-product-lead"><%= productAbout.lead %></h2>
+              <div class="catalog-product-copy-grid">
+                <% productAbout.paragraphs.forEach((paragraphText) => { %>
+                  <p><%= paragraphText %></p>
+                <% }) %>
+              </div>
+            </section>
+
+            <section id="product-price" class="catalog-product-section catalog-price-section reveal">
+              <div class="catalog-price-configurator">
+                <h3><%= productPrice.configuratorTitle %></h3>
+                <p><%= productPrice.configuratorDescription %></p>
+                <div class="catalog-size-picker" role="group" aria-label="<%= productPrice.sizeLabel %>">
+                  <span><%= productPrice.sizeLabel %></span>
+                  <div class="catalog-size-picker-options <%= productPrice.sizeOptions.length === 1 ? 'is-single' : '' %>">
+                    <% productPrice.sizeOptions.forEach((sizeItem) => { %>
+                      <button
+                        type="button"
+                        class="<%= sizeItem.isActive ? 'is-active' : '' %>"
+                        data-size-option
+                      >
+                        <%= sizeItem.label %>
+                      </button>
+                    <% }) %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="catalog-price-card">
+                <p class="catalog-price-label"><%= productPrice.previewPriceLabel %></p>
+                <p class="catalog-price-value"><%= productPrice.previewPriceValue %></p>
+                <div class="catalog-price-actions">
+                  <a href="/contacts"><%= productPrice.requestLabel %></a>
+                  <a href="/contacts"><%= productPrice.modelLabel %></a>
+                </div>
+              </div>
+            </section>
           </div>
         </div>
+      </section>
+
+      <section id="product-gallery" class="catalog-gallery-section reveal">
+        <div class="catalog-gallery-slider" data-gallery-slider>
+          <button type="button" class="catalog-gallery-arrow is-prev" data-gallery-prev aria-label="Предыдущее фото">
+            <span>&lsaquo;</span>
+          </button>
+
+          <div class="catalog-gallery-viewport">
+            <div class="catalog-gallery-track" data-gallery-track>
+              <% productGallery.forEach((galleryItem) => { %>
+                <figure class="catalog-gallery-slide">
+                  <img src="<%= galleryItem.image %>" alt="<%= galleryItem.title %>" />
+                </figure>
+              <% }) %>
+            </div>
+          </div>
+
+          <button type="button" class="catalog-gallery-arrow is-next" data-gallery-next aria-label="Следующее фото">
+            <span>&rsaquo;</span>
+          </button>
+        </div>
+      </section>
+
+      
+      <section class="catalog-product-contact reveal" data-product-tabs-clear>
+        <div class="catalog-product-contact-grid">
+          <div class="catalog-product-contact-content">
+            <h2><%= productContact.title %></h2>
+            <p class="catalog-product-contact-description"><%= productContact.description %></p>
+            <form class="catalog-product-contact-form" action="/contacts" method="get">
+              <label>
+                <span><%= productContact.nameLabel %></span>
+                <input type="text" name="name" />
+              </label>
+              <label>
+                <span><%= productContact.phoneLabel %></span>
+                <input type="tel" name="phone" />
+              </label>
+              <label class="is-wide">
+                <span><%= productContact.messageLabel %></span>
+                <textarea name="message" rows="2"></textarea>
+              </label>
+              <button type="submit"><%= productContact.submitLabel %></button>
+              <p><%= productContact.policyText %></p>
+            </form>
+          </div>
+          
+          <div class="catalog-product-contact-image">
+            <img src="<%= productContact.image %>" alt="<%= product.name %>" />
+          </div>
+        </div>
+      </section>
+      <section id="similar-models" class="catalog-similar-section reveal">
+        <div class="catalog-similar-head">
+          <h2>РЕКОМЕНДУЕМЫЕ ТОВАРЫ</h2>
+          <a href="/catalog">СМОТРЕТЬ ВСЕ ИЗДЕЛИЯ</a>
+        </div>
+  
+        <% if (similarProducts.length === 0) { %>
+          <p class="catalog-empty-state">Похожие модели скоро появятся.</p>
+        <% } else { %>
+          <div class="catalog-similar-grid">
+            <% similarProducts.forEach((item) => { %>
+              <a href="<%= item.href %>">
+                <div class="catalog-similar-image">
+                  <img src="<%= item.image %>" alt="<%= item.name %>" />
+                </div>
+                <h3><%= item.name %></h3>
+                <p><%= item.description %></p>
+              </a>
+            <% }) %>
+          </div>
+        <% } %>
       </section>
     </main>
 
     <%- include("../partials/footer", { brandName, footerNote }) %>
   </body>
 </html>
-

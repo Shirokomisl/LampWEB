@@ -1,4 +1,4 @@
-const CATALOG_TYPES = [
+﻿const CATALOG_TYPES = [
   { slug: "all", label: "ВСЕ ИЗДЕЛИЯ" },
   { slug: "hanging", label: "ПОДВЕСНЫЕ" },
   { slug: "wall", label: "НАСТЕННЫЕ" },
@@ -16,7 +16,7 @@ const PRICE_RANGES = [
 const CATALOG_PRODUCTS = [
   {
     slug: "ufo-glass-hanging",
-    name: "UFO Glass Hanging",
+    name: "UFO Glass",
     typeSlug: "hanging",
     price: 68000,
     image: "/images/Handing-Card.jpg",
@@ -24,7 +24,7 @@ const CATALOG_PRODUCTS = [
   },
   {
     slug: "ufo-myst-hanging",
-    name: "UFO Myst Hanging",
+    name: "UFO Myst",
     typeSlug: "hanging",
     price: 89000,
     image: "/images/hanging.jpg",
@@ -39,19 +39,27 @@ const CATALOG_PRODUCTS = [
     description: "[Описание-заглушка] Серия подвесов для премиальных пространств."
   },
   {
+    slug: "ufo-prive",
+    name: "UFO Prive",
+    typeSlug: "hanging",
+    price: 120000,
+    image: "/images/hanging.jpg",
+    description: "[Описание-заглушка] Серия подвесов для премиальных пространств."
+  },
+  {
     slug: "ufo-glass-wall",
     name: "UFO Glass Wall",
     typeSlug: "wall",
     price: 54000,
-    image: "/images/Wall-Card.jpg",
+    image: "/images/glass_wall-catalog.png",
     description: "[Описание-заглушка] Настенный светильник с выразительным профилем."
   },
   {
-    slug: "ufo-pandora-wall",
-    name: "UFO Pandora Wall",
+    slug: "ufo-pandora",
+    name: "UFO Pandora",
     typeSlug: "wall",
     price: 112000,
-    image: "/images/wall-card-engle.jpg",
+    image: "/images/pandora-catalog.png",
     description: "[Описание-заглушка] Архитектурный свет для акцентной подсветки."
   },
   {
@@ -59,37 +67,45 @@ const CATALOG_PRODUCTS = [
     name: "UFO Myst Wall",
     typeSlug: "wall",
     price: 158000,
-    image: "/images/pandora.JPG",
+    image: "/images/myst_wall-catalog.png",
     description: "[Описание-заглушка] Компактная настенная модель для галерейных стен."
   },
   {
-    slug: "dea-floor",
-    name: "Dea Floor",
+    slug: "ufo-antique",
+    name: "UFO Antique",
+    typeSlug: "wall",
+    price: 142000,
+    image: "/images/antique-catalog.png",
+    description: "[Описание-заглушка] Компактная настенная модель для галерейных стен."
+  },
+  {
+    slug: "ufo-terra",
+    name: "UFO Terra",
+    typeSlug: "wall",
+    price: 220000,
+    image: "/images/terra-catalog.png",
+    description: "[Описание-заглушка] Компактная настенная модель для галерейных стен."
+  },
+  {
+    slug: "dea",
+    name: "Dea",
     typeSlug: "floor",
     price: 146000,
-    image: "/images/Dea-Card.png",
+    image: "/images/dea-catalog.png",
     description: "[Описание-заглушка] Торшер с мягким рассеянным светом."
-  },
-  {
-    slug: "dea-bronze",
-    name: "Dea Bronze",
-    typeSlug: "floor",
-    price: 198000,
-    image: "/images/dea.jpg",
-    description: "[Описание-заглушка] Торшер для камерных зон отдыха."
-  },
-  {
-    slug: "ufo-pandora-floor",
-    name: "UFO Pandora Floor",
-    typeSlug: "floor",
-    price: 232000,
-    image: "/images/IMG_6454.jpg",
-    description: "[Описание-заглушка] Напольная композиция для гостиной."
   }
 ];
 
 const buildTypeHref = (typeSlug) =>
   typeSlug === "all" ? "/catalog" : `/catalog/type/${typeSlug}`;
+
+const formatPrice = (priceValue) =>
+  `${new Intl.NumberFormat("ru-RU").format(priceValue)} ₽`;
+
+const getProductImage = (productItem) => productItem.image || "/images/hanging.jpg";
+
+const getConfiguratorSizes = (productSlug) =>
+  ["ufo-prive", "dea"].includes(productSlug) ? ["XL"] : ["S", "M", "L"];
 
 const normalizePriceSlug = (priceSlug) =>
   PRICE_RANGES.some((range) => range.slug === priceSlug) ? priceSlug : "any";
@@ -154,7 +170,7 @@ const getCatalogPageData = (selectedTypeSlug = "all", selectedPriceSlug = "any")
       "[Юридическая заглушка] ООО «Название компании». ИНН/ОГРН и документы добавляются на этапе запуска.",
     hero: {
       eyebrow: "КОЛЛЕКЦИЯ",
-      // Текст под "КОЛЛЕКЦИЯ" равен текущему выбранному типу фильтра.
+      // Текст под "КОЛЛЕКЦИЯ" всегда равен текущему выбранному типу фильтра.
       title: selectedType.label,
       image: "/images/studio-head.jpg"
     },
@@ -174,7 +190,16 @@ const getCatalogProductData = (productSlug) => {
     return null;
   }
 
-  const typeItem = CATALOG_TYPES.find((item) => item.slug === productItem.typeSlug);
+  const productImage = getProductImage(productItem);
+  const similarItems = CATALOG_PRODUCTS.filter(
+    (item) => item.typeSlug === productItem.typeSlug && item.slug !== productItem.slug
+  ).slice(0, 3);
+
+  const galleryItems = [productItem, ...similarItems].slice(0, 3);
+  const sizeOptions = getConfiguratorSizes(productItem.slug).map((sizeLabel, index) => ({
+    label: sizeLabel,
+    isActive: index === 0
+  }));
 
   return {
     pageTitle: `GÉOMETRIA | ${productItem.name}`,
@@ -182,9 +207,59 @@ const getCatalogProductData = (productSlug) => {
     yearLabel: "UFO & Dea Collection",
     footerNote:
       "[Юридическая заглушка] ООО «Название компании». ИНН/ОГРН и документы добавляются на этапе запуска.",
-    product: productItem,
-    backToTypeHref: buildTypeHref(productItem.typeSlug),
-    backToTypeLabel: typeItem ? typeItem.label : "КАТАЛОГ"
+    tabs: [
+      { id: "about-product", label: "ОБ ИЗДЕЛИИ" },
+      { id: "product-price", label: "СТОИМОСТЬ" },
+      { id: "product-gallery", label: "ФОТОГРАФИИ" },
+      { id: "similar-models", label: "ПОХОЖИЕ МОДЕЛИ" }
+    ],
+    product: {
+      ...productItem,
+      yearLabel: "2026",
+      heroBackdropImage: "/images/studio-head.jpg",
+      image: productImage,
+      stickyImage: productImage
+    },
+    productAbout: {
+      lead: `В коллекции GÉOMETRIA модель ${productItem.name} задумана как центральная ось пространства с балансом скульптурной формы и архитектурной строгости.`,
+      paragraphs: [
+        "Массивное основание и чистая пластика линий создают устойчивую визуальную композицию, подходящую как для частных интерьеров, так и для общественных пространств.",
+        "Каждая модель производится малыми сериями, поэтому характер изделия сохраняет авторскую подачу и премиальное качество исполнения."
+      ]
+    },
+    productPrice: {
+      previewPriceLabel: "ПРЕДВАРИТЕЛЬНАЯ СТОИМОСТЬ",
+      previewPriceValue: formatPrice(productItem.price),
+      configuratorTitle: "КОНФИГУРАТОР",
+      configuratorDescription:
+        "Выберите размер, чтобы уточнить предварительную стоимость.",
+      sizeLabel: "ВЫБЕРИТЕ РАЗМЕР",
+      sizeOptions,
+      requestLabel: "ОСТАВИТЬ ЗАЯВКУ",
+      modelLabel: "ЗАПРОСИТЬ 3D МОДЕЛЬ"
+    },
+    productGallery: galleryItems.map((item) => ({
+      image: getProductImage(item),
+      title: item.name
+    })),
+    similarProducts: similarItems.map((item) => ({
+      name: item.name,
+      description: item.description,
+      image: getProductImage(item),
+      href: `/catalog/product/${item.slug}`
+    })),
+    productContact: {
+      title: "ОСТАЛИСЬ ВОПРОСЫ?",
+      description:
+        "Пожалуйста, направьте ваш запрос по форме, представленной ниже. Мы свяжемся с вами в ближайшее время.",
+      nameLabel: "ИМЯ *",
+      phoneLabel: "ТЕЛЕФОН *",
+      messageLabel: "ОПИШИТЕ СВОЙ ВОПРОС *",
+      submitLabel: "ОТПРАВИТЬ",
+      policyText:
+        "Нажимая кнопку «Отправить», вы соглашаетесь на обработку персональных данных",
+      image: productImage
+    }
   };
 };
 
@@ -193,4 +268,3 @@ module.exports = {
   getCatalogProductData,
   isCatalogType
 };
-

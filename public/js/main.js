@@ -116,5 +116,116 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   }
-});
 
+  const productTabs = Array.from(document.querySelectorAll("[data-product-tab]"));
+
+  if (productTabs.length > 0) {
+    const targetSections = productTabs
+      .map((tabLink) => {
+        const sectionId = tabLink.getAttribute("href");
+        if (!sectionId || !sectionId.startsWith("#")) {
+          return null;
+        }
+        return document.querySelector(sectionId);
+      })
+      .filter(Boolean);
+
+    const setActiveTab = (hashValue) => {
+      productTabs.forEach((tabLink) => {
+        tabLink.classList.toggle("is-active", tabLink.getAttribute("href") === hashValue);
+      });
+    };
+
+    productTabs.forEach((tabLink) => {
+      tabLink.addEventListener("click", () => {
+        const hashValue = tabLink.getAttribute("href");
+        if (hashValue) {
+          setActiveTab(hashValue);
+        }
+      });
+    });
+
+    if (targetSections.length > 0) {
+      const tabObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveTab(`#${entry.target.id}`);
+            }
+          });
+        },
+        { rootMargin: "-35% 0px -55% 0px", threshold: 0 }
+      );
+
+      targetSections.forEach((sectionItem) => tabObserver.observe(sectionItem));
+    }
+
+    const clearTabsSection = document.querySelector("[data-product-tabs-clear]");
+
+    if (clearTabsSection) {
+      const clearObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveTab("");
+            }
+          });
+        },
+        { rootMargin: "-40% 0px -45% 0px", threshold: 0 }
+      );
+
+      clearObserver.observe(clearTabsSection);
+    }
+  }
+
+  const sizeButtons = Array.from(document.querySelectorAll("[data-size-option]"));
+
+  if (sizeButtons.length > 0) {
+    sizeButtons.forEach((buttonItem) => {
+      buttonItem.addEventListener("click", () => {
+        sizeButtons.forEach((innerButton) => innerButton.classList.remove("is-active"));
+        buttonItem.classList.add("is-active");
+      });
+    });
+  }
+
+  const gallerySlider = document.querySelector("[data-gallery-slider]");
+
+  if (gallerySlider) {
+    const track = gallerySlider.querySelector("[data-gallery-track]");
+    const prevButton = gallerySlider.querySelector("[data-gallery-prev]");
+    const nextButton = gallerySlider.querySelector("[data-gallery-next]");
+    const slides = track ? Array.from(track.children) : [];
+
+    if (track && prevButton && nextButton && slides.length > 0) {
+      let currentIndex = 0;
+
+      const updateGallery = () => {
+        const slideWidth = slides[0].getBoundingClientRect().width;
+        const gapValue = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || "0");
+        const nextOffset = (slideWidth + gapValue) * currentIndex;
+
+        track.style.transform = `translateX(${-nextOffset}px)`;
+        prevButton.disabled = currentIndex === 0;
+        nextButton.disabled = currentIndex === slides.length - 1;
+      };
+
+      prevButton.addEventListener("click", () => {
+        if (currentIndex > 0) {
+          currentIndex -= 1;
+          updateGallery();
+        }
+      });
+
+      nextButton.addEventListener("click", () => {
+        if (currentIndex < slides.length - 1) {
+          currentIndex += 1;
+          updateGallery();
+        }
+      });
+
+      window.addEventListener("resize", updateGallery);
+      updateGallery();
+    }
+  }
+});
