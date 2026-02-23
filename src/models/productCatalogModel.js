@@ -110,7 +110,7 @@ const getContactsPageData = () => {
         "Казань, Проспект Победы, 159"
       ],
       socials: [
-        { name: "Instagram", short: "IG", href: "#" },
+        { name: "Instagram", short: "IG", href: "https://www.instagram.com/geometria_light?igsh=dHo0YzdnanB6ZmFm&utm_source=qr" },
         { name: "Telegram", short: "TG", href: "#" },
         { name: "Pinterest", short: "PN", href: "#" },
         { name: "YouTube", short: "YT", href: "#" }

@@ -20,7 +20,9 @@ const CATALOG_PRODUCTS = [
     typeSlug: "hanging",
     price: 68000,
     image: "/images/glass_hanging-catalog.png",
-    description: "[Описание-заглушка] Подвесная модель с акцентом на чистую геометрию."
+    description: "[Описание-заглушка] Подвесная модель с акцентом на чистую геометрию.",
+    paragraph1: "",
+    paragraph2: ""
   },
   {
     slug: "ufo-myst-hanging",
@@ -28,7 +30,9 @@ const CATALOG_PRODUCTS = [
     typeSlug: "hanging",
     price: 89000,
     image: "/images/myst_hanging-catalog.png",
-    description: "[Описание-заглушка] Мягкий световой сценарий для обеденных зон."
+    description: "[Описание-заглушка] Мягкий световой сценарий для обеденных зон.",
+    paragraph1: "",
+    paragraph2: ""
   },
   {
     slug: "ufo-potrofino",
@@ -36,15 +40,19 @@ const CATALOG_PRODUCTS = [
     typeSlug: "hanging",
     price: 126000,
     image: "/images/potrofino-catalog.png",
-    description: "[Описание-заглушка] Серия подвесов для премиальных пространств."
+    description: "[Описание-заглушка] Серия подвесов для премиальных пространств.",
+    paragraph1: "",
+    paragraph2: ""
   },
   {
     slug: "ufo-prive",
     name: "UFO Prive",
     typeSlug: "hanging",
     price: 120000,
-    image: "/images/hanging.jpg",
-    description: "[Описание-заглушка] Серия подвесов для премиальных пространств."
+    image: "/images/prive-catalog-cube.png",
+    description: "[Описание-заглушка] Серия подвесов для премиальных пространств.",
+    paragraph1: "",
+    paragraph2: ""
   },
   {
     slug: "ufo-glass-wall",
@@ -52,7 +60,14 @@ const CATALOG_PRODUCTS = [
     typeSlug: "wall",
     price: 54000,
     image: "/images/glass_wall-catalog.png",
-    description: "[Описание-заглушка] Настенный светильник с выразительным профилем."
+    gallery: [
+      { image: "/images/glass_wall-catalog.png", title: "UFO Glass Wall" },
+      { image: "/images/wall-card-engle.jpg", title: "UFO Glass Wall в интерьере" },
+      { image: "/images/Wall-Card.jpg", title: "UFO Glass Wall, крупный план" }
+    ],
+    description: "UFO Glass Wall (премиальное матированное стекло) - представляет из себя настенную версию светильника UFO Glass",
+    paragraph1: "Может быть использован в сателлитном использовании с подвесной версией для формирования композитного восприятия в освещении интерьера.",
+    paragraph2: "Материалы: бельгийское стекло, латунь, алюминий."
   },
   {
     slug: "ufo-pandora",
@@ -60,7 +75,9 @@ const CATALOG_PRODUCTS = [
     typeSlug: "wall",
     price: 112000,
     image: "/images/pandora-catalog-cube.png",
-    description: "[Описание-заглушка] Архитектурный свет для акцентной подсветки."
+    description: "[Описание-заглушка] Архитектурный свет для акцентной подсветки.",
+    paragraph1: "",
+    paragraph2: ""
   },
   {
     slug: "ufo-myst-wall",
@@ -68,7 +85,9 @@ const CATALOG_PRODUCTS = [
     typeSlug: "wall",
     price: 158000,
     image: "/images/myst_wall-catalog.png",
-    description: "[Описание-заглушка] Компактная настенная модель для галерейных стен."
+    description: "UFO Myst Wall (премиальное матированное стекло дымчатого оттенка) - за счет дымчатого стекла наиболее подходит в качестве сдержанного атмосферного света и идеальны для формирования световых композиций за счет применения разных размеров.",
+    paragraph1: "Идеальное решение для мастер-спален, прихожих, идеальное решение в качестве проходного ночного света и пр.",
+    paragraph2: "Материалы: бельгийское стекло, латунь, алюминий."
   },
   {
     slug: "ufo-antique",
@@ -76,7 +95,9 @@ const CATALOG_PRODUCTS = [
     typeSlug: "wall",
     price: 142000,
     image: "/images/antique-catalog.png",
-    description: "[Описание-заглушка] Компактная настенная модель для галерейных стен."
+    description: "[Описание-заглушка] Компактная настенная модель для галерейных стен.",
+    paragraph1: "",
+    paragraph2: ""
   },
   {
     slug: "ufo-terra",
@@ -84,7 +105,9 @@ const CATALOG_PRODUCTS = [
     typeSlug: "wall",
     price: 220000,
     image: "/images/terra-catalog.png",
-    description: "[Описание-заглушка] Компактная настенная модель для галерейных стен."
+    description: "[Описание-заглушка] Компактная настенная модель для галерейных стен.",
+    paragraph1: "",
+    paragraph2: ""
   },
   {
     slug: "dea",
@@ -92,7 +115,9 @@ const CATALOG_PRODUCTS = [
     typeSlug: "floor",
     price: 146000,
     image: "/images/dea-catalog.png",
-    description: "[Описание-заглушка] Торшер с мягким рассеянным светом."
+    description: "[Описание-заглушка] Торшер с мягким рассеянным светом.",
+    paragraph1: "",
+    paragraph2: ""
   }
 ];
 
@@ -103,6 +128,45 @@ const formatPrice = (priceValue) =>
   `${new Intl.NumberFormat("ru-RU").format(priceValue)} ₽`;
 
 const getProductImage = (productItem) => productItem.image || "/images/hanging.jpg";
+
+// Нормализует запись галереи из модели:
+// - строка: "/images/file.jpg"
+// - объект: { image: "/images/file.jpg", title: "Подпись" }
+const normalizeGalleryEntry = (entry, fallbackTitle) => {
+  if (typeof entry === "string") {
+    return {
+      image: entry,
+      title: fallbackTitle
+    };
+  }
+
+  if (!entry || typeof entry !== "object" || !entry.image) {
+    return null;
+  }
+
+  return {
+    image: entry.image,
+    title: entry.title || fallbackTitle
+  };
+};
+
+const getProductGallery = (productItem, similarItems) => {
+  const configuredGallery = Array.isArray(productItem.gallery) ? productItem.gallery : [];
+  const normalizedGallery = configuredGallery
+    .map((galleryEntry) => normalizeGalleryEntry(galleryEntry, productItem.name))
+    .filter(Boolean);
+
+  if (normalizedGallery.length > 0) {
+    return normalizedGallery;
+  }
+
+  const galleryFallbackItems = [productItem, ...similarItems].slice(0, 3);
+
+  return galleryFallbackItems.map((item) => ({
+    image: getProductImage(item),
+    title: item.name
+  }));
+};
 
 const getConfiguratorSizes = (productSlug) =>
   ["ufo-prive", "dea"].includes(productSlug) ? ["XL"] : ["S", "M", "L"];
@@ -195,7 +259,7 @@ const getCatalogProductData = (productSlug) => {
     (item) => item.typeSlug === productItem.typeSlug && item.slug !== productItem.slug
   ).slice(0, 3);
 
-  const galleryItems = [productItem, ...similarItems].slice(0, 3);
+  const galleryItems = getProductGallery(productItem, similarItems);
   const sizeOptions = getConfiguratorSizes(productItem.slug).map((sizeLabel, index) => ({
     label: sizeLabel,
     isActive: index === 0
@@ -221,10 +285,10 @@ const getCatalogProductData = (productSlug) => {
       stickyImage: productImage
     },
     productAbout: {
-      lead: `В коллекции GÉOMETRIA модель ${productItem.name} задумана как центральная ось пространства с балансом скульптурной формы и архитектурной строгости.`,
+      lead: productItem.description,
       paragraphs: [
-        "Массивное основание и чистая пластика линий создают устойчивую визуальную композицию, подходящую как для частных интерьеров, так и для общественных пространств.",
-        "Каждая модель производится малыми сериями, поэтому характер изделия сохраняет авторскую подачу и премиальное качество исполнения."
+        productItem.paragraph1,
+        productItem.paragraph2
       ]
     },
     productPrice: {
@@ -238,10 +302,7 @@ const getCatalogProductData = (productSlug) => {
       requestLabel: "ОСТАВИТЬ ЗАЯВКУ",
       modelLabel: "ЗАПРОСИТЬ 3D МОДЕЛЬ"
     },
-    productGallery: galleryItems.map((item) => ({
-      image: getProductImage(item),
-      title: item.name
-    })),
+    productGallery: galleryItems,
     similarProducts: similarItems.map((item) => ({
       name: item.name,
       description: item.description,
