@@ -32,11 +32,12 @@ http://localhost:3000
 ## 3. Актуальные страницы и маршруты
 
 - `/` — главная страница
+- `/about` — страница «О бренде»
 - `/contacts` — контакты (hero-видео, контактный блок, карта)
 - `/catalog` — каталог (фильтр по типам, фильтр по стоимости, размер карточек)
 - `/catalog/type/:typeSlug` — каталог по типу (`hanging`, `wall`, `floor`)
 - `/catalog/product/:productSlug` — карточка товара
-- `/:pageSlug(projects|about|designers)` — заглушки разделов
+- `/:pageSlug(designers)` — заглушка раздела
 - `*` — 404 заглушка
 
 ## 4. Структура проекта
@@ -51,6 +52,7 @@ src/
   routes/webRoutes.js
   views/
     home/index.ejs
+    about/index.ejs
     contacts/index.ejs
     catalog/index.ejs
     catalog/product.ejs

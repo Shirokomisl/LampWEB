@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <%- include("../partials/head", { pageTitle }) %>
+  </head>
+  <body class="about-page">
+    <%- include("../partials/header", { brandName, yearLabel, activePage: "about" }) %>
+
+    <main class="about-main">
+      <section class="contacts-hero">
+        <video
+          class="contacts-hero-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+          poster="<%= introVideo.poster %>"
+        >
+          <source src="<%= introVideo.videoSrc %>" type="<%= introVideo.videoType %>" />
+          <source src="<%= introVideo.videoSrc %>" />
+        </video>
+        <div class="contacts-hero-shade"></div>
+        <div class="contacts-hero-content reveal">
+          <p class="contacts-hero-brand"><%= introVideo.brandLine %></p>
+          <h1><%= introVideo.title %></h1>
+        </div>
+      </section>
+
+      <section class="about-hero section-pad">
+        <div class="container about-hero-grid reveal">
+          <p class="about-eyebrow"><%= hero.eyebrow %></p>
+          <h1><%= hero.title %></h1>
+          <p class="about-lead"><%= hero.lead %></p>
+        </div>
+      </section>
+
+      <section class="about-strengths section-pad">
+        <div class="container">
+          <div class="about-strengths-grid">
+            <% strengths.forEach((item, index) => { %>
+              <article class="about-strength-card reveal" style="--delay: <%= index * 80 %>ms">
+                <h2><%= item.title %></h2>
+                <p><%= item.description %></p>
+              </article>
+            <% }) %>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-photo-pair section-pad">
+        <div class="container about-photo-grid">
+          <% storyPhotosTop.forEach((item, index) => { %>
+            <article class="about-photo-card reveal" style="--delay: <%= index * 70 %>ms">
+              <div class="about-photo-media">
+                <img src="<%= item.image %>" alt="<%= item.caption %>" />
+              </div>
+              <p class="about-photo-caption"><%= item.caption %></p>
+            </article>
+          <% }) %>
+        </div>
+      </section>
+
+      <section class="about-video-zone section-pad">
+        <div class="container about-video-stack">
+          <% videoBlocks.forEach((block, index) => { %>
+            <article class="about-video-block <%= index % 2 !== 0 ? 'is-reverse' : '' %> reveal">
+              <div class="about-video-media">
+                <video
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="auto"
+                  poster="<%= block.poster %>"
+                >
+                  <source src="<%= block.videoSrc %>" type="<%= block.videoType %>" />
+                  <source src="<%= block.videoSrc %>" />
+                </video>
+              </div>
+              <div class="about-video-content">
+                <p class="about-video-eyebrow"><%= block.eyebrow %></p>
+                <h2><%= block.title %></h2>
+                <p><%= block.description %></p>
+              </div>
+            </article>
+          <% }) %>
+        </div>
+      </section>
+
+      <section class="about-icons section-pad">
+        <div class="container">
+          <div class="about-icons-grid reveal">
+            <% iconFeatures.forEach((item) => { %>
+              <article class="about-icon-card">
+                <img src="<%= item.icon %>" alt="" aria-hidden="true" />
+                <p><%= item.text %></p>
+              </article>
+            <% }) %>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-delivery section-pad">
+        <div class="container reveal">
+          <article class="about-delivery-map-card">
+            <h2><%= delivery.title %></h2>
+            <div class="about-delivery-visual">
+              <img class="about-delivery-product" src="<%= delivery.productImage %>" alt="Доставка GEOMETRIA" />
+            </div>
+            <p class="about-delivery-subtext"><%= delivery.lead %></p>
+          </article>
+        </div>
+      </section>
+
+      <section class="about-photo-pair section-pad">
+        <div class="container about-photo-grid">
+          <% storyPhotosBottom.forEach((item, index) => { %>
+            <article class="about-photo-card reveal" style="--delay: <%= index * 70 %>ms">
+              <div class="about-photo-media">
+                <img src="<%= item.image %>" alt="<%= item.caption %>" />
+              </div>
+              <p class="about-photo-caption"><%= item.caption %></p>
+            </article>
+          <% }) %>
+        </div>
+      </section>
+    </main>
+
+    <%- include("../partials/footer", { brandName, footerNote }) %>
+  </body>
+</html>
+

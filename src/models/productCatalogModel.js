@@ -137,7 +137,108 @@ const getContactsPageData = () => {
   };
 };
 
+const getAboutPageData = () => {
+  return {
+    pageTitle: "GÉOMETRIA | О бренде",
+    brandName: "GÉOMETRIA",
+    yearLabel: "UFO & Dea Collection",
+    footerNote:
+      "[Юридическая заглушка] ООО «Название компании». ИНН/ОГРН и документы добавляются на этапе запуска.",
+    introVideo: {
+      brandLine: "GÉOMETRIA",
+      title: "О БРЕНДЕ",
+      videoSrc: "/videos/contacts-video.MOV",
+      videoType: "video/quicktime",
+      poster: "/images/studio-head.jpg"
+    },
+    hero: {
+      eyebrow: "О БРЕНДЕ",
+      title: "СВЕТ, СОЗДАННЫЙ ВРУЧНУЮ",
+      lead:
+        "GÉOMETRIA — семейная мастерская. Каждый светильник мы изготавливаем вручную, с фокусом на качестве, уникальности материалов и точности ручной сборки."
+    },
+    strengths: [
+      {
+        title: "Качество",
+        description:
+          "Контролируем каждый этап: от подбора материалов до финальной сборки и проверки светового рисунка."
+      },
+      {
+        title: "Уникальные материалы",
+        description:
+          "Используем выразительные материалы и фактуры, чтобы каждый светильник выглядел индивидуально."
+      },
+      {
+        title: "Полностью ручная работа",
+        description:
+          "Без конвейера и массовых тиражей: каждое изделие собирается вручную и доводится до результата в мастерской."
+      }
+    ],
+    storyPhotosTop: [
+      {
+        image: "/images/glass_hanging-gallery6.jpg",
+        caption: "НАША ЭСТЕТИКА"
+      },
+      {
+        image: "/images/stone-veneer.png",
+        caption: "НЕОБРАБОТАННЫЙ КАМЕННЫЙ ШПОН"
+      }
+    ],
+    videoBlocks: [
+      {
+        eyebrow: "Производство",
+        title: "Ручная сборка в мастерской",
+        description:
+          "Все процессы выполняются вручную: подготовка деталей, подгонка элементов, финишная обработка и проверка качества света.",
+        videoSrc: "/videos/veneer_cutting.MOV",
+        videoType: "video/quicktime",
+        poster: "/images/studio-head.jpg"
+      },
+      {
+        eyebrow: "Материалы",
+        title: "Фактура, тактильность, долговечность",
+        description:
+          "Мы делаем акцент на материалах, которые раскрываются в интерьере по фактуре, глубине оттенка и тактильным ощущениям.",
+        videoSrc: "/videos/contacts-video.MOV",
+        videoType: "video/quicktime",
+        poster: "/images/studio-head.jpg"
+      }
+    ],
+    iconFeatures: [
+      {
+        icon: "/images/about-icon-workshop.svg",
+        text: "Собственная столярная и металлообработка — каждое изделие проходит ручной контроль качества"
+      },
+      {
+        icon: "/images/about-icon-box.svg",
+        text: "Надежная упаковка перед отправкой — бережная защита изделия при транспортировке"
+      },
+      {
+        icon: "/images/about-icon-craft.svg",
+        text: "Небольшое ремесленное производство — фокус на качестве, а не на количестве"
+      }
+    ],
+    delivery: {
+      title: "ОСУЩЕСТВЛЯЕМ ПОСТАВКИ ПО ВСЕЙ ТЕРРИТОРИИ РОССИИ",
+      productImage: "/images/russia_shaped-interier-no_background.png",
+      lead:
+        "Доставка заказов выполняется по всей России. Мы заранее согласовываем сроки и формат отправки."
+    },
+    storyPhotosBottom: [
+      {
+        image: "/images/hand-work.jpg",
+        caption: "НЕИСПОЛЬЗОВАННЫЙ ПОДВЕС"
+      },
+      {
+        image: "/images/glass_hanging-gallery7.jpg",
+        caption: "НАША ЭСТЕТИКА"
+      }
+    ]
+  };
+};
+
 module.exports = {
   getHomePageData,
-  getContactsPageData
+  getContactsPageData,
+  getAboutPageData
 };

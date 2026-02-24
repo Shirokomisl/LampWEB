@@ -1,6 +1,7 @@
 const {
   getHomePageData,
-  getContactsPageData
+  getContactsPageData,
+  getAboutPageData
 } = require("../models/productCatalogModel");
 const {
   getCatalogPageData,
@@ -9,37 +10,6 @@ const {
 } = require("../models/catalogPageModel");
 
 const placeholderPages = {
-  catalog: {
-    pageTitle: "Каталог",
-    pageName: "Каталог",
-    placeholderLead: "[Раздел-заглушка] Полная структура каталога пока не реализована.",
-    placeholderBody:
-      "[Текст-заглушка] Добавьте фильтры, карточки товаров и детальные страницы моделей."
-  },
-  projects: {
-    pageTitle: "Проекты",
-    pageName: "Проекты",
-    placeholderLead:
-      "[Раздел-заглушка] Кейсы и реализованные интерьеры будут опубликованы позже.",
-    placeholderBody:
-      "[Текст-заглушка] Добавьте фото до/после, задачи клиента и использованные модели света."
-  },
-  about: {
-    pageTitle: "О бренде",
-    pageName: "О бренде",
-    placeholderLead:
-      "[Раздел-заглушка] История бренда и производственная экспертиза готовятся к публикации.",
-    placeholderBody:
-      "[Текст-заглушка] Добавьте ценности, географию, производственные мощности и сертификаты."
-  },
-  contacts: {
-    pageTitle: "Контакты",
-    pageName: "Контакты",
-    placeholderLead:
-      "[Раздел-заглушка] Полная контактная страница пока не реализована.",
-    placeholderBody:
-      "[Текст-заглушка] Добавьте карту, график работы, телефоны отделов и реквизиты."
-  },
   designers: {
     pageTitle: "Для дизайнеров",
     pageName: "Для дизайнеров",
@@ -58,6 +28,11 @@ const renderHome = (req, res) => {
 const renderContacts = (req, res) => {
   const viewModel = getContactsPageData();
   res.render("contacts/index", viewModel);
+};
+
+const renderAbout = (req, res) => {
+  const viewModel = getAboutPageData();
+  res.render("about/index", viewModel);
 };
 
 const renderCatalog = (req, res) => {
@@ -134,8 +109,10 @@ const renderPlaceholderPage = (req, res) => {
 module.exports = {
   renderHome,
   renderContacts,
+  renderAbout,
   renderCatalog,
   renderCatalogByType,
   renderCatalogProduct,
   renderPlaceholderPage
 };
+
