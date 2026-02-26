@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
   <head>
     <%- include("../partials/head", { pageTitle }) %>
@@ -65,6 +65,8 @@
                         type="button"
                         class="<%= sizeItem.isActive ? 'is-active' : '' %>"
                         data-size-option
+                        data-size-price="<%= sizeItem.price %>"
+                        aria-label="<%= sizeItem.label %>: <%= sizeItem.formattedPrice %>"
                       >
                         <%= sizeItem.label %>
                       </button>
@@ -75,7 +77,9 @@
 
               <div class="catalog-price-card">
                 <p class="catalog-price-label"><%= productPrice.previewPriceLabel %></p>
-                <p class="catalog-price-value"><%= productPrice.previewPriceValue %></p>
+                <p class="catalog-price-value" data-product-price-value data-product-price-raw="<%= productPrice.previewPriceRaw %>">
+                  <%= productPrice.previewPriceValue %>
+                </p>
                 <div class="catalog-price-actions">
                   <a href="/contacts"><%= productPrice.requestLabel %></a>
                   <a href="/contacts"><%= productPrice.modelLabel %></a>
@@ -108,41 +112,65 @@
         </div>
       </section>
 
-      
-      <section class="catalog-product-contact reveal" data-product-tabs-clear>
+      <section class="catalog-product-contact reveal" id="contact-point" data-product-tabs-clear>
         <div class="catalog-product-contact-grid">
           <div class="catalog-product-contact-content">
             <h2><%= productContact.title %></h2>
             <p class="catalog-product-contact-description"><%= productContact.description %></p>
-            <form class="catalog-product-contact-form" action="/contacts" method="get">
+
+            <% if (contactFeedback) { %>
+              <p class="form-feedback <%= contactFeedback.type === 'success' ? 'is-success' : 'is-error' %>">
+                <%= contactFeedback.text %>
+              </p>
+            <% } %>
+
+            <form class="catalog-product-contact-form" action="<%= contactForm.action %>" method="post" novalidate>
+              <input type="hidden" name="_csrf" value="<%= contactForm.csrfToken %>" />
+              <input type="hidden" name="sourcePath" value="<%= contactForm.sourcePath %>" />
+              <input type="hidden" name="formOrigin" value="<%= contactForm.formOrigin %>" />
+              <input type="hidden" name="formStartedAt" value="<%= contactForm.formStartedAt %>" />
+
+              <div class="form-honeypot" aria-hidden="true">
+                <label for="catalog-website">Website</label>
+                <input id="catalog-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+              </div>
+
               <label>
                 <span><%= productContact.nameLabel %></span>
-                <input type="text" name="name" />
+                <input type="text" name="name" required minlength="2" maxlength="80" />
               </label>
               <label>
                 <span><%= productContact.phoneLabel %></span>
-                <input type="tel" name="phone" />
+                <input type="tel" name="phone" required minlength="7" maxlength="30" />
               </label>
               <label class="is-wide">
                 <span><%= productContact.messageLabel %></span>
-                <textarea name="message" rows="2"></textarea>
+                <textarea name="message" rows="2" required minlength="10" maxlength="2000"></textarea>
               </label>
+
+              <% if (contactForm.captchaEnabled) { %>
+                <div class="catalog-contact-captcha is-wide">
+                  <div class="cf-turnstile" data-sitekey="<%= contactForm.captchaSiteKey %>"></div>
+                </div>
+              <% } %>
+
               <button type="submit"><%= productContact.submitLabel %></button>
               <p><%= productContact.policyText %></p>
             </form>
           </div>
-          
+
           <div class="catalog-product-contact-image">
             <img src="<%= productContact.image %>" alt="<%= product.name %>" />
           </div>
         </div>
       </section>
+
       <section id="similar-models" class="catalog-similar-section reveal">
         <div class="catalog-similar-head">
           <h2>РЕКОМЕНДУЕМЫЕ ТОВАРЫ</h2>
           <a href="/catalog">СМОТРЕТЬ ВСЕ ИЗДЕЛИЯ</a>
         </div>
-  
+
         <% if (similarProducts.length === 0) { %>
           <p class="catalog-empty-state">Похожие модели скоро появятся.</p>
         <% } else { %>

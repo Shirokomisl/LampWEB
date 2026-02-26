@@ -312,12 +312,29 @@ if (catalogGrid && viewSwitcher) {
   }
 
   const sizeButtons = Array.from(document.querySelectorAll("[data-size-option]"));
+  const productPriceValue = document.querySelector("[data-product-price-value]");
+
+  const formatRubPrice = (priceValue) =>
+    `${new Intl.NumberFormat("ru-RU").format(priceValue)} ₽`;
 
   if (sizeButtons.length > 0) {
     sizeButtons.forEach((buttonItem) => {
       buttonItem.addEventListener("click", () => {
         sizeButtons.forEach((innerButton) => innerButton.classList.remove("is-active"));
         buttonItem.classList.add("is-active");
+
+        if (!productPriceValue) {
+          return;
+        }
+
+        const nextPrice = Number(buttonItem.dataset.sizePrice);
+
+        if (!Number.isFinite(nextPrice) || nextPrice <= 0) {
+          return;
+        }
+
+        productPriceValue.textContent = formatRubPrice(nextPrice);
+        productPriceValue.dataset.productPriceRaw = String(nextPrice);
       });
     });
   }

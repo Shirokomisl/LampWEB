@@ -139,6 +139,9 @@ const formatPrice = (priceValue) =>
 
 const getProductImage = (productItem) => productItem.image || "/images/hanging.jpg";
 
+const roundToThousand = (priceValue) =>
+  Math.max(1000, Math.round(priceValue / 1000) * 1000);
+
 // Нормализует запись галереи из модели:
 // - строка: "/images/file.jpg"
 // - объект: { image: "/images/file.jpg", title: "Подпись" }
@@ -180,6 +183,37 @@ const getProductGallery = (productItem, similarItems) => {
 
 const getConfiguratorSizes = (productSlug) =>
   ["ufo-prive", "dea"].includes(productSlug) ? ["XL"] : ["S", "M", "L"];
+
+const getSizePrices = (productItem, sizeLabels) => {
+  const manualPrices = productItem.sizePrices || {};
+
+  if (Object.keys(manualPrices).length > 0) {
+    return sizeLabels.reduce((accumulator, sizeLabel) => {
+      accumulator[sizeLabel] =
+        Number.isFinite(manualPrices[sizeLabel]) && manualPrices[sizeLabel] > 0
+          ? manualPrices[sizeLabel]
+          : productItem.price;
+      return accumulator;
+    }, {});
+  }
+
+  if (sizeLabels.length === 1) {
+    return { [sizeLabels[0]]: productItem.price };
+  }
+
+  if (sizeLabels.includes("S") && sizeLabels.includes("M") && sizeLabels.includes("L")) {
+    return {
+      S: roundToThousand(productItem.price * 0.88),
+      M: productItem.price,
+      L: roundToThousand(productItem.price * 1.16)
+    };
+  }
+
+  return sizeLabels.reduce((accumulator, sizeLabel) => {
+    accumulator[sizeLabel] = productItem.price;
+    return accumulator;
+  }, {});
+};
 
 const normalizePriceSlug = (priceSlug) =>
   PRICE_RANGES.some((range) => range.slug === priceSlug) ? priceSlug : "any";
@@ -270,9 +304,15 @@ const getCatalogProductData = (productSlug) => {
   ).slice(0, 3);
 
   const galleryItems = getProductGallery(productItem, similarItems);
-  const sizeOptions = getConfiguratorSizes(productItem.slug).map((sizeLabel, index) => ({
+  const sizeLabels = getConfiguratorSizes(productItem.slug);
+  const sizePrices = getSizePrices(productItem, sizeLabels);
+  const activeSizeLabel = sizeLabels.includes("M") ? "M" : sizeLabels[0];
+
+  const sizeOptions = sizeLabels.map((sizeLabel) => ({
     label: sizeLabel,
-    isActive: index === 0
+    price: sizePrices[sizeLabel],
+    formattedPrice: formatPrice(sizePrices[sizeLabel]),
+    isActive: sizeLabel === activeSizeLabel
   }));
 
   return {
@@ -303,7 +343,8 @@ const getCatalogProductData = (productSlug) => {
     },
     productPrice: {
       previewPriceLabel: "ПРЕДВАРИТЕЛЬНАЯ СТОИМОСТЬ",
-      previewPriceValue: formatPrice(productItem.price),
+      previewPriceValue: formatPrice(sizePrices[activeSizeLabel]),
+      previewPriceRaw: sizePrices[activeSizeLabel],
       configuratorTitle: "КОНФИГУРАТОР",
       configuratorDescription:
         "Выберите размер, чтобы уточнить предварительную стоимость.",

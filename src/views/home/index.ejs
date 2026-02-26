@@ -46,7 +46,7 @@
                 <img
                   class="motto-side-image"
                   src="<%= brandMotto.sideImage %>"
-                  alt="Имидж-заглушка бренда"
+                  alt="Имидж бренда"
                 />
               </figure>
 
@@ -68,7 +68,6 @@
       </section>
 
       <section class="section-pad" id="catalog-preview">
-        <!-- Карточки сделаны ссылками: весь блок кликабелен -->
         <div class="collection-grid-wrap">
           <p class="section-label">Product Focus</p>
           <div class="collection-grid">
@@ -134,26 +133,54 @@
               <a href="mailto:<%= contactPoint.email %>"><%= contactPoint.email %></a>
             </div>
           </div>
+
           <div class="contact-form-wrap reveal">
-            <form class="contact-form" action="#" method="post">
-              <!-- Заглушка формы: подключите backend endpoint в action -->
+            <% if (contactFeedback) { %>
+              <p class="form-feedback <%= contactFeedback.type === 'success' ? 'is-success' : 'is-error' %>">
+                <%= contactFeedback.text %>
+              </p>
+            <% } %>
+
+            <form class="contact-form" action="<%= contactForm.action %>" method="post" novalidate>
+              <input type="hidden" name="_csrf" value="<%= contactForm.csrfToken %>" />
+              <input type="hidden" name="sourcePath" value="<%= contactForm.sourcePath %>" />
+              <input type="hidden" name="formOrigin" value="<%= contactForm.formOrigin %>" />
+              <input type="hidden" name="formStartedAt" value="<%= contactForm.formStartedAt %>" />
+
+              <div class="form-honeypot" aria-hidden="true">
+                <label for="home-website">Website</label>
+                <input id="home-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+              </div>
+
               <label for="name">Имя</label>
-              <input id="name" name="name" type="text" placeholder="[Имя]" />
+              <input id="name" name="name" type="text" placeholder="[Имя]" required minlength="2" maxlength="80" />
 
               <label for="phone">Телефон</label>
-              <input id="phone" name="phone" type="tel" placeholder="[+7 ...]" />
+              <input id="phone" name="phone" type="tel" placeholder="[+7 ...]" required minlength="7" maxlength="30" />
 
               <label for="comment">Комментарий</label>
               <textarea
                 id="comment"
-                name="comment"
+                name="message"
                 rows="4"
-                placeholder="[Текст-заглушка для задачи клиента]"
+                placeholder="[Текст для задачи клиента]"
+                required
+                minlength="10"
+                maxlength="2000"
               ></textarea>
 
-              <button type="submit" class="btn btn-solid">Отправить (заглушка)</button>
+              <% if (contactForm.captchaEnabled) { %>
+                <div class="contact-captcha">
+                  <div class="cf-turnstile" data-sitekey="<%= contactForm.captchaSiteKey %>"></div>
+                </div>
+              <% } %>
+
+              <button type="submit" class="btn btn-solid">Отправить</button>
             </form>
-            <p class="form-note"><%= contactPoint.formPlaceholder %></p>
+
+            <% if (!contactForm.captchaEnabled) { %>
+              <p class="form-note">Капча не настроена. При включенной серверной защите отправка будет отклонена.</p>
+            <% } %>
           </div>
         </div>
       </section>

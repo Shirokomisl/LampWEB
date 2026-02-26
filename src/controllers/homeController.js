@@ -8,6 +8,14 @@ const {
   getCatalogProductData,
   isCatalogType
 } = require("../models/catalogPageModel");
+const { verifyCsrfToken } = require("../services/contactSecurityService");
+const {
+  buildContactFormView,
+  buildContactRedirectUrl,
+  getContactFeedback,
+  resolveSafeSourcePath
+} = require("../services/contactFormService");
+const { processContactSubmission } = require("../services/contactService");
 
 const placeholderPages = {
   designers: {
@@ -20,14 +28,25 @@ const placeholderPages = {
   }
 };
 
+const buildContactUiState = (req, sourcePath, formOrigin) => ({
+  contactForm: buildContactFormView(req, sourcePath, formOrigin),
+  contactFeedback: getContactFeedback(req.query)
+});
+
 const renderHome = (req, res) => {
   const viewModel = getHomePageData();
-  res.render("home/index", viewModel);
+  res.render("home/index", {
+    ...viewModel,
+    ...buildContactUiState(req, "/", "home")
+  });
 };
 
 const renderContacts = (req, res) => {
   const viewModel = getContactsPageData();
-  res.render("contacts/index", viewModel);
+  res.render("contacts/index", {
+    ...viewModel,
+    ...buildContactUiState(req, "/contacts", "contacts")
+  });
 };
 
 const renderAbout = (req, res) => {
@@ -79,7 +98,38 @@ const renderCatalogProduct = (req, res) => {
     });
   }
 
-  return res.render("catalog/product", viewModel);
+  return res.render("catalog/product", {
+    ...viewModel,
+    ...buildContactUiState(req, req.path, "catalog-product")
+  });
+};
+
+const submitContact = async (req, res) => {
+  const sourcePath = resolveSafeSourcePath(req.body.sourcePath);
+  const csrfToken = req.body._csrf;
+
+  if (!verifyCsrfToken(req, csrfToken)) {
+    return res.redirect(303, buildContactRedirectUrl(sourcePath, "error", "csrf_failed"));
+  }
+
+  let result = null;
+
+  try {
+    result = await processContactSubmission({
+      req,
+      sourcePath,
+      formData: req.body
+    });
+  } catch (error) {
+    console.error("[contact-submit] unexpected error", error);
+    return res.redirect(303, buildContactRedirectUrl(sourcePath, "error", "unknown_error"));
+  }
+
+  if (!result.ok) {
+    return res.redirect(303, buildContactRedirectUrl(sourcePath, "error", result.code));
+  }
+
+  return res.redirect(303, buildContactRedirectUrl(sourcePath, "success", "sent"));
 };
 
 const renderPlaceholderPage = (req, res) => {
@@ -113,6 +163,6 @@ module.exports = {
   renderCatalog,
   renderCatalogByType,
   renderCatalogProduct,
-  renderPlaceholderPage
+  renderPlaceholderPage,
+  submitContact
 };
-

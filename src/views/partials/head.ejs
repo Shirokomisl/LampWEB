@@ -11,4 +11,7 @@
   href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
   rel="stylesheet"
 />
+<% if (typeof contactForm !== "undefined" && contactForm.captchaEnabled) { %>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<% } %>
 <link rel="stylesheet" href="/css/styles.css" />

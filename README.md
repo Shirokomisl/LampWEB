@@ -1,161 +1,166 @@
 # GEOMETRIA Lamp Store (Express + EJS, MVC)
 
-Актуальная версия проекта: многостраничный сайт премиального бренда светильников с MVC-структурой, отдельными страницами `home`, `contacts`, `catalog`, карточкой товара и интерактивом на фронтенде.
+Сайт премиального бренда светильников на `Express + EJS` с MVC-структурой.
 
-## 1. Технологии
+Актуально реализовано:
+- главная страница;
+- каталог и карточка товара;
+- страница контактов;
+- страница «О бренде»;
+- рабочая backend-отправка форм обратной связи с защитой.
+
+## 1. Стек
 
 - Node.js 18+
 - Express 4
 - EJS
-- Vanilla CSS + JS
+- Helmet (security headers/CSP)
+- Nodemailer (SMTP-отправка)
+- Cloudflare Turnstile (captcha)
 
-## 2. Запуск
-
-1. Установить зависимости:
+## 2. Быстрый запуск
 
 ```bash
 npm install
-```
-
-2. Запуск в dev-режиме:
-
-```bash
 npm run dev
 ```
 
-3. Открыть:
+Открыть: `http://localhost:3000`
 
-```text
-http://localhost:3000
+## 3. Маршруты
+
+- `GET /` — главная
+- `GET /about` — о бренде
+- `GET /contacts` — контакты
+- `GET /catalog` — каталог
+- `GET /catalog/type/:typeSlug` — каталог по типу
+- `GET /catalog/product/:productSlug` — карточка товара
+- `POST /contact/submit` — защищенная отправка формы
+
+## 4. Что нужно настроить вам (обязательно)
+
+Создайте файл `.env` в корне проекта.
+
+Минимальный рабочий пример:
+
+```env
+PORT=3000
+TRUST_PROXY=0
+
+# --- CAPTCHA (Cloudflare Turnstile) ---
+CONTACT_CAPTCHA_ENABLED=true
+TURNSTILE_SITE_KEY=your_turnstile_site_key
+TURNSTILE_SECRET_KEY=your_turnstile_secret_key
+
+# --- SMTP (почта для заявок) ---
+CONTACT_SMTP_HOST=smtp.example.com
+CONTACT_SMTP_PORT=587
+CONTACT_SMTP_SECURE=false
+CONTACT_SMTP_USER=no-reply@example.com
+CONTACT_SMTP_PASS=your_password
+CONTACT_SMTP_FROM="GEOMETRIA <no-reply@example.com>"
+CONTACT_RECEIVER_EMAIL=sales@example.com
+
+# --- Защита формы ---
+CONTACT_CSRF_SECRET=long_random_secret
+CONTACT_CSRF_MAX_AGE_MS=7200000
+CONTACT_MIN_SUBMIT_DELAY_MS=2500
+CONTACT_MAX_SUBMIT_AGE_MS=7200000
+CONTACT_RATE_LIMIT_WINDOW_MS=600000
+CONTACT_RATE_LIMIT_MAX_REQUESTS=8
 ```
 
-## 3. Актуальные страницы и маршруты
+### Где получить ключи капчи
 
-- `/` — главная страница
-- `/about` — страница «О бренде»
-- `/contacts` — контакты (hero-видео, контактный блок, карта)
-- `/catalog` — каталог (фильтр по типам, фильтр по стоимости, размер карточек)
-- `/catalog/type/:typeSlug` — каталог по типу (`hanging`, `wall`, `floor`)
-- `/catalog/product/:productSlug` — карточка товара
-- `/:pageSlug(designers)` — заглушка раздела
-- `*` — 404 заглушка
+1. Зарегистрируйте сайт в Cloudflare Turnstile.
+2. Получите `SITE KEY` и `SECRET KEY`.
+3. Подставьте в `.env` как `TURNSTILE_SITE_KEY` и `TURNSTILE_SECRET_KEY`.
 
-## 4. Структура проекта
+### SMTP
 
-```text
-app.js
-src/
-  controllers/homeController.js
-  models/
-    productCatalogModel.js
-    catalogPageModel.js
-  routes/webRoutes.js
-  views/
-    home/index.ejs
-    about/index.ejs
-    contacts/index.ejs
-    catalog/index.ejs
-    catalog/product.ejs
-    partials/{head,header,footer}.ejs
-    placeholders/page.ejs
-public/
-  css/styles.css
-  js/main.js
-  images/*
-  videos/*
-```
+Используйте SMTP вашего почтового провайдера (Mail.ru, Yandex, корпоративная почта и т.д.).
 
-## 5. Где редактировать контент
+Важно:
+- `CONTACT_SMTP_FROM` должен быть разрешен вашим SMTP-сервером;
+- `CONTACT_RECEIVER_EMAIL` — адрес, куда приходят заявки.
 
-### Главная + Контакты
+## 5. Как работает отправка заявок
 
-Файл: `src/models/productCatalogModel.js`
+Источник форм:
+- `src/views/home/index.ejs`
+- `src/views/contacts/index.ejs`
+- `src/views/catalog/product.ejs`
 
-- `getHomePageData()` — hero, блок бренда, преимущества, контент секций
-- `getContactsPageData()` — все данные страницы контактов (телефон, адреса, соцсети, карта, видео)
+Все формы отправляют в `POST /contact/submit`.
 
-### Каталог + карточка товара
+Пайплайн обработки:
+1. **Rate limit по IP** (`src/middleware/contactRateLimiter.js`).
+2. **CSRF-проверка** токена (`src/services/contactSecurityService.js`).
+3. **Антиспам-проверки** (`src/services/contactService.js`):
+   - honeypot-поле `website` должно быть пустым;
+   - проверка времени заполнения формы (`formStartedAt`);
+   - валидация имени/телефона/сообщения.
+4. **Проверка Cloudflare Turnstile** на сервере.
+5. **SMTP-отправка письма** через Nodemailer.
+6. Redirect обратно на исходную страницу с результатом (`success/error`) и сообщением.
+
+## 6. Реализованные меры безопасности
+
+- CSP + security headers через Helmet (`app.js`)
+- CSRF токен (HMAC + срок жизни + fingerprint запроса)
+- Rate limiting отправок
+- Honeypot поле
+- Проверка минимального времени заполнения формы
+- Серверная валидация входных данных
+- Captcha verification на backend
+- Ограничение размера body (`25kb`)
+
+## 7. Где менять контент
+
+### Главная / Контакты / О бренде
+`src/models/productCatalogModel.js`
+
+### Каталог и карточки товаров
+`src/models/catalogPageModel.js`
+
+## 8. Настройка галереи фото в карточке товара
 
 Файл: `src/models/catalogPageModel.js`
 
-- `CATALOG_PRODUCTS` — список товаров
-- `CATALOG_TYPES` — типы фильтра
-- `PRICE_RANGES` — диапазоны стоимости
-- `getCatalogPageData()` — данные страницы каталога
-- `getCatalogProductData()` — данные карточки товара
-
-## 6. Настройка блока «Фотографии» в карточке товара
-
-Теперь галерея на странице товара настраивается прямо из `catalogPageModel.js` через поле `gallery` у конкретного товара.
-
-### Формат `gallery`
-
-Можно задавать:
-
-- массив строк (только путь к изображению)
-- массив объектов `{ image, title }`
-
-Пример:
+Для каждого товара в `CATALOG_PRODUCTS` можно задать:
 
 ```js
-{
-  slug: "ufo-glass-wall",
-  name: "UFO Glass Wall",
-  // ...
-  gallery: [
-    { image: "/images/glass_wall-catalog.png", title: "UFO Glass Wall" },
-    { image: "/images/wall-card-engle.jpg", title: "UFO Glass Wall в интерьере" },
-    { image: "/images/Wall-Card.jpg", title: "UFO Glass Wall, крупный план" }
-  ]
-}
+gallery: [
+  { image: "/images/example-1.jpg", title: "Подпись 1" },
+  { image: "/images/example-2.jpg", title: "Подпись 2" }
+]
 ```
 
-### Поведение по умолчанию (fallback)
+Если `gallery` не задана, используется fallback-галерея (из фото текущего и похожих товаров).
 
-Если `gallery` не задана, используется автологика:
+## 9. Основные backend-файлы по контактам
 
-1. фото текущего товара;
-2. фото похожих товаров того же типа;
-3. максимум 3 слайда.
+- `src/controllers/homeController.js` — рендер + `submitContact`
+- `src/routes/webRoutes.js` — маршрут `POST /contact/submit`
+- `src/services/contactSecurityService.js` — CSRF + IP
+- `src/services/contactFormService.js` — form view state + feedback + safe redirects
+- `src/services/contactService.js` — валидация, captcha verify, SMTP send
+- `src/middleware/contactRateLimiter.js` — ограничение частоты отправок
 
-Это реализовано в `getProductGallery()` в `src/models/catalogPageModel.js`.
+## 10. Проверка после настройки
 
-## 7. Видео на странице Contacts
+1. Откройте главную/контакты/карточку товара.
+2. Убедитесь, что капча отображается.
+3. Отправьте тестовую заявку.
+4. Проверьте, что пришло письмо на `CONTACT_RECEIVER_EMAIL`.
+5. Проверьте защиту:
+   - отправка без капчи должна отклоняться;
+   - слишком частые отправки — `rate_limited`;
+   - при обновлении/просрочке токена — `csrf_failed`.
 
-- Видео берется из `getContactsPageData().hero.videoSrc` в `src/models/productCatalogModel.js`.
-- MIME-тип задается через `hero.videoType` (сейчас `video/quicktime` для `.MOV`).
+## 11. Примечания по продакшену
 
-Если у пользователя не воспроизводится `.MOV`, добавьте MP4 (H.264/AAC) и поменяйте:
-
-- `videoSrc` на MP4-файл;
-- `videoType` на `video/mp4`.
-
-## 8. Статические файлы
-
-- Изображения: `public/images`
-- Видео: `public/videos`
-- Стили: `public/css/styles.css`
-- JS-интерактив: `public/js/main.js`
-
-## 9. Что уже реализовано во фронтенде
-
-- премиальная светлая визуальная стилистика
-- sticky-хедер и секционные якоря
-- анимации появления блоков
-- интерактив каталога:
-  - типы товаров
-  - диапазоны стоимости
-  - переключение размера карточек (`small/medium/large`)
-- карточка товара:
-  - секции «Об изделии», «Стоимость», «Фотографии», «Похожие модели»
-  - sticky-визуал товара
-  - слайдер фото
-  - контактный CTA-блок
-
-## 10. Рекомендации перед продом
-
-- заменить заглушечные тексты на финальный copy
-- подключить реальный backend для форм
-- добавить валидацию и защиту форм
-- оптимизировать изображения (webp/avif + responsive sizes)
-- добавить favicon, OG, SEO-мета
+- За reverse proxy выставьте корректный `TRUST_PROXY`.
+- Используйте отдельный почтовый ящик для отправки форм.
+- Регулярно ротируйте `CONTACT_CSRF_SECRET`.
+- Включите мониторинг ошибок и SMTP-метрик.
