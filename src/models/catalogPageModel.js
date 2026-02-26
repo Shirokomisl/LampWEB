@@ -246,7 +246,7 @@ const getCatalogPageData = (selectedTypeSlug = "all", selectedPriceSlug = "any")
       eyebrow: "КОЛЛЕКЦИЯ",
       // Текст под "КОЛЛЕКЦИЯ" всегда равен текущему выбранному типу фильтра.
       title: selectedType.label,
-      image: "/images/studio-head.jpg"
+      image: "/images/header-nobuilding_1600x900.jpg"
     },
     filterLabel: selectedType.label,
     selectedPriceLabel: selectedPriceRange.label,
@@ -290,7 +290,7 @@ const getCatalogProductData = (productSlug) => {
     product: {
       ...productItem,
       yearLabel: "2026",
-      heroBackdropImage: "/images/studio-head.jpg",
+      heroBackdropImage: "/images/header-nobuilding_1600x900.jpg",
       image: productImage,
       stickyImage: productImage
     },

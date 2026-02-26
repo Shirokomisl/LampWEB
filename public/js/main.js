@@ -50,41 +50,43 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  const catalogGrid = document.querySelector("[data-catalog-grid]");
-  const viewSwitcher = document.querySelector("[data-view-switcher]");
+const catalogGrid = document.querySelector("[data-catalog-grid]");
+const viewSwitcher = document.querySelector("[data-view-switcher]");
 
-  if (catalogGrid && viewSwitcher) {
-    const viewButtons = Array.from(
-      viewSwitcher.querySelectorAll("button[data-view-size]")
-    );
-    const storageKey = "catalog_card_size";
+if (catalogGrid && viewSwitcher) {
+  const viewButtons = Array.from(
+    viewSwitcher.querySelectorAll("button[data-view-size]")
+  );
+  
+  // Значение по умолчанию - "medium" (средние карточки)
+  const DEFAULT_SIZE = "medium";
 
-    const applyCatalogSize = (sizeValue) => {
-      const allowedSizes = ["small", "medium", "large"];
-      const nextSize = allowedSizes.includes(sizeValue) ? sizeValue : "medium";
+  const applyCatalogSize = (sizeValue) => {
+    const allowedSizes = ["small", "medium", "large"];
+    // Если размер недопустимый, используем значение по умолчанию
+    const nextSize = allowedSizes.includes(sizeValue) ? sizeValue : DEFAULT_SIZE;
 
-      catalogGrid.classList.remove("is-small", "is-medium", "is-large");
-      catalogGrid.classList.add(`is-${nextSize}`);
-
-      viewButtons.forEach((buttonItem) => {
-        buttonItem.classList.toggle(
-          "is-active",
-          buttonItem.dataset.viewSize === nextSize
-        );
-      });
-    };
-
-    const savedSize = localStorage.getItem(storageKey) || "medium";
-    applyCatalogSize(savedSize);
+    catalogGrid.classList.remove("is-small", "is-medium", "is-large");
+    catalogGrid.classList.add(`is-${nextSize}`);
 
     viewButtons.forEach((buttonItem) => {
-      buttonItem.addEventListener("click", () => {
-        const nextSize = buttonItem.dataset.viewSize || "medium";
-        applyCatalogSize(nextSize);
-        localStorage.setItem(storageKey, nextSize);
-      });
+      buttonItem.classList.toggle(
+        "is-active",
+        buttonItem.dataset.viewSize === nextSize
+      );
     });
-  }
+  };
+
+  // Always start with medium cards as the default size.
+  applyCatalogSize(DEFAULT_SIZE);
+
+  viewButtons.forEach((buttonItem) => {
+    buttonItem.addEventListener("click", () => {
+      const nextSize = buttonItem.dataset.viewSize || DEFAULT_SIZE;
+      applyCatalogSize(nextSize);
+    });
+  });
+} 
 
   const priceDropdown = document.querySelector("[data-price-dropdown]");
 

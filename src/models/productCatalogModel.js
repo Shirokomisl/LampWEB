@@ -16,7 +16,7 @@ const getHomePageData = () => {
         label: "Открыть каталог",
         href: "/catalog"
       },
-      backgroundImage: "/images/studio-head.jpg"
+      backgroundImage: "/images/header-nobuilding_1600x900.jpg"
     },
     // Блок девиза бренда перед витриной линеек.
     brandMotto: {
@@ -45,7 +45,7 @@ const getHomePageData = () => {
       },
       {
         categoryTitle: "Торшер Dea",
-        coverImage: "/images/dea.jpg",
+        coverImage: "/images/3.4.png",
         href: "/catalog/type/floor"
       }
     ],
