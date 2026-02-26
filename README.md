@@ -164,3 +164,54 @@ gallery: [
 - Используйте отдельный почтовый ящик для отправки форм.
 - Регулярно ротируйте `CONTACT_CSRF_SECRET`.
 - Включите мониторинг ошибок и SMTP-метрик.
+
+## 12. Статус Netlify-развертывания
+
+Проект развернут в Netlify и доступен по адресу:
+- Production URL: `https://geometria-test.netlify.app`
+- Deploy details: `https://app.netlify.com/projects/geometria-test/deploys`
+
+Технически используется SSR через Netlify Function:
+- entrypoint функции: `netlify/functions/server.js`
+- конфиг: `netlify.toml`
+- правило маршрутизации: все нестатические URL проксируются в `/.netlify/functions/server`
+
+## 13. Что обязательно сделать вам в Netlify (вручную)
+
+Я не могу подставить ваши секреты (капча и SMTP-пароли), поэтому это нужно сделать вам в панели Netlify.
+
+Откройте:
+- Site configuration -> Environment variables
+
+Добавьте значения:
+- `TURNSTILE_SITE_KEY`
+- `TURNSTILE_SECRET_KEY`
+- `CONTACT_SMTP_HOST`
+- `CONTACT_SMTP_PORT`
+- `CONTACT_SMTP_SECURE`
+- `CONTACT_SMTP_USER`
+- `CONTACT_SMTP_PASS`
+- `CONTACT_SMTP_FROM`
+- `CONTACT_RECEIVER_EMAIL`
+- `CONTACT_CSRF_SECRET`
+
+После добавления переменных выполните redeploy (Deploys -> Trigger deploy).
+
+## 14. Команды для повторного деплоя
+
+Локальная проверка через Netlify:
+```bash
+npm run netlify:dev
+```
+
+Продакшен-деплой:
+```bash
+npm run netlify:deploy
+```
+
+Если нужен деплой в другой Netlify-сайт:
+```bash
+netlify unlink
+netlify link
+npm run netlify:deploy
+```

@@ -6,11 +6,12 @@ const webRoutes = require("./src/routes/webRoutes");
 require("dotenv").config({ quiet: true });
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = Number(process.env.PORT || 3000);
+const appRoot = process.cwd();
 
-// ������� ������������ ������������� � ����������� ������.
+// Express + EJS setup.
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "src", "views"));
+app.set("views", path.join(appRoot, "src", "views"));
 app.set("trust proxy", Number(process.env.TRUST_PROXY || 0));
 
 app.use(
@@ -37,24 +38,28 @@ app.use(
 
 app.use(express.urlencoded({ extended: false, limit: "25kb" }));
 app.use(express.json({ limit: "25kb" }));
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(appRoot, "public")));
 
 app.use("/", webRoutes);
 
-// ������ �������� ��� ����� �������������� URL.
+// Default 404 page.
 app.use((req, res) => {
   res.status(404).render("placeholders/page", {
-    pageTitle: "�������� �� �������",
+    pageTitle: "Страница не найдена",
     pageName: "404",
     placeholderLead:
-      "[��������-��������] ������ �� ���������� ��� ��� ���������.",
+      "[Страница-заглушка] Раздел не реализован или был перемещен.",
     placeholderBody:
-      "[�����-��������] �������� ����� �������� ��������� ������� � ������ ��������.",
+      "[Текст-заглушка] Добавьте здесь понятную навигацию обратно к нужным разделам.",
     actionHref: "/",
-    actionLabel: "��������� �� �������"
+    actionLabel: "Вернуться на главную"
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server started: http://localhost:${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server started: http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;
