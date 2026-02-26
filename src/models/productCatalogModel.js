@@ -13,7 +13,7 @@ const getHomePageData = () => {
         href: "#contact-point"
       },
       secondaryCta: {
-        label: "Открыть каталог-заглушку",
+        label: "Открыть каталог",
         href: "/catalog"
       },
       backgroundImage: "/images/studio-head.jpg"
