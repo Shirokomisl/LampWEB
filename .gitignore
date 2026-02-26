@@ -1,4 +1,27 @@
 node_modules/
 .DS_Store
 Thumbs.db
+# .gitignore
 
+# Environment files
+.env
+.env.local
+.env.development
+.env.production
+.env.staging
+*.env
+
+# Sensitive configs
+config/keys/
+config/secrets/
+*.key
+*.pem
+*.crt
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependencies
+node_modules/
