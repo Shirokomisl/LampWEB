@@ -6,8 +6,9 @@
   "scripts": {
     "start": "node app.js",
     "dev": "node --watch app.js",
-    "netlify:dev": "netlify dev",
-    "netlify:deploy": "netlify deploy --prod"
+    "start:pm2": "pm2 start ecosystem.config.cjs --env production",
+    "reload:pm2": "pm2 reload ecosystem.config.cjs --env production",
+    "logs:pm2": "pm2 logs geometria-web"
   },
   "keywords": [
     "mvc",
@@ -22,7 +23,6 @@
     "ejs": "^3.1.10",
     "express": "^4.21.2",
     "helmet": "^8.1.0",
-    "nodemailer": "^8.0.1",
-    "serverless-http": "^3.2.0"
+    "nodemailer": "^8.0.1"
   }
 }

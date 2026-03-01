@@ -12,7 +12,7 @@ const { verifyCsrfToken } = require("../services/contactSecurityService");
 const {
   buildContactFormView,
   buildContactRedirectUrl,
-  getContactFeedback,
+  getContactFeedback, 
   resolveSafeSourcePath
 } = require("../services/contactFormService");
 const { processContactSubmission } = require("../services/contactService");

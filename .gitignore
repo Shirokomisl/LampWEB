@@ -25,5 +25,13 @@ yarn-error.log*
 
 # Dependencies
 node_modules/
-# Local Netlify folder
+# Local platform/service folders
 .netlify
+.timeweb
+
+# PM2
+*.pid
+*.seed
+*.pid.lock
+logs/
+pids/
