@@ -24,7 +24,12 @@ const normalizeMultiline = (value, maxLength) =>
 const isValidName = (nameValue) => /^[\p{L}\d .,'-]{2,80}$/u.test(nameValue);
 const isValidPhone = (phoneValue) => /^[+\d\s().-]{7,30}$/.test(phoneValue);
 const isCaptchaEnabled = () => process.env.CONTACT_CAPTCHA_ENABLED !== "false";
-const getTurnstileSecretKey = () => String(process.env.TURNSTILE_SECRET_KEY || "").trim();
+const getTurnstileSecretKey = () =>
+  String(
+    process.env.TURNSTILE_SECRET_KEY ||
+      process.env.CLOUDFLARE_TURNSTILE_SECRET_KEY ||
+      ""
+  ).trim();
 
 const validateContactSubmission = (formData) => {
   const websiteField = normalizeSingleLine(formData.website, 256);

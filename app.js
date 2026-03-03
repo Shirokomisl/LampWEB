@@ -2,7 +2,7 @@ const path = require("path");
 const express = require("express");
 const helmet = require("helmet");
 
-require("dotenv").config({ quiet: true });
+require("dotenv").config({ path: path.join(__dirname, ".env"), quiet: true });
 const webRoutes = require("./src/routes/webRoutes");
 
 const app = express();
