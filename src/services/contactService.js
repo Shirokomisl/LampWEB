@@ -4,6 +4,7 @@ const { getClientIp } = require("./contactSecurityService");
 
 const MIN_SUBMIT_DELAY_MS = Number(process.env.CONTACT_MIN_SUBMIT_DELAY_MS || 2500);
 const MAX_SUBMIT_AGE_MS = Number(process.env.CONTACT_MAX_SUBMIT_AGE_MS || 2 * 60 * 60 * 1000);
+const MIN_MESSAGE_LENGTH = Number(process.env.CONTACT_MIN_MESSAGE_LENGTH || 5);
 
 let smtpTransporter = null;
 
@@ -55,18 +56,34 @@ const validateContactSubmission = (formData) => {
   const message = normalizeMultiline(formData.message, 2000);
   const formOrigin = normalizeSingleLine(formData.formOrigin, 40);
 
-  if (!name || !phone || !message) {
-    return { ok: false, code: "invalid_data" };
+  if (!name) {
+    return { ok: false, code: "invalid_name" };
   }
 
-  if (!isValidName(name) || !isValidPhone(phone)) {
-    return { ok: false, code: "invalid_data" };
+  if (!phone) {
+    return { ok: false, code: "invalid_phone" };
+  }
+
+  if (!message) {
+    return { ok: false, code: "invalid_message" };
+  }
+
+  if (!isValidName(name)) {
+    return { ok: false, code: "invalid_name" };
+  }
+
+  if (!isValidPhone(phone)) {
+    return { ok: false, code: "invalid_phone" };
   }
 
   const phoneDigits = phone.replace(/\D/g, "");
 
-  if (phoneDigits.length < 10 || phoneDigits.length > 15 || message.length < 10) {
-    return { ok: false, code: "invalid_data" };
+  if (phoneDigits.length < 10 || phoneDigits.length > 15) {
+    return { ok: false, code: "invalid_phone" };
+  }
+
+  if (message.length < MIN_MESSAGE_LENGTH) {
+    return { ok: false, code: "invalid_message" };
   }
 
   return {
@@ -129,6 +146,22 @@ const verifyTurnstileToken = async (tokenValue, clientIp) => {
     const result = await response.json();
 
     if (!result.success) {
+      const errorCodes = Array.isArray(result["error-codes"]) ? result["error-codes"] : [];
+
+      if (
+        errorCodes.includes("invalid-input-secret") ||
+        errorCodes.includes("missing-input-secret")
+      ) {
+        console.warn("[contact:captcha] Turnstile secret rejected by Cloudflare", {
+          cwd: process.cwd(),
+          hasSiteKey: Boolean(process.env.TURNSTILE_SITE_KEY),
+          hasSecretKey: Boolean(process.env.TURNSTILE_SECRET_KEY),
+          hasAltSecretKey: Boolean(process.env.CLOUDFLARE_TURNSTILE_SECRET_KEY),
+          errorCodes
+        });
+        return { ok: false, code: "captcha_not_configured" };
+      }
+
       return { ok: false, code: "captcha_failed" };
     }
 
