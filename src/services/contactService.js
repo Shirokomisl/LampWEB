@@ -88,6 +88,13 @@ const verifyTurnstileToken = async (tokenValue, clientIp) => {
   const turnstileSecretKey = getTurnstileSecretKey();
 
   if (!turnstileSecretKey) {
+    console.warn("[contact:captcha] Turnstile secret is missing", {
+      cwd: process.cwd(),
+      captchaEnabled: isCaptchaEnabled(),
+      hasSiteKey: Boolean(process.env.TURNSTILE_SITE_KEY),
+      hasSecretKey: Boolean(process.env.TURNSTILE_SECRET_KEY),
+      hasAltSecretKey: Boolean(process.env.CLOUDFLARE_TURNSTILE_SECRET_KEY)
+    });
     return { ok: false, code: "captcha_not_configured" };
   }
 
