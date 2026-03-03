@@ -5,9 +5,6 @@ const { getClientIp } = require("./contactSecurityService");
 const MIN_SUBMIT_DELAY_MS = Number(process.env.CONTACT_MIN_SUBMIT_DELAY_MS || 2500);
 const MAX_SUBMIT_AGE_MS = Number(process.env.CONTACT_MAX_SUBMIT_AGE_MS || 2 * 60 * 60 * 1000);
 
-const CONTACT_CAPTCHA_ENABLED = process.env.CONTACT_CAPTCHA_ENABLED !== "false";
-const TURNSTILE_SECRET_KEY = process.env.TURNSTILE_SECRET_KEY || "";
-
 let smtpTransporter = null;
 
 const normalizeSingleLine = (value, maxLength) =>
@@ -26,6 +23,8 @@ const normalizeMultiline = (value, maxLength) =>
 
 const isValidName = (nameValue) => /^[\p{L}\d .,'-]{2,80}$/u.test(nameValue);
 const isValidPhone = (phoneValue) => /^[+\d\s().-]{7,30}$/.test(phoneValue);
+const isCaptchaEnabled = () => process.env.CONTACT_CAPTCHA_ENABLED !== "false";
+const getTurnstileSecretKey = () => String(process.env.TURNSTILE_SECRET_KEY || "").trim();
 
 const validateContactSubmission = (formData) => {
   const websiteField = normalizeSingleLine(formData.website, 256);
@@ -77,11 +76,13 @@ const validateContactSubmission = (formData) => {
 };
 
 const verifyTurnstileToken = async (tokenValue, clientIp) => {
-  if (!CONTACT_CAPTCHA_ENABLED) {
+  if (!isCaptchaEnabled()) {
     return { ok: true };
   }
 
-  if (!TURNSTILE_SECRET_KEY) {
+  const turnstileSecretKey = getTurnstileSecretKey();
+
+  if (!turnstileSecretKey) {
     return { ok: false, code: "captcha_not_configured" };
   }
 
@@ -92,7 +93,7 @@ const verifyTurnstileToken = async (tokenValue, clientIp) => {
   }
 
   const requestBody = new URLSearchParams({
-    secret: TURNSTILE_SECRET_KEY,
+    secret: turnstileSecretKey,
     response: token
   });
 

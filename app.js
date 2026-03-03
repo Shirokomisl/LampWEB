@@ -1,9 +1,9 @@
 const path = require("path");
 const express = require("express");
 const helmet = require("helmet");
-const webRoutes = require("./src/routes/webRoutes");
 
 require("dotenv").config({ quiet: true });
+const webRoutes = require("./src/routes/webRoutes");
 
 const app = express();
 const PORT = Number(process.env.PORT || 3000);
