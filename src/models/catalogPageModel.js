@@ -272,8 +272,8 @@ const getCatalogPageData = (selectedTypeSlug = "all", selectedPriceSlug = "any")
 
   return {
     pageTitle: `GÉOMETRIA | ${selectedType.label}`,
-    brandName: "GÉOMETRIA",
-    yearLabel: "UFO & Dea Collection",
+    headerLogo: "/images/logo-header-transparent.png",
+    footerBrandName: "GÉOMETRIA",
     // footerNote:
     //   "[Юридическая заглушка] ООО «Название компании». ИНН/ОГРН и документы добавляются на этапе запуска.",
     hero: {
@@ -317,8 +317,8 @@ const getCatalogProductData = (productSlug) => {
 
   return {
     pageTitle: `GÉOMETRIA | ${productItem.name}`,
-    brandName: "GÉOMETRIA",
-    yearLabel: "UFO & Dea Collection",
+    headerLogo: "/images/logo-header-transparent.png",
+    footerBrandName: "GÉOMETRIA",
     // footerNote:
     //   "[Юридическая заглушка] ООО «Название компании». ИНН/ОГРН и документы добавляются на этапе запуска.",
     tabs: [

@@ -5,7 +5,7 @@
   </head>
   <body>
     <div class="page-overlay"></div>
-    <%- include("../partials/header", { brandName, yearLabel, activePage: "home" }) %>
+    <%- include("../partials/header", { headerLogo, activePage: "home" }) %>
 
     <main>
       <section
@@ -183,6 +183,6 @@
       </section>
     </main>
 
-    <%- include("../partials/footer", { brandName, footerNote }) %>
+    <%- include("../partials/footer", { footerBrandName, footerNote: typeof footerNote !== "undefined" ? footerNote : undefined }) %>
   </body>
 </html>

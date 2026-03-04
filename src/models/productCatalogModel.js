@@ -1,8 +1,8 @@
 const getHomePageData = () => {
   return {
     pageTitle: "GÉOMETRIA | Главная",
-    brandName: "GÉOMETRIA",
-    yearLabel: "UFO & Dea Collection",
+    headerLogo: "/images/logo-header-transparent.png",
+    footerBrandName: "GÉOMETRIA",
     hero: {
       eyebrow: "Light has the form",
       title: "GÉOMETRIA",
@@ -89,8 +89,8 @@ const getHomePageData = () => {
 const getContactsPageData = () => {
   return {
     pageTitle: "GÉOMETRIA | Контакты",
-    brandName: "GÉOMETRIA",
-    yearLabel: "UFO & Dea Collection",
+    headerLogo: "/images/logo-header-transparent.png",
+    footerBrandName: "GÉOMETRIA",
     // footerNote:
     //   "[Юридическая заглушка] ООО «Название компании». ИНН/ОГРН и документы добавляются на этапе запуска.",
     hero: {
@@ -139,8 +139,8 @@ const getContactsPageData = () => {
 const getAboutPageData = () => {
   return {
     pageTitle: "GÉOMETRIA | О бренде",
-    brandName: "GÉOMETRIA",
-    yearLabel: "UFO & Dea Collection",
+    headerLogo: "/images/logo-header-transparent.png",
+    footerBrandName: "GÉOMETRIA",
     // footerNote:
     //   "[Юридическая заглушка] ООО «Название компании». ИНН/ОГРН и документы добавляются на этапе запуска.",
     introVideo: {

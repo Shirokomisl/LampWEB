@@ -4,7 +4,7 @@
     <%- include("../partials/head", { pageTitle }) %>
   </head>
   <body class="contacts-page">
-    <%- include("../partials/header", { brandName, yearLabel, activePage: "contacts" }) %>
+    <%- include("../partials/header", { headerLogo, activePage: "contacts" }) %>
 
     <main class="contacts-main">
       <section class="contacts-hero">
@@ -47,7 +47,7 @@
               <% }) %>
             </div>
             <div class="contacts-legal">
-              <% contactInfo.legalLines.forEach((line) => { %>
+              <% (contactInfo.legalLines || []).forEach((line) => { %>
                 <p><%= line %></p>
               <% }) %>
             </div>
@@ -121,6 +121,6 @@
       </section>
     </main>
 
-    <%- include("../partials/footer", { brandName, footerNote }) %>
+    <%- include("../partials/footer", { footerBrandName, footerNote: typeof footerNote !== "undefined" ? footerNote : undefined }) %>
   </body>
 </html>

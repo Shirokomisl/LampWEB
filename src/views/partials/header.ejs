@@ -1,8 +1,11 @@
 <header class="site-header">
   <div class="container header-content">
     <a class="brand" href="/">
-      <span class="brand-mark"><%= yearLabel || "Collection" %></span>
-      <span class="brand-name"><%= brandName || "Geometria" %></span>
+      <img
+        class="brand-logo-image"
+        src="<%= headerLogo || '/images/logo-header-transparent.png' %>"
+        alt="GÉOMETRIA"
+      />
     </a>
     <button class="menu-toggle" id="menu-toggle" aria-label="Открыть меню">
       Меню

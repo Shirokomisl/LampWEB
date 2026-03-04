@@ -4,7 +4,7 @@
     <%- include("../partials/head", { pageTitle }) %>
   </head>
   <body class="catalog-page">
-    <%- include("../partials/header", { brandName, yearLabel, activePage: "catalog" }) %>
+    <%- include("../partials/header", { headerLogo, activePage: "catalog" }) %>
 
     <main class="catalog-main">
       <section class="catalog-hero" style="--catalog-hero-image: url('<%= hero.image %>')">
@@ -53,6 +53,6 @@
       </section>
     </main>
 
-    <%- include("../partials/footer", { brandName, footerNote }) %>
+    <%- include("../partials/footer", { footerBrandName, footerNote: typeof footerNote !== "undefined" ? footerNote : undefined }) %>
   </body>
 </html>

@@ -89,32 +89,22 @@ p {
   gap: 1rem;
 }
 
-.brand-logo {
-  display: inline-flex;
-  flex-direction: column;
-  width: 24px;
-  height: 24px;
-}
-
 .brand {
   display: inline-flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: clamp(150px, 15vw, 250px);
+  min-height: 40px;
   text-decoration: none;
   color: var(--text-main);
 }
 
-.brand-mark {
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-
-.brand-name {
-  font-family: var(--font-display);
-  font-size: 1.55rem;
-  line-height: 1;
-  font-weight: 600;
+.brand-logo-image {
+  display: block;
+  width: 100%;
+  max-height: 44px;
+  object-fit: contain;
+  object-position: left center;
 }
 
 .site-nav {
@@ -171,8 +161,6 @@ p {
 }
 
 .contacts-page .brand,
-.contacts-page .brand-mark,
-.contacts-page .brand-name,
 .contacts-page .site-nav a,
 .contacts-page .menu-toggle {
   color: #f5f1e8;
@@ -180,12 +168,16 @@ p {
 }
 
 .about-page .brand,
-.about-page .brand-mark,
-.about-page .brand-name,
 .about-page .site-nav a,
 .about-page .menu-toggle {
   color: #f5f1e8;
   border-color: rgba(245, 241, 232, 0.55);
+}
+
+.contacts-page .brand-logo-image,
+.about-page .brand-logo-image,
+.catalog-page .brand-logo-image {
+  filter: brightness(0) invert(1);
 }
 
 .hero::before {
@@ -813,8 +805,6 @@ p {
 }
 
 .catalog-page .brand,
-.catalog-page .brand-mark,
-.catalog-page .brand-name,
 .catalog-page .site-nav a,
 .catalog-page .menu-toggle {
   color: #f5f1e8;
