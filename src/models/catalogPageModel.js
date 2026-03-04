@@ -274,8 +274,8 @@ const getCatalogPageData = (selectedTypeSlug = "all", selectedPriceSlug = "any")
     pageTitle: `GÉOMETRIA | ${selectedType.label}`,
     brandName: "GÉOMETRIA",
     yearLabel: "UFO & Dea Collection",
-    footerNote:
-      "[Юридическая заглушка] ООО «Название компании». ИНН/ОГРН и документы добавляются на этапе запуска.",
+    // footerNote:
+    //   "[Юридическая заглушка] ООО «Название компании». ИНН/ОГРН и документы добавляются на этапе запуска.",
     hero: {
       eyebrow: "КОЛЛЕКЦИЯ",
       // Текст под "КОЛЛЕКЦИЯ" всегда равен текущему выбранному типу фильтра.
@@ -319,8 +319,8 @@ const getCatalogProductData = (productSlug) => {
     pageTitle: `GÉOMETRIA | ${productItem.name}`,
     brandName: "GÉOMETRIA",
     yearLabel: "UFO & Dea Collection",
-    footerNote:
-      "[Юридическая заглушка] ООО «Название компании». ИНН/ОГРН и документы добавляются на этапе запуска.",
+    // footerNote:
+    //   "[Юридическая заглушка] ООО «Название компании». ИНН/ОГРН и документы добавляются на этапе запуска.",
     tabs: [
       { id: "about-product", label: "ОБ ИЗДЕЛИИ" },
       { id: "product-price", label: "СТОИМОСТЬ" },
@@ -330,7 +330,7 @@ const getCatalogProductData = (productSlug) => {
     product: {
       ...productItem,
       yearLabel: "2026",
-      heroBackdropImage: "/images/header-nobuilding_1600x900.jpg",
+      heroBackdropImage: "/images/header-background.png",
       image: productImage,
       stickyImage: productImage
     },
@@ -347,7 +347,7 @@ const getCatalogProductData = (productSlug) => {
       previewPriceRaw: sizePrices[activeSizeLabel],
       configuratorTitle: "КОНФИГУРАТОР",
       configuratorDescription:
-        "Выберите размер, чтобы уточнить предварительную стоимость.",
+        "Выберите размер, чтобы узнать предварительную стоимость.",
       sizeLabel: "ВЫБЕРИТЕ РАЗМЕР",
       sizeOptions,
       requestLabel: "ОСТАВИТЬ ЗАЯВКУ",
