@@ -28,40 +28,6 @@
             <% }) %>
           </nav>
 
-          <div class="catalog-controls reveal">
-            <div class="catalog-price-dropdown" data-price-dropdown>
-              <button
-                type="button"
-                class="catalog-price-filter"
-                data-price-toggle
-                aria-expanded="false"
-              >
-                <span><%= selectedPriceLabel %></span>
-                <span class="catalog-price-arrow">▼</span>
-              </button>
-              <ul class="catalog-price-menu" data-price-menu>
-                <% priceRanges.forEach((rangeItem) => { %>
-                  <li>
-                    <a class="<%= rangeItem.isActive ? 'is-active' : '' %>" href="<%= rangeItem.href %>">
-                      <%= rangeItem.label %>
-                    </a>
-                  </li>
-                <% }) %>
-              </ul>
-            </div>
-
-            <div class="catalog-grid-control">
-              <span>ВИД:</span>
-              <div class="catalog-view-switcher" data-view-switcher>
-                <button type="button" data-view-size="small">МЕЛКИЕ</button>
-                <button type="button" class="is-active" data-view-size="medium">СРЕДНИЕ</button>
-                <button type="button" data-view-size="large">БОЛЬШИЕ</button>
-              </div>
-            </div>
-          </div>
-
-          <p class="catalog-selected-type reveal"><%= filterLabel %></p>
-
           <% if (products.length === 0) { %>
             <p class="catalog-empty-state reveal">
               По выбранному интервалу стоимости пока нет товаров.
@@ -90,4 +56,3 @@
     <%- include("../partials/footer", { brandName, footerNote }) %>
   </body>
 </html>
-

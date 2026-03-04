@@ -2,7 +2,7 @@
   { slug: "all", label: "ВСЕ ИЗДЕЛИЯ" },
   { slug: "hanging", label: "ПОДВЕСНЫЕ" },
   { slug: "wall", label: "НАСТЕННЫЕ" },
-  { slug: "floor", label: "ТОРШЕРЫ" }
+  { slug: "floor", label: "ТОРШЕР" }
 ];
 
 const PRICE_RANGES = [

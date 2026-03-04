@@ -7,7 +7,7 @@ if (menuToggle && navMenu) {
   });
 }
 
-// Плавное появление блоков при прокрутке.
+// Smooth reveal for sections on scroll.
 const revealItems = document.querySelectorAll(".reveal");
 const observer = new IntersectionObserver(
   (entries) => {
@@ -49,75 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
       history.pushState(null, "", targetId);
     });
   });
-
-const catalogGrid = document.querySelector("[data-catalog-grid]");
-const viewSwitcher = document.querySelector("[data-view-switcher]");
-
-if (catalogGrid && viewSwitcher) {
-  const viewButtons = Array.from(
-    viewSwitcher.querySelectorAll("button[data-view-size]")
-  );
-  
-  // Значение по умолчанию - "medium" (средние карточки)
-  const DEFAULT_SIZE = "medium";
-
-  const applyCatalogSize = (sizeValue) => {
-    const allowedSizes = ["small", "medium", "large"];
-    // Если размер недопустимый, используем значение по умолчанию
-    const nextSize = allowedSizes.includes(sizeValue) ? sizeValue : DEFAULT_SIZE;
-
-    catalogGrid.classList.remove("is-small", "is-medium", "is-large");
-    catalogGrid.classList.add(`is-${nextSize}`);
-
-    viewButtons.forEach((buttonItem) => {
-      buttonItem.classList.toggle(
-        "is-active",
-        buttonItem.dataset.viewSize === nextSize
-      );
-    });
-  };
-
-  // Always start with medium cards as the default size.
-  applyCatalogSize(DEFAULT_SIZE);
-
-  viewButtons.forEach((buttonItem) => {
-    buttonItem.addEventListener("click", () => {
-      const nextSize = buttonItem.dataset.viewSize || DEFAULT_SIZE;
-      applyCatalogSize(nextSize);
-    });
-  });
-} 
-
-  const priceDropdown = document.querySelector("[data-price-dropdown]");
-
-  if (priceDropdown) {
-    const toggleButton = priceDropdown.querySelector("[data-price-toggle]");
-    const priceMenu = priceDropdown.querySelector("[data-price-menu]");
-
-    if (toggleButton && priceMenu) {
-      const closePriceDropdown = () => {
-        priceDropdown.classList.remove("is-open");
-        toggleButton.setAttribute("aria-expanded", "false");
-      };
-
-      toggleButton.addEventListener("click", () => {
-        const isOpen = priceDropdown.classList.toggle("is-open");
-        toggleButton.setAttribute("aria-expanded", isOpen ? "true" : "false");
-      });
-
-      document.addEventListener("click", (event) => {
-        if (!priceDropdown.contains(event.target)) {
-          closePriceDropdown();
-        }
-      });
-
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") {
-          closePriceDropdown();
-        }
-      });
-    }
-  }
 
   const productTabs = Array.from(document.querySelectorAll("[data-product-tab]"));
 
@@ -186,7 +117,7 @@ if (catalogGrid && viewSwitcher) {
   const priceSection = document.querySelector("#product-price");
   const stickyVisualImage = stickyVisual ? stickyVisual.querySelector("img") : null;
   const tabsBar = document.querySelector(".catalog-product-tabs");
-  const desktopStickyMediaQuery = window.matchMedia("(min-width: 1025px)");
+  const desktopStickyMediaQuery = window.matchMedia("(min-width: 1281px)");
 
   if (stickyVisual && largeLead && aboutSection && priceSection) {
     let stickyState = "pre";
