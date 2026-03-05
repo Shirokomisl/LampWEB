@@ -185,11 +185,12 @@ p {
   position: absolute;
   inset: 1.3rem;
   border-radius: calc(var(--radius-lg) + 8px);
-  background:
+  background-image:
     linear-gradient(to right, rgba(21, 18, 14, 0.58), rgba(21, 18, 14, 0.3)),
     var(--hero-image);
-  background-position: var(--hero-bg-position, 70% center);
-  background-size: cover;
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover, cover;
+  background-position: center, var(--hero-bg-position, 70% center);
   box-shadow: var(--shadow);
 }
 
@@ -1057,6 +1058,8 @@ p {
   max-width: min(100%, 420px);
   max-height: clamp(160px, 20vw, 280px);
   object-fit: contain;
+  --card-scale: 1;
+  transform: scale(var(--card-scale));
   transition: transform 0.45s ease;
 }
 
@@ -1073,8 +1076,14 @@ p {
   max-height: clamp(170px, 20vw, 280px);
 }
 
+.catalog-product-card.is-material-stone .catalog-product-image img {
+  --card-scale: 1.16;
+  max-width: clamp(130px, 12vw, 210px);
+  max-height: clamp(150px, 18vw, 250px);
+}
+
 .catalog-product-card:hover img {
-  transform: scale(1.03);
+  transform: scale(calc(var(--card-scale) * 1.03));
 }
 
 .catalog-product-card h2 {
