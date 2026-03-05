@@ -188,7 +188,7 @@ p {
   background:
     linear-gradient(to right, rgba(21, 18, 14, 0.58), rgba(21, 18, 14, 0.3)),
     var(--hero-image);
-  background-position: var(--hero-bg-position, center);
+  background-position: var(--hero-bg-position, 70% center);
   background-size: cover;
   box-shadow: var(--shadow);
 }
