@@ -10,7 +10,7 @@
     <main>
       <section
         class="hero section-pad"
-        style="--hero-image: url('<%= hero.backgroundImage %>')"
+        style="--hero-image: url('<%= hero.backgroundImage %>'); --hero-bg-position: <%= hero.backgroundPosition || 'center' %>;"
       >
         <div class="container hero-grid reveal">
           <div class="hero-content">

@@ -188,7 +188,7 @@ p {
   background:
     linear-gradient(to right, rgba(21, 18, 14, 0.58), rgba(21, 18, 14, 0.3)),
     var(--hero-image);
-  background-position: center;
+  background-position: var(--hero-bg-position, center);
   background-size: cover;
   box-shadow: var(--shadow);
 }
@@ -1058,6 +1058,19 @@ p {
   max-height: clamp(160px, 20vw, 280px);
   object-fit: contain;
   transition: transform 0.45s ease;
+}
+
+/* Нормализованные размеры карточек каталога:
+   - настенные: ориентир на UFO Terra (более компактный силуэт),
+   - подвесные: ориентир на UFO Myst. */
+.catalog-product-card.is-type-wall .catalog-product-image img {
+  max-width: clamp(130px, 12vw, 210px);
+  max-height: clamp(150px, 18vw, 250px);
+}
+
+.catalog-product-card.is-type-hanging .catalog-product-image img {
+  max-width: clamp(140px, 13vw, 220px);
+  max-height: clamp(170px, 20vw, 280px);
 }
 
 .catalog-product-card:hover img {
@@ -2084,7 +2097,7 @@ p {
   }
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 1279px) {
   .catalog-product-detail-grid {
     grid-template-columns: 1fr;
   }

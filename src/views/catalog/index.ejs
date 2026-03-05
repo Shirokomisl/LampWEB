@@ -36,7 +36,7 @@
             <div class="catalog-products-grid is-medium" data-catalog-grid>
               <% products.forEach((productItem, index) => { %>
                 <a
-                  class="catalog-product-card reveal"
+                  class="catalog-product-card is-type-<%= productItem.typeSlug %> reveal"
                   style="--delay: <%= index * 65 %>ms"
                   href="<%= productItem.href %>"
                   aria-label="<%= productItem.name %>"

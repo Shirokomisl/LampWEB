@@ -16,7 +16,8 @@ const getHomePageData = () => {
         label: "Открыть каталог",
         href: "/catalog"
       },
-      backgroundImage: "/images/header-background.png"
+      backgroundImage: "/images/header-background.png",
+      backgroundPosition: "70% center"
     },
     // Блок девиза бренда перед витриной линеек.
     brandMotto: {

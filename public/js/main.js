@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const priceSection = document.querySelector("#product-price");
   const stickyVisualImage = stickyVisual ? stickyVisual.querySelector("img") : null;
   const tabsBar = document.querySelector(".catalog-product-tabs");
-  const desktopStickyMediaQuery = window.matchMedia("(min-width: 1281px)");
+  const desktopStickyMediaQuery = window.matchMedia("(min-width: 1280px)");
 
   if (stickyVisual && largeLead && aboutSection && priceSection) {
     let stickyState = "pre";
