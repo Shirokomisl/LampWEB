@@ -18,7 +18,12 @@ const CATALOG_PRODUCTS = [
     slug: "ufo-glass-hanging",
     name: "UFO Glass",
     typeSlug: "hanging",
-    price: 68000,
+    price: 11900,
+    sizeOptions: [
+      { label: "S", price: 8900 },
+      { label: "M", price: 11900, isDefault: true },
+      { label: "L", price: 14900 }
+    ],
     image: "/images/glass_hanging-catalog.png",
     gallery: [
       { image: "/images/glass_hanging-gallery1.jpg", title: "Парные в интерьере" },
@@ -38,7 +43,12 @@ const CATALOG_PRODUCTS = [
     slug: "ufo-myst-hanging",
     name: "UFO Myst",
     typeSlug: "hanging",
-    price: 89000,
+    price: 11900,
+    sizeOptions: [
+      { label: "S", price: 8900 },
+      { label: "M", price: 11900, isDefault: true },
+      { label: "L", price: 14900 }
+    ],
     image: "/images/myst_hanging-catalog.png",
     description: "UFO Myst (премиальное матированное стекло дымчатого оттенка) – мастер-спальни частных интерьеров, номерной фонд стильных отелей, ночной проходной свет, когда нужно максимально бережно сохранить сон или подготовиться к нему.",
     paragraph1: "Отличное решение по размещению над прикроватными тумбами в спальне - свисающий разноуровневый монтаж, особенно для высоких потолков (3+ метра).",
@@ -48,7 +58,12 @@ const CATALOG_PRODUCTS = [
     slug: "ufo-potrofino",
     name: "UFO Potrofino",
     typeSlug: "hanging",
-    price: 126000,
+    price: 11900,
+    sizeOptions: [
+      { label: "S", price: 8900 },
+      { label: "M", price: 11900, isDefault: true },
+      { label: "L", price: 14900 }
+    ],
     image: "/images/potrofino-catalog.png",
     description: "UFO Portofino – для светлых минималистичных интерьеров, где нужен крайне выверенный и тонкий акцент «уровня Hi-End» без нарушения общей гармонии пространства.",
     paragraph1: "За счет полностью отраженного от диска света можно использовать в качестве основного освещения небольшое зоны.",
@@ -58,7 +73,8 @@ const CATALOG_PRODUCTS = [
     slug: "ufo-prive",
     name: "UFO Prive",
     typeSlug: "hanging",
-    price: 120000,
+    price: 18900,
+    sizeOptions: [{ label: "XL", price: 18900, isDefault: true }],
     image: "/images/prive-catalog-cube.png",
     description: "Очень часто, простые формы несут в себе более сложные идеи, заложенные в их создание и светильник UFO Prive является этим ярким примером. 100% премиальность в простых и лаконичных формах, прецизионное качество обработки массива латуни.",
     paragraph1: "Тончайший подвес фокусирует внимание на безупречных деталях UFO Prive, а свободная геометрия провода добавляет логичной и управляемой сложности в общую композицию.",
@@ -68,7 +84,12 @@ const CATALOG_PRODUCTS = [
     slug: "ufo-glass-wall",
     name: "UFO Glass Wall",
     typeSlug: "wall",
-    price: 54000,
+    price: 10900,
+    sizeOptions: [
+      { label: "S", price: 7900 },
+      { label: "M", price: 10900, isDefault: true },
+      { label: "L", price: 13900 }
+    ],
     image: "/images/glass_wall-catalog.png",
     gallery: [
       { image: "/images/glass_wall-catalog.png", title: "UFO Glass Wall" },
@@ -83,7 +104,12 @@ const CATALOG_PRODUCTS = [
     slug: "ufo-pandora",
     name: "UFO Pandora",
     typeSlug: "wall",
-    price: 112000,
+    price: 14900,
+    sizeOptions: [
+      { label: "S", price: 10900 },
+      { label: "M", price: 14900, isDefault: true },
+      { label: "L", price: 19900 }
+    ],
     image: "/images/pandora-catalog-cube.png",
     description: "UFO Pandora – представьте себе поверхность неизведанной вам планеты, по которой текут реки, раскинуты океаны и песчаные дюны – невероятный космос прямо на ваших стенах.",
     paragraph1: "Нет двух абсолютно одинаковых листов каменного шпона, поэтому, как и модель Terra – каждый светильник — это абсолютный эксклюзив. Создавайте световые композиции тремя доступными размерами, разбивая все законы симметрии.",
@@ -93,7 +119,12 @@ const CATALOG_PRODUCTS = [
     slug: "ufo-myst-wall",
     name: "UFO Myst Wall",
     typeSlug: "wall",
-    price: 158000,
+    price: 10900,
+    sizeOptions: [
+      { label: "S", price: 7900 },
+      { label: "M", price: 10900, isDefault: true },
+      { label: "L", price: 13900 }
+    ],
     image: "/images/myst_wall-catalog.png",
     description: "UFO Myst Wall (премиальное матированное стекло дымчатого оттенка) - за счет дымчатого стекла наиболее подходит в качестве сдержанного атмосферного света и идеальны для формирования световых композиций за счет применения разных размеров.",
     paragraph1: "Идеальное решение для мастер-спален, прихожих, идеальное решение в качестве проходного ночного света и пр.",
@@ -103,7 +134,12 @@ const CATALOG_PRODUCTS = [
     slug: "ufo-antique",
     name: "UFO Antique",
     typeSlug: "wall",
-    price: 142000,
+    price: 12900,
+    sizeOptions: [
+      { label: "S", price: 9900 },
+      { label: "M", price: 12900, isDefault: true },
+      { label: "L", price: 15900 }
+    ],
     image: "/images/antique-catalog.png",
     description: "UFO Antique - матированное стекло в сочетании с центральным диском из итальянского травертина пористой текстуры и латунью.",
     paragraph1: "Формируют изысканный стиль, твердо декларируя, что премиальный стиль — это не всегда сложные формы и молча подчеркивают изысканный стиль своего владельца.",
@@ -113,7 +149,12 @@ const CATALOG_PRODUCTS = [
     slug: "ufo-terra",
     name: "UFO Terra",
     typeSlug: "wall",
-    price: 220000,
+    price: 14900,
+    sizeOptions: [
+      { label: "S", price: 10900 },
+      { label: "M", price: 14900, isDefault: true },
+      { label: "L", price: 19900 }
+    ],
     image: "/images/terra-catalog.png",
     description: "UFO Terra – невероятная магия натурального каменного шпона с выраженной сланцевой текстурой, которая очень красиво подчеркивается теплым растекающимся по камню светом.",
     paragraph1: "Центральный диск из массива латуни подчеркивает премиальный уровень светильника UFO Terra и еще больше добавляет теплоты в общую композицию.",
@@ -123,7 +164,8 @@ const CATALOG_PRODUCTS = [
     slug: "dea",
     name: "Dea",
     typeSlug: "floor",
-    price: 146000,
+    price: 49900,
+    sizeOptions: [{ label: "XL", price: 49900, isDefault: true }],
     image: "/images/dea-catalog.png",
     description: "[Описание-заглушка] Торшер с мягким рассеянным светом.",
     paragraph1: "",
@@ -138,9 +180,6 @@ const formatPrice = (priceValue) =>
   `${new Intl.NumberFormat("ru-RU").format(priceValue)} ₽`;
 
 const getProductImage = (productItem) => productItem.image || "/images/hanging.jpg";
-
-const roundToThousand = (priceValue) =>
-  Math.max(1000, Math.round(priceValue / 1000) * 1000);
 
 // Нормализует запись галереи из модели:
 // - строка: "/images/file.jpg"
@@ -181,38 +220,37 @@ const getProductGallery = (productItem, similarItems) => {
   }));
 };
 
-const getConfiguratorSizes = (productSlug) =>
-  ["ufo-prive", "dea"].includes(productSlug) ? ["XL"] : ["S", "M", "L"];
+const getSizeOptions = (productItem) => {
+  const configuredOptions = Array.isArray(productItem.sizeOptions)
+    ? productItem.sizeOptions
+    : [];
 
-const getSizePrices = (productItem, sizeLabels) => {
-  const manualPrices = productItem.sizePrices || {};
+  const normalizedOptions = configuredOptions
+    .filter(
+      (optionItem) =>
+        optionItem &&
+        typeof optionItem.label === "string" &&
+        optionItem.label.trim() &&
+        Number.isFinite(optionItem.price) &&
+        optionItem.price > 0
+    )
+    .map((optionItem) => ({
+      label: optionItem.label.trim(),
+      price: optionItem.price,
+      isDefault: Boolean(optionItem.isDefault)
+    }));
 
-  if (Object.keys(manualPrices).length > 0) {
-    return sizeLabels.reduce((accumulator, sizeLabel) => {
-      accumulator[sizeLabel] =
-        Number.isFinite(manualPrices[sizeLabel]) && manualPrices[sizeLabel] > 0
-          ? manualPrices[sizeLabel]
-          : productItem.price;
-      return accumulator;
-    }, {});
+  if (normalizedOptions.length > 0) {
+    return normalizedOptions;
   }
 
-  if (sizeLabels.length === 1) {
-    return { [sizeLabels[0]]: productItem.price };
-  }
-
-  if (sizeLabels.includes("S") && sizeLabels.includes("M") && sizeLabels.includes("L")) {
-    return {
-      S: roundToThousand(productItem.price * 0.88),
-      M: productItem.price,
-      L: roundToThousand(productItem.price * 1.16)
-    };
-  }
-
-  return sizeLabels.reduce((accumulator, sizeLabel) => {
-    accumulator[sizeLabel] = productItem.price;
-    return accumulator;
-  }, {});
+  return [
+    {
+      label: "M",
+      price: productItem.price,
+      isDefault: true
+    }
+  ];
 };
 
 const normalizePriceSlug = (priceSlug) =>
@@ -304,15 +342,18 @@ const getCatalogProductData = (productSlug) => {
   ).slice(0, 3);
 
   const galleryItems = getProductGallery(productItem, similarItems);
-  const sizeLabels = getConfiguratorSizes(productItem.slug);
-  const sizePrices = getSizePrices(productItem, sizeLabels);
-  const activeSizeLabel = sizeLabels.includes("M") ? "M" : sizeLabels[0];
+  const configuredSizeOptions = getSizeOptions(productItem);
+  const defaultOption =
+    configuredSizeOptions.find((optionItem) => optionItem.isDefault) ||
+    configuredSizeOptions[0];
+  const activeSizeLabel = defaultOption.label;
+  const activeSizePrice = defaultOption.price;
 
-  const sizeOptions = sizeLabels.map((sizeLabel) => ({
-    label: sizeLabel,
-    price: sizePrices[sizeLabel],
-    formattedPrice: formatPrice(sizePrices[sizeLabel]),
-    isActive: sizeLabel === activeSizeLabel
+  const sizeOptions = configuredSizeOptions.map((optionItem) => ({
+    label: optionItem.label,
+    price: optionItem.price,
+    formattedPrice: formatPrice(optionItem.price),
+    isActive: optionItem.label === activeSizeLabel
   }));
 
   return {
@@ -343,8 +384,8 @@ const getCatalogProductData = (productSlug) => {
     },
     productPrice: {
       previewPriceLabel: "ПРЕДВАРИТЕЛЬНАЯ СТОИМОСТЬ",
-      previewPriceValue: formatPrice(sizePrices[activeSizeLabel]),
-      previewPriceRaw: sizePrices[activeSizeLabel],
+      previewPriceValue: formatPrice(activeSizePrice),
+      previewPriceRaw: activeSizePrice,
       configuratorTitle: "КОНФИГУРАТОР",
       configuratorDescription:
         "Выберите размер, чтобы узнать предварительную стоимость.",
