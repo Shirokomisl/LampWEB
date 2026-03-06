@@ -273,36 +273,57 @@ document.addEventListener("DOMContentLoaded", () => {
   const gallerySlider = document.querySelector("[data-gallery-slider]");
 
   if (gallerySlider) {
-    const track = gallerySlider.querySelector("[data-gallery-track]");
+    const mainImage = gallerySlider.querySelector("[data-gallery-main-image]");
     const prevButton = gallerySlider.querySelector("[data-gallery-prev]");
     const nextButton = gallerySlider.querySelector("[data-gallery-next]");
-    const slides = track ? Array.from(track.children) : [];
+    const thumbnailButtons = Array.from(gallerySlider.querySelectorAll("[data-gallery-thumb]"));
 
-    if (track && prevButton && nextButton && slides.length > 0) {
-      let currentIndex = 0;
-      const slideShare = 100 / slides.length;
+    if (mainImage && thumbnailButtons.length > 0) {
+      let currentIndex = Math.max(
+        0,
+        thumbnailButtons.findIndex((thumbButton) => thumbButton.classList.contains("is-active"))
+      );
 
-      track.style.width = `${slides.length * 100}%`;
-      slides.forEach((slideItem) => {
-        slideItem.style.flex = `0 0 ${slideShare}%`;
-      });
+      const setActiveImage = (nextIndex) => {
+        currentIndex = (nextIndex + thumbnailButtons.length) % thumbnailButtons.length;
+        const activeThumb = thumbnailButtons[currentIndex];
+        const imageSrc = activeThumb.dataset.galleryImage;
+        const imageTitle =
+          activeThumb.dataset.galleryTitle ||
+          activeThumb.querySelector("img")?.alt ||
+          "Фото товара";
 
-      const updateGallery = () => {
-        track.style.transform = `translateX(-${currentIndex * slideShare}%)`;
+        if (imageSrc) {
+          mainImage.src = imageSrc;
+        }
+        mainImage.alt = imageTitle;
+
+        thumbnailButtons.forEach((thumbButton, thumbIndex) => {
+          const isCurrent = thumbIndex === currentIndex;
+          thumbButton.classList.toggle("is-active", isCurrent);
+          thumbButton.setAttribute("aria-current", isCurrent ? "true" : "false");
+        });
       };
 
-      prevButton.addEventListener("click", () => {
-        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-        updateGallery();
+      thumbnailButtons.forEach((thumbButton, thumbIndex) => {
+        thumbButton.addEventListener("click", () => {
+          setActiveImage(thumbIndex);
+        });
       });
 
-      nextButton.addEventListener("click", () => {
-        currentIndex = (currentIndex + 1) % slides.length;
-        updateGallery();
-      });
+      if (prevButton) {
+        prevButton.addEventListener("click", () => {
+          setActiveImage(currentIndex - 1);
+        });
+      }
 
-      window.addEventListener("resize", updateGallery);
-      updateGallery();
+      if (nextButton) {
+        nextButton.addEventListener("click", () => {
+          setActiveImage(currentIndex + 1);
+        });
+      }
+
+      setActiveImage(currentIndex);
     }
   }
 });

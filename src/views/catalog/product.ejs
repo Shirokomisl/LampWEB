@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
   <head>
     <%- include("../partials/head", { pageTitle }) %>
@@ -14,16 +14,16 @@
         <div class="catalog-product-hero-v2-overlay"></div>
         <div class="catalog-product-hero-v2-content reveal">
           <p class="catalog-product-breadcrumbs">
-            <a href="/">ГЛАВНАЯ</a>
+            <a href="/">Р“Р›РђР’РќРђРЇ</a>
             <span>/</span>
-            <a href="/catalog">КАТАЛОГ</a>
+            <a href="/catalog">РљРђРўРђР›РћР“</a>
           </p>
           <h1><%= product.name %></h1>
           <p class="catalog-product-year"><%= product.yearLabel %></p>
         </div>
       </section>
 
-      <nav class="catalog-product-tabs" aria-label="Разделы карточки товара">
+      <nav class="catalog-product-tabs" aria-label="Р Р°Р·РґРµР»С‹ РєР°СЂС‚РѕС‡РєРё С‚РѕРІР°СЂР°">
         <div class="catalog-product-tabs-inner">
           <% tabs.forEach((tabItem, index) => { %>
             <a
@@ -91,24 +91,41 @@
       </section>
 
       <section id="product-gallery" class="catalog-gallery-section reveal">
+        <% const initialGalleryItem = productGallery[0] || { image: product.image, title: product.name }; %>
         <div class="catalog-gallery-slider" data-gallery-slider>
-          <button type="button" class="catalog-gallery-arrow is-prev" data-gallery-prev aria-label="Предыдущее фото">
-            <span>&lsaquo;</span>
-          </button>
+          <div class="catalog-gallery-stage">
+            <button type="button" class="catalog-gallery-arrow is-prev" data-gallery-prev aria-label="Предыдущее фото">
+              <span>&lsaquo;</span>
+            </button>
 
-          <div class="catalog-gallery-viewport">
-            <div class="catalog-gallery-track" data-gallery-track>
-              <% productGallery.forEach((galleryItem) => { %>
-                <figure class="catalog-gallery-slide">
-                  <img src="<%= galleryItem.image %>" alt="<%= galleryItem.title %>" />
-                </figure>
-              <% }) %>
-            </div>
+            <figure class="catalog-gallery-main">
+              <img
+                data-gallery-main-image
+                src="<%= initialGalleryItem.image %>"
+                alt="<%= initialGalleryItem.title %>"
+              />
+            </figure>
+
+            <button type="button" class="catalog-gallery-arrow is-next" data-gallery-next aria-label="Следующее фото">
+              <span>&rsaquo;</span>
+            </button>
           </div>
 
-          <button type="button" class="catalog-gallery-arrow is-next" data-gallery-next aria-label="Следующее фото">
-            <span>&rsaquo;</span>
-          </button>
+          <div class="catalog-gallery-thumbs" data-gallery-thumbs>
+            <% productGallery.forEach((galleryItem, index) => { %>
+              <button
+                type="button"
+                class="catalog-gallery-thumb <%= index === 0 ? 'is-active' : '' %>"
+                data-gallery-thumb
+                data-gallery-index="<%= index %>"
+                data-gallery-image="<%= galleryItem.image %>"
+                data-gallery-title="<%= galleryItem.title %>"
+                aria-label="Открыть фото: <%= galleryItem.title %>"
+              >
+                <img src="<%= galleryItem.image %>" alt="<%= galleryItem.title %>" />
+              </button>
+            <% }) %>
+          </div>
         </div>
       </section>
 
@@ -167,12 +184,12 @@
 
       <section id="similar-models" class="catalog-similar-section reveal">
         <div class="catalog-similar-head">
-          <h2>РЕКОМЕНДУЕМЫЕ ТОВАРЫ</h2>
-          <a href="/catalog">СМОТРЕТЬ ВСЕ ИЗДЕЛИЯ</a>
+          <h2>Р Р•РљРћРњР•РќР”РЈР•РњР«Р• РўРћР’РђР Р«</h2>
+          <a href="/catalog">РЎРњРћРўР Р•РўР¬ Р’РЎР• РР—Р”Р•Р›РРЇ</a>
         </div>
 
         <% if (similarProducts.length === 0) { %>
-          <p class="catalog-empty-state">Похожие модели скоро появятся.</p>
+          <p class="catalog-empty-state">РџРѕС…РѕР¶РёРµ РјРѕРґРµР»Рё СЃРєРѕСЂРѕ РїРѕСЏРІСЏС‚СЃСЏ.</p>
         <% } else { %>
           <div class="catalog-similar-grid">
             <% similarProducts.forEach((item) => { %>
@@ -192,3 +209,4 @@
     <%- include("../partials/footer", { footerBrandName, footerNote: typeof footerNote !== "undefined" ? footerNote : undefined }) %>
   </body>
 </html>
+

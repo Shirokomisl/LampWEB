@@ -1421,47 +1421,86 @@ p {
 }
 
 .catalog-gallery-slider {
-  width: min(1880px, 100%);
+  width: min(1780px, calc(100% - 2.5rem));
   margin-inline: auto;
   display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 1.4rem;
+  gap: 1rem;
 }
 
-.catalog-gallery-viewport {
-  width: min(54vw, 920px);
+.catalog-gallery-stage {
+  width: min(100%, 980px);
   margin-inline: auto;
+  position: relative;
+  padding-inline: clamp(1.2rem, 3vw, 3rem);
+}
+
+.catalog-gallery-main {
+  width: 100%;
+  margin: 0;
+  min-height: clamp(420px, 70vh, 820px);
+  aspect-ratio: 1 / 1;
+  display: grid;
+  place-items: center;
   overflow: hidden;
 }
 
-.catalog-gallery-track {
-  display: flex;
-  width: 100%;
-  transition: transform 0.6s ease;
-  will-change: transform;
-}
-
-.catalog-gallery-slide {
-  flex: 0 0 100%;
-  width: 100%;
-  margin: 0;
-  min-height: clamp(420px, 70vh, 680px);
-  display: grid;
-  place-items: center;
-}
-
-.catalog-gallery-slide img {
+.catalog-gallery-main img {
   width: auto;
   height: auto;
-  max-width: 100%;
-  max-height: 68vh;
+  max-width: min(96%, 920px);
+  max-height: min(96%, 760px);
   object-fit: contain;
+  transition: opacity 0.25s ease;
+}
+
+.catalog-gallery-thumbs {
+  width: min(100%, 980px);
+  margin: 0.9rem auto 0;
+  display: flex;
+  gap: 0.8rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.1rem 0.1rem 0.5rem;
+  scrollbar-width: thin;
+  scroll-snap-type: x proximity;
+}
+
+.catalog-gallery-thumb {
+  flex: 0 0 clamp(110px, 11vw, 160px);
+  aspect-ratio: 1 / 1;
+  border: 1px solid rgba(24, 24, 24, 0.16);
+  background: #ece9e4;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  overflow: hidden;
+  scroll-snap-align: start;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.catalog-gallery-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.catalog-gallery-thumb.is-active {
+  border-color: rgba(24, 24, 24, 0.72);
+}
+
+.catalog-gallery-thumb:hover {
+  transform: translateY(-2px);
+  border-color: rgba(24, 24, 24, 0.44);
 }
 
 .catalog-gallery-arrow {
-  width: 58px;
-  height: 58px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 52px;
+  height: 52px;
   border-radius: 999px;
   border: 1px solid rgba(24, 24, 24, 0.24);
   background: rgba(244, 241, 235, 0.86);
@@ -1477,6 +1516,14 @@ p {
   font-size: 2rem;
   line-height: 1;
   transform: translateY(-2px);
+}
+
+.catalog-gallery-arrow.is-prev {
+  left: 0.35rem;
+}
+
+.catalog-gallery-arrow.is-next {
+  right: 0.35rem;
 }
 
 .catalog-gallery-arrow:hover {
@@ -2126,12 +2173,16 @@ p {
     max-width: 100%;
   }
 
-  .catalog-gallery-viewport {
-    width: min(68vw, 820px);
+  .catalog-gallery-stage {
+    width: min(100%, 900px);
   }
 
-  .catalog-gallery-slide {
-    min-height: clamp(360px, 60vh, 580px);
+  .catalog-gallery-main {
+    min-height: clamp(360px, 60vh, 640px);
+  }
+
+  .catalog-gallery-thumb {
+    flex-basis: clamp(96px, 13vw, 136px);
   }
 }
 
@@ -2272,12 +2323,12 @@ p {
     justify-self: start;
   }
 
-  .catalog-gallery-viewport {
-    width: min(72vw, 920px);
+  .catalog-gallery-stage {
+    width: min(100%, 860px);
   }
 
-  .catalog-gallery-slide {
-    min-height: 76vh;
+  .catalog-gallery-main {
+    min-height: clamp(360px, 72vh, 720px);
   }
 
   .catalog-similar-grid {
@@ -2453,25 +2504,16 @@ p {
     font-size: 0.72rem;
   }
 
-  .catalog-gallery-slider {
-    position: relative;
-    grid-template-columns: 1fr;
-    gap: 0;
+  .catalog-gallery-stage {
+    width: 100%;
+    padding-inline: 0.6rem;
   }
 
-  .catalog-gallery-viewport {
-    width: 84vw;
-  }
-
-  .catalog-gallery-slide {
-    min-height: 62vh;
+  .catalog-gallery-main {
+    min-height: clamp(280px, 58vh, 520px);
   }
 
   .catalog-gallery-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 2;
     width: 44px;
     height: 44px;
   }
@@ -2482,6 +2524,16 @@ p {
 
   .catalog-gallery-arrow.is-next {
     right: 0.4rem;
+  }
+
+  .catalog-gallery-thumbs {
+    width: 100%;
+    gap: 0.55rem;
+    margin-top: 0.7rem;
+  }
+
+  .catalog-gallery-thumb {
+    flex-basis: clamp(82px, 24vw, 112px);
   }
 
   .catalog-similar-grid {
