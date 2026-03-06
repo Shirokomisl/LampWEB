@@ -9,6 +9,11 @@ const app = express();
 const PORT = Number(process.env.PORT || 3000);
 const HOST = process.env.HOST || "0.0.0.0";
 
+// Base locals available for all templates (including cached/legacy includes).
+app.locals.brandName = "GÉOMETRIA";
+app.locals.footerBrandName = "GÉOMETRIA";
+app.locals.footerNote = "";
+
 // Express + EJS setup.
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "src", "views"));

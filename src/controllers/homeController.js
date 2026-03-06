@@ -34,7 +34,7 @@ const buildContactUiState = (req, sourcePath, formOrigin) => ({
 });
 
 const renderHome = (req, res) => {
-  const viewModel = getHomePageData();
+  const viewModel = withBaseLayoutData(getHomePageData());
   res.render("home/index", {
     ...viewModel,
     ...buildContactUiState(req, "/", "home")
@@ -42,7 +42,7 @@ const renderHome = (req, res) => {
 };
 
 const renderContacts = (req, res) => {
-  const viewModel = getContactsPageData();
+  const viewModel = withBaseLayoutData(getContactsPageData());
   res.render("contacts/index", {
     ...viewModel,
     ...buildContactUiState(req, "/contacts", "contacts")
@@ -50,13 +50,13 @@ const renderContacts = (req, res) => {
 };
 
 const renderAbout = (req, res) => {
-  const viewModel = getAboutPageData();
+  const viewModel = withBaseLayoutData(getAboutPageData());
   res.render("about/index", viewModel);
 };
 
 const renderCatalog = (req, res) => {
   const selectedPriceSlug = req.query.price || "any";
-  const viewModel = getCatalogPageData("all", selectedPriceSlug);
+  const viewModel = withBaseLayoutData(getCatalogPageData("all", selectedPriceSlug));
   res.render("catalog/index", viewModel);
 };
 
@@ -77,13 +77,13 @@ const renderCatalogByType = (req, res) => {
   }
 
   const selectedPriceSlug = req.query.price || "any";
-  const viewModel = getCatalogPageData(typeSlug, selectedPriceSlug);
+  const viewModel = withBaseLayoutData(getCatalogPageData(typeSlug, selectedPriceSlug));
   return res.render("catalog/index", viewModel);
 };
 
 const renderCatalogProduct = (req, res) => {
   const { productSlug } = req.params;
-  const viewModel = getCatalogProductData(productSlug);
+  const viewModel = withBaseLayoutData(getCatalogProductData(productSlug));
 
   if (!viewModel) {
     return res.status(404).render("placeholders/page", {
@@ -102,6 +102,16 @@ const renderCatalogProduct = (req, res) => {
     ...viewModel,
     ...buildContactUiState(req, req.path, "catalog-product")
   });
+};
+
+const withBaseLayoutData = (viewModel) => {
+  const safeModel = viewModel || {};
+  return {
+    brandName: "GÉOMETRIA",
+    footerBrandName: "GÉOMETRIA",
+    footerNote: "",
+    ...safeModel
+  };
 };
 
 const submitContact = async (req, res) => {
