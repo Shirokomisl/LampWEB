@@ -5,8 +5,27 @@ const { getClientIp } = require("./contactSecurityService");
 const MIN_SUBMIT_DELAY_MS = Number(process.env.CONTACT_MIN_SUBMIT_DELAY_MS || 2500);
 const MAX_SUBMIT_AGE_MS = Number(process.env.CONTACT_MAX_SUBMIT_AGE_MS || 2 * 60 * 60 * 1000);
 const MIN_MESSAGE_LENGTH = Number(process.env.CONTACT_MIN_MESSAGE_LENGTH || 5);
+const RECAPTCHA_VERIFY_TIMEOUT_MS = Number(process.env.RECAPTCHA_VERIFY_TIMEOUT_MS || 10000);
+const SMTP_CONNECTION_TIMEOUT_MS = Number(process.env.CONTACT_SMTP_CONNECTION_TIMEOUT_MS || 10000);
+const SMTP_GREETING_TIMEOUT_MS = Number(process.env.CONTACT_SMTP_GREETING_TIMEOUT_MS || 10000);
+const SMTP_SOCKET_TIMEOUT_MS = Number(process.env.CONTACT_SMTP_SOCKET_TIMEOUT_MS || 15000);
+const SMTP_SEND_TIMEOUT_MS = Number(process.env.CONTACT_SMTP_SEND_TIMEOUT_MS || 20000);
 
 let smtpTransporter = null;
+
+const withTimeout = (promise, timeoutMs, timeoutCode) =>
+  new Promise((resolve, reject) => {
+    const timer = setTimeout(() => {
+      const timeoutError = new Error(timeoutCode);
+      timeoutError.code = timeoutCode;
+      reject(timeoutError);
+    }, timeoutMs);
+
+    promise
+      .then((result) => resolve(result))
+      .catch((error) => reject(error))
+      .finally(() => clearTimeout(timer));
+  });
 
 const normalizeSingleLine = (value, maxLength) =>
   String(value || "")
@@ -129,15 +148,23 @@ const verifyRecaptchaToken = async (tokenValue, clientIp) => {
   }
 
   try {
-    const response = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+    const requestPromise = fetch("https://www.google.com/recaptcha/api/siteverify", {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
       body: requestBody
     });
+    const response = await withTimeout(
+      requestPromise,
+      RECAPTCHA_VERIFY_TIMEOUT_MS,
+      "recaptcha_timeout"
+    );
 
     if (!response.ok) {
+      console.warn("[contact:captcha] reCAPTCHA verify HTTP error", {
+        status: response.status
+      });
       return { ok: false, code: "captcha_failed" };
     }
 
@@ -164,6 +191,13 @@ const verifyRecaptchaToken = async (tokenValue, clientIp) => {
 
     return { ok: true };
   } catch (error) {
+    if (error && error.code === "recaptcha_timeout") {
+      console.warn("[contact:captcha] reCAPTCHA verify timeout");
+    } else {
+      console.warn("[contact:captcha] reCAPTCHA verify failed", {
+        message: error?.message || "unknown_error"
+      });
+    }
     return { ok: false, code: "captcha_failed" };
   }
 };
@@ -187,6 +221,9 @@ const getSmtpTransporter = () => {
     host,
     port,
     secure,
+    connectionTimeout: SMTP_CONNECTION_TIMEOUT_MS,
+    greetingTimeout: SMTP_GREETING_TIMEOUT_MS,
+    socketTimeout: SMTP_SOCKET_TIMEOUT_MS,
     auth: {
       user,
       pass
@@ -209,7 +246,7 @@ const sendContactNotification = async ({ payload, sourcePath, req }) => {
   const userAgent = String(req.get("user-agent") || "unknown");
   const submittedAt = new Date().toISOString();
 
-  const mailResult = await transporter.sendMail({
+  const sendPromise = transporter.sendMail({
     from: fromEmail,
     to: toEmail,
     subject: `[GEOMETRIA] Новая заявка (${payload.formOrigin})`,
@@ -227,14 +264,20 @@ const sendContactNotification = async ({ payload, sourcePath, req }) => {
       `Время (UTC): ${submittedAt}`
     ].join("\n")
   });
+  const mailResult = await withTimeout(sendPromise, SMTP_SEND_TIMEOUT_MS, "smtp_send_timeout");
 
   return { ok: true, messageId: mailResult.messageId };
 };
 
 const processContactSubmission = async ({ req, sourcePath, formData }) => {
+  const startedAt = Date.now();
   const validationResult = validateContactSubmission(formData);
 
   if (!validationResult.ok) {
+    console.warn("[contact-submit] validation failed", {
+      code: validationResult.code,
+      sourcePath
+    });
     return validationResult;
   }
 
@@ -244,6 +287,10 @@ const processContactSubmission = async ({ req, sourcePath, formData }) => {
   );
 
   if (!captchaResult.ok) {
+    console.warn("[contact-submit] captcha failed", {
+      code: captchaResult.code,
+      sourcePath
+    });
     return captchaResult;
   }
 
@@ -255,12 +302,25 @@ const processContactSubmission = async ({ req, sourcePath, formData }) => {
     });
 
     if (!deliveryResult.ok) {
+      console.warn("[contact-submit] delivery failed", {
+        code: deliveryResult.code,
+        sourcePath
+      });
       return deliveryResult;
     }
   } catch (error) {
+    console.error("[contact-submit] delivery exception", {
+      code: error?.code || "delivery_failed",
+      message: error?.message || "unknown_error",
+      sourcePath
+    });
     return { ok: false, code: "delivery_failed" };
   }
 
+  console.info("[contact-submit] sent", {
+    sourcePath,
+    elapsedMs: Date.now() - startedAt
+  });
   return { ok: true, code: "sent" };
 };
 
