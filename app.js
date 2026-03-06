@@ -40,6 +40,16 @@ app.use(express.urlencoded({ extended: false, limit: "25kb" }));
 app.use(express.json({ limit: "25kb" }));
 app.use(express.static(path.join(__dirname, "public")));
 
+// Base locals for all EJS templates.
+// Prevents "is not defined" runtime errors in partial includes
+// when a page does not explicitly pass optional footer fields.
+app.use((req, res, next) => {
+  res.locals.brandName = "GÉOMETRIA";
+  res.locals.footerBrandName = "GÉOMETRIA";
+  res.locals.footerNote = "";
+  next();
+});
+
 app.use("/", webRoutes);
 
 // Default 404 page.
