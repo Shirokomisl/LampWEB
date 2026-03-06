@@ -101,7 +101,7 @@ p {
 
 .brand-logo-image {
   display: block;
-  width: 150%;
+  width: 80%;
   max-height: 88px;
   object-fit: contain;
   object-position: left center;

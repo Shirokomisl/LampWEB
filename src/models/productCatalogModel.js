@@ -1,7 +1,7 @@
 const getHomePageData = () => {
   return {
     pageTitle: "GÉOMETRIA | Главная",
-    headerLogo: "/images/logo-header-transparent.png",
+    headerLogo: "/images/logo-new_1920.png",
     footerBrandName: "GÉOMETRIA",
     hero: {
       eyebrow: "Light has the form",
@@ -83,14 +83,14 @@ const getHomePageData = () => {
       //   "[Форма-заглушка] Функциональная отправка будет добавлена на следующем этапе."
     },
     footerNote:
-      "© 2026 GÉOMETRIA. Все права защищены."
+      ""
   };
 };
 
 const getContactsPageData = () => {
   return {
     pageTitle: "GÉOMETRIA | Контакты",
-    headerLogo: "/images/logo-header-transparent.png",
+    headerLogo: "/images/logo-new_1920.png",
     footerBrandName: "GÉOMETRIA",
     // footerNote:
     //   "[Юридическая заглушка] ООО «Название компании». ИНН/ОГРН и документы добавляются на этапе запуска.",
@@ -140,7 +140,7 @@ const getContactsPageData = () => {
 const getAboutPageData = () => {
   return {
     pageTitle: "GÉOMETRIA | О бренде",
-    headerLogo: "/images/logo-header-transparent.png",
+    headerLogo: "/images/logo-new_1920.png",
     footerBrandName: "GÉOMETRIA",
     // footerNote:
     //   "[Юридическая заглушка] ООО «Название компании». ИНН/ОГРН и документы добавляются на этапе запуска.",
