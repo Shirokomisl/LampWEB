@@ -1,4 +1,5 @@
 const nodemailer = require("nodemailer");
+const dns = require("dns").promises;
 
 const { getClientIp } = require("./contactSecurityService");
 
@@ -10,8 +11,10 @@ const SMTP_CONNECTION_TIMEOUT_MS = Number(process.env.CONTACT_SMTP_CONNECTION_TI
 const SMTP_GREETING_TIMEOUT_MS = Number(process.env.CONTACT_SMTP_GREETING_TIMEOUT_MS || 10000);
 const SMTP_SOCKET_TIMEOUT_MS = Number(process.env.CONTACT_SMTP_SOCKET_TIMEOUT_MS || 15000);
 const SMTP_SEND_TIMEOUT_MS = Number(process.env.CONTACT_SMTP_SEND_TIMEOUT_MS || 20000);
+const SMTP_FORCE_IPV4 = String(process.env.CONTACT_SMTP_FORCE_IPV4 || "true") === "true";
 
 let smtpTransporter = null;
+let smtpTransporterCacheKey = "";
 
 const withTimeout = (promise, timeoutMs, timeoutCode) =>
   new Promise((resolve, reject) => {
@@ -202,39 +205,75 @@ const verifyRecaptchaToken = async (tokenValue, clientIp) => {
   }
 };
 
-const getSmtpTransporter = () => {
-  if (smtpTransporter) {
-    return smtpTransporter;
+const resolveSmtpHost = async (host) => {
+  if (!SMTP_FORCE_IPV4) {
+    return { host, servername: null };
   }
 
+  try {
+    const ipv4List = await dns.resolve4(host);
+    if (Array.isArray(ipv4List) && ipv4List.length > 0) {
+      return { host: ipv4List[0], servername: host };
+    }
+  } catch (error) {
+    console.warn("[contact:smtp] IPv4 resolve failed, fallback to original host", {
+      host,
+      message: error?.message || "unknown_error"
+    });
+  }
+
+  return { host, servername: null };
+};
+
+const getSmtpTransporter = async () => {
   const host = process.env.CONTACT_SMTP_HOST;
   const port = Number(process.env.CONTACT_SMTP_PORT || 587);
   const secure = String(process.env.CONTACT_SMTP_SECURE || "false") === "true";
   const user = process.env.CONTACT_SMTP_USER;
   const pass = process.env.CONTACT_SMTP_PASS;
+  const fromEmail = process.env.CONTACT_SMTP_FROM || process.env.CONTACT_SMTP_USER;
+
+  const cacheKey = [
+    host,
+    port,
+    secure,
+    user,
+    pass ? "has-pass" : "no-pass",
+    fromEmail,
+    SMTP_FORCE_IPV4 ? "ipv4" : "any"
+  ].join("|");
+
+  if (smtpTransporter && smtpTransporterCacheKey === cacheKey) {
+    return smtpTransporter;
+  }
 
   if (!host || !Number.isFinite(port) || !user || !pass) {
     return null;
   }
 
+  const resolvedSmtp = await resolveSmtpHost(host);
+  const tlsOptions = resolvedSmtp.servername ? { servername: resolvedSmtp.servername } : undefined;
+
   smtpTransporter = nodemailer.createTransport({
-    host,
+    host: resolvedSmtp.host,
     port,
     secure,
     connectionTimeout: SMTP_CONNECTION_TIMEOUT_MS,
     greetingTimeout: SMTP_GREETING_TIMEOUT_MS,
     socketTimeout: SMTP_SOCKET_TIMEOUT_MS,
+    tls: tlsOptions,
     auth: {
       user,
       pass
     }
   });
+  smtpTransporterCacheKey = cacheKey;
 
   return smtpTransporter;
 };
 
 const sendContactNotification = async ({ payload, sourcePath, req }) => {
-  const transporter = getSmtpTransporter();
+  const transporter = await getSmtpTransporter();
   const toEmail = process.env.CONTACT_RECEIVER_EMAIL;
   const fromEmail = process.env.CONTACT_SMTP_FROM || process.env.CONTACT_SMTP_USER;
 
