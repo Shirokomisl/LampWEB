@@ -2,8 +2,10 @@ const { createCsrfToken } = require("./contactSecurityService");
 
 const MIN_SUBMIT_DELAY_MS = Number(process.env.CONTACT_MIN_SUBMIT_DELAY_MS || 2500);
 
-const isCaptchaEnabled = () =>
-  process.env.CONTACT_CAPTCHA_ENABLED !== "false" && Boolean(process.env.RECAPTCHA_SITE_KEY);
+const isCaptchaProtectionRequired = () => process.env.CONTACT_CAPTCHA_ENABLED !== "false";
+const hasCaptchaSiteKey = () => Boolean(process.env.RECAPTCHA_SITE_KEY);
+const isCaptchaEnabled = () => isCaptchaProtectionRequired() && hasCaptchaSiteKey();
+const isCaptchaMisconfigured = () => isCaptchaProtectionRequired() && !hasCaptchaSiteKey();
 
 const normalizePath = (pathValue) => {
   if (typeof pathValue !== "string") {
@@ -87,6 +89,10 @@ const feedbackMap = {
     type: "error",
     text: "Почтовый сервис не настроен. Временно отправка недоступна."
   },
+  smtp_unreachable: {
+    type: "error",
+    text: "Почтовый сервер временно недоступен. Попробуйте позже или свяжитесь с нами по телефону."
+  },
   delivery_failed: {
     type: "error",
     text: "Не удалось отправить заявку. Повторите попытку через несколько минут."
@@ -126,6 +132,7 @@ const buildContactFormView = (req, sourcePath, formOrigin) => ({
   formStartedAt: Date.now(),
   minSubmitDelayMs: MIN_SUBMIT_DELAY_MS,
   captchaEnabled: isCaptchaEnabled(),
+  captchaMisconfigured: isCaptchaMisconfigured(),
   captchaSiteKey: process.env.RECAPTCHA_SITE_KEY || "",
   captchaProvider: "recaptcha"
 });

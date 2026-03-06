@@ -348,12 +348,25 @@ const processContactSubmission = async ({ req, sourcePath, formData }) => {
       return deliveryResult;
     }
   } catch (error) {
+    const smtpNetworkErrorCodes = new Set([
+      "ETIMEDOUT",
+      "ESOCKET",
+      "ECONNECTION",
+      "ECONNREFUSED",
+      "ENETUNREACH",
+      "EHOSTUNREACH",
+      "smtp_send_timeout"
+    ]);
+    const mappedCode = smtpNetworkErrorCodes.has(error?.code)
+      ? "smtp_unreachable"
+      : "delivery_failed";
+
     console.error("[contact-submit] delivery exception", {
-      code: error?.code || "delivery_failed",
+      code: error?.code || mappedCode,
       message: error?.message || "unknown_error",
       sourcePath
     });
-    return { ok: false, code: "delivery_failed" };
+    return { ok: false, code: mappedCode };
   }
 
   console.info("[contact-submit] sent", {

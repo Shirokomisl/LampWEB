@@ -175,7 +175,7 @@
               <button type="submit" class="btn btn-solid">Отправить</button>
             </form>
 
-            <% if (!contactForm.captchaEnabled) { %>
+            <% if (contactForm.captchaMisconfigured) { %>
               <p class="form-note">Капча не настроена. При включенной серверной защите отправка будет отклонена.</p>
             <% } %>
           </div>
