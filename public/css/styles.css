@@ -408,7 +408,7 @@ p {
   position: relative;
   display: block;
   min-height: auto;
-  aspect-ratio: 5 / 4;
+  aspect-ratio: 3 / 4;
   border-radius: var(--radius-md);
   border: 1px solid var(--stroke);
   overflow: hidden;
@@ -2136,10 +2136,6 @@ p {
 }
 
 @media (max-width: 1320px) {
-  .collection-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .catalog-products-grid {
     --catalog-cols: 2;
   }

@@ -17,7 +17,7 @@ const getHomePageData = () => {
         href: "/catalog"
       },
       backgroundImage: "/images/header-background.png",
-      backgroundPosition: "90% center"
+      backgroundPosition: "1% center"
     },
     // Блок девиза бренда перед витриной линеек.
     brandMotto: {
