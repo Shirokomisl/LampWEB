@@ -167,7 +167,7 @@
 
               <% if (contactForm.captchaEnabled) { %>
                 <div class="catalog-contact-captcha is-wide">
-                  <div class="cf-turnstile" data-sitekey="<%= contactForm.captchaSiteKey %>"></div>
+                  <div class="g-recaptcha" data-sitekey="<%= contactForm.captchaSiteKey %>"></div>
                 </div>
               <% } %>
 
@@ -209,4 +209,3 @@
     <%- include("../partials/footer", { footerBrandName, footerNote: typeof footerNote !== "undefined" ? footerNote : undefined }) %>
   </body>
 </html>
-

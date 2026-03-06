@@ -3,7 +3,7 @@ const { createCsrfToken } = require("./contactSecurityService");
 const MIN_SUBMIT_DELAY_MS = Number(process.env.CONTACT_MIN_SUBMIT_DELAY_MS || 2500);
 
 const isCaptchaEnabled = () =>
-  process.env.CONTACT_CAPTCHA_ENABLED !== "false" && Boolean(process.env.TURNSTILE_SITE_KEY);
+  process.env.CONTACT_CAPTCHA_ENABLED !== "false" && Boolean(process.env.RECAPTCHA_SITE_KEY);
 
 const normalizePath = (pathValue) => {
   if (typeof pathValue !== "string") {
@@ -126,7 +126,8 @@ const buildContactFormView = (req, sourcePath, formOrigin) => ({
   formStartedAt: Date.now(),
   minSubmitDelayMs: MIN_SUBMIT_DELAY_MS,
   captchaEnabled: isCaptchaEnabled(),
-  captchaSiteKey: process.env.TURNSTILE_SITE_KEY || ""
+  captchaSiteKey: process.env.RECAPTCHA_SITE_KEY || "",
+  captchaProvider: "recaptcha"
 });
 
 module.exports = {

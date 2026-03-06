@@ -22,12 +22,12 @@ app.use(
         baseUri: ["'self'"],
         frameAncestors: ["'none'"],
         objectSrc: ["'none'"],
-        scriptSrc: ["'self'", "https://challenges.cloudflare.com"],
+        scriptSrc: ["'self'", "https://www.google.com", "https://www.gstatic.com"],
         styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
         fontSrc: ["'self'", "https://fonts.gstatic.com", "data:"],
         imgSrc: ["'self'", "data:", "https:"],
-        connectSrc: ["'self'", "https://challenges.cloudflare.com"],
-        frameSrc: ["'self'", "https://challenges.cloudflare.com"],
+        connectSrc: ["'self'", "https://www.google.com"],
+        frameSrc: ["'self'", "https://www.google.com"],
         mediaSrc: ["'self'", "blob:", "data:"],
         formAction: ["'self'"]
       }

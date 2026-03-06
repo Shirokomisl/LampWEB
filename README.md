@@ -72,8 +72,8 @@ TRUST_PROXY=0
 
 ```env
 CONTACT_CAPTCHA_ENABLED=true
-TURNSTILE_SITE_KEY=
-TURNSTILE_SECRET_KEY=
+RECAPTCHA_SITE_KEY=
+RECAPTCHA_SECRET_KEY=
 
 CONTACT_SMTP_HOST=
 CONTACT_SMTP_PORT=587
@@ -137,7 +137,7 @@ npm run logs:pm2
 - honeypot
 - задержка минимального времени заполнения
 - server-side валидация полей
-- Cloudflare Turnstile (captcha)
+- Google reCAPTCHA (captcha)
 - отправка по SMTP через Nodemailer
 
 Ключевые файлы:
@@ -155,7 +155,7 @@ npm run logs:pm2
 
 1. Создать/выбрать приложение в панели Timeweb.
 2. Указать команды сборки/старта (см. раздел 5).
-3. Заполнить env variables (SMTP + Turnstile + CSRF secret).
+3. Заполнить env variables (SMTP + reCAPTCHA + CSRF secret).
 4. Подключить домен и SSL (если требуется).
 5. Проверить отправку формы после деплоя.
 

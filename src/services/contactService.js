@@ -25,10 +25,9 @@ const normalizeMultiline = (value, maxLength) =>
 const isValidName = (nameValue) => /^[\p{L}\d .,'-]{2,80}$/u.test(nameValue);
 const isValidPhone = (phoneValue) => /^[+\d\s().-]{7,30}$/.test(phoneValue);
 const isCaptchaEnabled = () => process.env.CONTACT_CAPTCHA_ENABLED !== "false";
-const getTurnstileSecretKey = () =>
+const getRecaptchaSecretKey = () =>
   String(
-    process.env.TURNSTILE_SECRET_KEY ||
-      process.env.CLOUDFLARE_TURNSTILE_SECRET_KEY ||
+    process.env.RECAPTCHA_SECRET_KEY ||
       ""
   ).trim();
 
@@ -97,20 +96,19 @@ const validateContactSubmission = (formData) => {
   };
 };
 
-const verifyTurnstileToken = async (tokenValue, clientIp) => {
+const verifyRecaptchaToken = async (tokenValue, clientIp) => {
   if (!isCaptchaEnabled()) {
     return { ok: true };
   }
 
-  const turnstileSecretKey = getTurnstileSecretKey();
+  const recaptchaSecretKey = getRecaptchaSecretKey();
 
-  if (!turnstileSecretKey) {
-    console.warn("[contact:captcha] Turnstile secret is missing", {
+  if (!recaptchaSecretKey) {
+    console.warn("[contact:captcha] reCAPTCHA secret is missing", {
       cwd: process.cwd(),
       captchaEnabled: isCaptchaEnabled(),
-      hasSiteKey: Boolean(process.env.TURNSTILE_SITE_KEY),
-      hasSecretKey: Boolean(process.env.TURNSTILE_SECRET_KEY),
-      hasAltSecretKey: Boolean(process.env.CLOUDFLARE_TURNSTILE_SECRET_KEY)
+      hasSiteKey: Boolean(process.env.RECAPTCHA_SITE_KEY),
+      hasSecretKey: Boolean(process.env.RECAPTCHA_SECRET_KEY)
     });
     return { ok: false, code: "captcha_not_configured" };
   }
@@ -122,7 +120,7 @@ const verifyTurnstileToken = async (tokenValue, clientIp) => {
   }
 
   const requestBody = new URLSearchParams({
-    secret: turnstileSecretKey,
+    secret: recaptchaSecretKey,
     response: token
   });
 
@@ -131,7 +129,7 @@ const verifyTurnstileToken = async (tokenValue, clientIp) => {
   }
 
   try {
-    const response = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+    const response = await fetch("https://www.google.com/recaptcha/api/siteverify", {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded"
@@ -152,11 +150,10 @@ const verifyTurnstileToken = async (tokenValue, clientIp) => {
         errorCodes.includes("invalid-input-secret") ||
         errorCodes.includes("missing-input-secret")
       ) {
-        console.warn("[contact:captcha] Turnstile secret rejected by Cloudflare", {
+        console.warn("[contact:captcha] reCAPTCHA secret rejected by Google", {
           cwd: process.cwd(),
-          hasSiteKey: Boolean(process.env.TURNSTILE_SITE_KEY),
-          hasSecretKey: Boolean(process.env.TURNSTILE_SECRET_KEY),
-          hasAltSecretKey: Boolean(process.env.CLOUDFLARE_TURNSTILE_SECRET_KEY),
+          hasSiteKey: Boolean(process.env.RECAPTCHA_SITE_KEY),
+          hasSecretKey: Boolean(process.env.RECAPTCHA_SECRET_KEY),
           errorCodes
         });
         return { ok: false, code: "captcha_not_configured" };
@@ -241,8 +238,8 @@ const processContactSubmission = async ({ req, sourcePath, formData }) => {
     return validationResult;
   }
 
-  const captchaResult = await verifyTurnstileToken(
-    formData["cf-turnstile-response"],
+  const captchaResult = await verifyRecaptchaToken(
+    formData["g-recaptcha-response"],
     getClientIp(req)
   );
 
