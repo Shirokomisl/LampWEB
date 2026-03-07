@@ -81,7 +81,9 @@
                   <%= productPrice.previewPriceValue %>
                 </p>
                 <div class="catalog-price-actions">
-                  <a href="/contacts"><%= productPrice.requestLabel %></a>
+                  <button type="button" class="catalog-price-request" data-open-request>
+                    <%= productPrice.requestLabel %>
+                  </button>
                   <a href="/contacts"><%= productPrice.modelLabel %></a>
                 </div>
               </div>
@@ -205,6 +207,64 @@
         <% } %>
       </section>
     </main>
+
+    <div class="product-request-overlay" data-request-overlay></div>
+    <aside class="product-request-drawer" data-request-drawer aria-hidden="true">
+      <div class="product-request-header">
+        <h2>ЗАЯВКА НА ИЗДЕЛИЕ</h2>
+        <button type="button" class="product-request-close" data-request-close aria-label="Закрыть">
+          &times;
+        </button>
+      </div>
+      <p class="product-request-subtitle">
+        Пожалуйста, оставьте заявку по форме, представленной ниже.
+        Мы свяжемся с вами в ближайшее время.
+      </p>
+
+      <% if (contactFeedback) { %>
+        <p class="form-feedback <%= contactFeedback.type === 'success' ? 'is-success' : 'is-error' %>">
+          <%= contactFeedback.text %>
+        </p>
+      <% } %>
+
+      <form class="product-request-form" action="<%= contactForm.action %>" method="post" novalidate>
+        <input type="hidden" name="_csrf" value="<%= contactForm.csrfToken %>" />
+        <input type="hidden" name="sourcePath" value="<%= contactForm.sourcePath %>" />
+        <input type="hidden" name="formOrigin" value="<%= contactForm.formOrigin %>" />
+        <input type="hidden" name="formStartedAt" value="<%= contactForm.formStartedAt %>" />
+        <input type="hidden" name="productName" value="<%= product.name %>" />
+        <input type="hidden" name="productSize" value="" data-product-size-input />
+
+        <div class="form-honeypot" aria-hidden="true">
+          <label for="drawer-website">Website</label>
+          <input id="drawer-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <div class="product-request-row">
+          <label for="drawer-name">Имя *</label>
+          <input id="drawer-name" name="name" type="text" required minlength="2" maxlength="80" />
+        </div>
+        <div class="product-request-row">
+          <label for="drawer-phone">Телефон *</label>
+          <input id="drawer-phone" name="phone" type="tel" required minlength="7" maxlength="30" />
+        </div>
+        <div class="product-request-row product-request-row-wide">
+          <label for="drawer-message">Опишите свой вопрос *</label>
+          <textarea id="drawer-message" name="message" rows="3" required minlength="5" maxlength="2000"></textarea>
+        </div>
+
+        <% if (contactForm.captchaEnabled) { %>
+          <div class="product-request-row product-request-row-wide">
+            <div class="contact-captcha">
+              <div class="g-recaptcha" data-sitekey="<%= contactForm.captchaSiteKey %>"></div>
+            </div>
+          </div>
+        <% } %>
+
+        <button type="submit" class="product-request-submit">ОТПРАВИТЬ</button>
+        <p class="product-request-policy"><%= productContact.policyText %></p>
+      </form>
+    </aside>
 
     <%- include("../partials/footer", { footerBrandName, footerNote: typeof footerNote !== "undefined" ? footerNote : undefined }) %>
   </body>

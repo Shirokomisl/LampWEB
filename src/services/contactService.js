@@ -76,6 +76,8 @@ const validateContactSubmission = (formData) => {
   const phone = normalizeSingleLine(formData.phone, 30);
   const message = normalizeMultiline(formData.message, 2000);
   const formOrigin = normalizeSingleLine(formData.formOrigin, 40);
+  const productName = normalizeSingleLine(formData.productName, 120);
+  const productSize = normalizeSingleLine(formData.productSize, 16);
 
   if (!name) {
     return { ok: false, code: "invalid_name" };
@@ -113,7 +115,9 @@ const validateContactSubmission = (formData) => {
       name,
       phone,
       message,
-      formOrigin: formOrigin || "site-form"
+      formOrigin: formOrigin || "site-form",
+      productName,
+      productSize
     }
   };
 };
@@ -293,6 +297,8 @@ const sendContactNotification = async ({ payload, sourcePath, req }) => {
       "Новая заявка с сайта GEOMETRIA",
       `Источник формы: ${payload.formOrigin}`,
       `Страница: ${sourcePath}`,
+      payload.productName ? `Изделие: ${payload.productName}` : null,
+      payload.productSize ? `Размер: ${payload.productSize}` : null,
       `Имя: ${payload.name}`,
       `Телефон: ${payload.phone}`,
       "Сообщение:",
@@ -301,7 +307,9 @@ const sendContactNotification = async ({ payload, sourcePath, req }) => {
       `IP: ${clientIp}`,
       `User-Agent: ${userAgent}`,
       `Время (UTC): ${submittedAt}`
-    ].join("\n")
+    ]
+      .filter(Boolean)
+      .join("\n")
   });
   const mailResult = await withTimeout(sendPromise, SMTP_SEND_TIMEOUT_MS, "smtp_send_timeout");
 

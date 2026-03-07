@@ -244,6 +244,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const sizeButtons = Array.from(document.querySelectorAll("[data-size-option]"));
   const productPriceValue = document.querySelector("[data-product-price-value]");
+  const sizeInput = document.querySelector("[data-product-size-input]");
 
   const formatRubPrice = (priceValue) =>
     `${new Intl.NumberFormat("ru-RU").format(priceValue)} ₽`;
@@ -253,6 +254,10 @@ document.addEventListener("DOMContentLoaded", () => {
       buttonItem.addEventListener("click", () => {
         sizeButtons.forEach((innerButton) => innerButton.classList.remove("is-active"));
         buttonItem.classList.add("is-active");
+
+        if (sizeInput) {
+          sizeInput.value = buttonItem.textContent.trim();
+        }
 
         if (!productPriceValue) {
           return;
@@ -268,7 +273,57 @@ document.addEventListener("DOMContentLoaded", () => {
         productPriceValue.dataset.productPriceRaw = String(nextPrice);
       });
     });
+
+    const activeButton = sizeButtons.find((buttonItem) =>
+      buttonItem.classList.contains("is-active")
+    );
+    if (activeButton && sizeInput) {
+      sizeInput.value = activeButton.textContent.trim();
+    }
   }
+
+  const requestDrawer = document.querySelector("[data-request-drawer]");
+  const requestOverlay = document.querySelector("[data-request-overlay]");
+  const requestOpenButton = document.querySelector("[data-open-request]");
+  const requestCloseButton = document.querySelector("[data-request-close]");
+
+  const closeRequestDrawer = () => {
+    if (!requestDrawer || !requestOverlay) {
+      return;
+    }
+    requestDrawer.classList.remove("is-open");
+    requestOverlay.classList.remove("is-open");
+    requestDrawer.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("is-request-open");
+  };
+
+  const openRequestDrawer = () => {
+    if (!requestDrawer || !requestOverlay) {
+      return;
+    }
+    requestDrawer.classList.add("is-open");
+    requestOverlay.classList.add("is-open");
+    requestDrawer.setAttribute("aria-hidden", "false");
+    document.body.classList.add("is-request-open");
+  };
+
+  if (requestOpenButton) {
+    requestOpenButton.addEventListener("click", openRequestDrawer);
+  }
+
+  if (requestCloseButton) {
+    requestCloseButton.addEventListener("click", closeRequestDrawer);
+  }
+
+  if (requestOverlay) {
+    requestOverlay.addEventListener("click", closeRequestDrawer);
+  }
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeRequestDrawer();
+    }
+  });
 
   const gallerySlider = document.querySelector("[data-gallery-slider]");
 
