@@ -50,6 +50,15 @@ const CATALOG_PRODUCTS = [
       { label: "L", price: 14900 }
     ],
     image: "/images/myst_hanging-catalog.png",
+    gallery: [
+      { image: "/images/myst_hanging-gallery2.jpg", title: "Одиночный ВКЛ, вид сверху" },
+      { image: "/images/myst_hanging-gallery3.jpg", title: "Одиночный ВКЛ, вид снизу" },
+      { image: "/images/myst_hanging-gallery4.jpg", title: "Одиночный ВЫКЛ, вид сверху" },
+      { image: "/images/myst_hanging-gallery5.jpg", title: "Одиночный ВЫКЛ, вид снизу" },
+      { image: "/images/myst_hanging-gallery6.jpg", title: "Парные ВКЛ, вид сверху" },
+      { image: "/images/myst_hanging-gallery7.jpg", title: "Парные ВЫКЛ, вид сверху" },
+      { image: "/images/myst_hanging-gallery8.jpg", title: "Парные ВЫКЛ, вид снизу" }
+    ],
     description: "UFO Myst (премиальное матированное стекло дымчатого оттенка) – мастер-спальни частных интерьеров, номерной фонд стильных отелей, ночной проходной свет, когда нужно максимально бережно сохранить сон или подготовиться к нему.",
     paragraph1: "Отличное решение по размещению над прикроватными тумбами в спальне - свисающий разноуровневый монтаж, особенно для высоких потолков (3+ метра).",
     paragraph2: "Материалы: алюминий, бельгийское стекло, латунь."
@@ -65,6 +74,11 @@ const CATALOG_PRODUCTS = [
       { label: "L", price: 14900 }
     ],
     image: "/images/potrofino-catalog.png",
+    gallery: [
+    { image: "/images/portofio-gallery1.jpg", title: "Одиночный ВЫКЛ, крупный план" },
+    { image: "/images/portofio-gallery2.jpg", title: "Одиночный ВЫКЛ, вид снизу" },
+    { image: "/images/portofio-gallery3.jpg", title: "Парные ВЫКЛ, вид снизу" }
+    ],
     description: "UFO Portofino – для светлых минималистичных интерьеров, где нужен крайне выверенный и тонкий акцент «уровня Hi-End» без нарушения общей гармонии пространства.",
     paragraph1: "За счет полностью отраженного от диска света можно использовать в качестве основного освещения небольшое зоны.",
     paragraph2: "Материалы: алюминий, бельгийское стекло, латунь"
