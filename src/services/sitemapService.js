@@ -3,6 +3,13 @@ const {
   getCatalogProductSlugs
 } = require("../models/catalogPageModel");
 
+const SITEMAP_CACHE_TTL_MS = Number(process.env.SITEMAP_CACHE_TTL_MS || 6 * 60 * 60 * 1000);
+let sitemapCache = {
+  baseUrl: "",
+  expiresAt: 0,
+  xml: ""
+};
+
 const escapeXml = (value) =>
   String(value)
     .replace(/&/g, "&amp;")
@@ -33,8 +40,7 @@ const buildUrlEntry = (loc, lastmod, changefreq, priority) => {
   return `<url>${parts.join("")}</url>`;
 };
 
-const buildSitemapXml = (req) => {
-  const baseUrl = buildBaseUrl(req);
+const buildSitemapXmlForBase = (baseUrl) => {
   const lastmod = new Date().toISOString().split("T")[0];
   const typeSlugs = getCatalogTypeSlugs().filter((slug) => slug !== "all");
   const productSlugs = getCatalogProductSlugs();
@@ -60,6 +66,35 @@ const buildSitemapXml = (req) => {
   ].join("");
 };
 
+const getSitemapXml = (req) => {
+  const baseUrl = buildBaseUrl(req);
+  const now = Date.now();
+
+  if (sitemapCache.xml && sitemapCache.baseUrl === baseUrl && now < sitemapCache.expiresAt) {
+    return sitemapCache.xml;
+  }
+
+  const xml = buildSitemapXmlForBase(baseUrl);
+  sitemapCache = {
+    baseUrl,
+    xml,
+    expiresAt: now + SITEMAP_CACHE_TTL_MS
+  };
+
+  return xml;
+};
+
+const buildRobotsTxt = (req) => {
+  const baseUrl = buildBaseUrl(req);
+  return [
+    "User-agent: *",
+    "Allow: /",
+    `Sitemap: ${baseUrl}/sitemap.xml`,
+    ""
+  ].join("\n");
+};
+
 module.exports = {
-  buildSitemapXml
+  getSitemapXml,
+  buildRobotsTxt
 };
