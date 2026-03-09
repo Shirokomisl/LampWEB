@@ -383,26 +383,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
       setActiveImage(currentIndex);
     }
-  }
 
-  if (gallerySlider && thumbsTrack) {
-    const scrollThumbsBy = (distance) => {
-      thumbsTrack.scrollBy({
-        left: distance,
-        behavior: "smooth"
-      });
-    };
+    if (thumbsTrack) {
+      const scrollThumbsBy = (distance) => {
+        thumbsTrack.scrollBy({
+          left: distance,
+          behavior: "smooth"
+        });
+      };
 
-    if (thumbsPrev) {
-      thumbsPrev.addEventListener("click", () => {
-        scrollThumbsBy(-thumbsTrack.clientWidth * 0.7);
-      });
-    }
+      if (thumbsPrev) {
+        thumbsPrev.addEventListener("click", () => {
+          scrollThumbsBy(-thumbsTrack.clientWidth * 0.7);
+        });
+      }
 
-    if (thumbsNext) {
-      thumbsNext.addEventListener("click", () => {
-        scrollThumbsBy(thumbsTrack.clientWidth * 0.7);
-      });
+      if (thumbsNext) {
+        thumbsNext.addEventListener("click", () => {
+          scrollThumbsBy(thumbsTrack.clientWidth * 0.7);
+        });
+      }
     }
   }
 });
