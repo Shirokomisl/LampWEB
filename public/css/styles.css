@@ -1588,7 +1588,7 @@ p {
   overflow-x: auto;
   overflow-y: hidden;
   padding: 0.1rem 0.1rem 0.5rem;
-  scrollbar-width: thin;
+  /* scrollbar-width: thin; */
   scroll-snap-type: x proximity;
 }
 

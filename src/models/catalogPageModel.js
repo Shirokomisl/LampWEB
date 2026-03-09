@@ -57,7 +57,8 @@ const CATALOG_PRODUCTS = [
       { image: "/images/myst_hanging-gallery5.jpg", title: "Одиночный ВЫКЛ, вид снизу" },
       { image: "/images/myst_hanging-gallery6.jpg", title: "Парные ВКЛ, вид сверху" },
       { image: "/images/myst_hanging-gallery7.jpg", title: "Парные ВЫКЛ, вид сверху" },
-      { image: "/images/myst_hanging-gallery8.jpg", title: "Парные ВЫКЛ, вид снизу" }
+      { image: "/images/myst_hanging-gallery8.jpg", title: "Парные ВЫКЛ, вид снизу" },
+      { image: "/images/myst_hanging-gallery9.png", title: "UFO Myst в интерьере" },
     ],
     description: "UFO Myst (премиальное матированное стекло дымчатого оттенка) – мастер-спальни частных интерьеров, номерной фонд стильных отелей, ночной проходной свет, когда нужно максимально бережно сохранить сон или подготовиться к нему.",
     paragraph1: "Отличное решение по размещению над прикроватными тумбами в спальне - свисающий разноуровневый монтаж, особенно для высоких потолков (3+ метра).",
@@ -79,9 +80,9 @@ const CATALOG_PRODUCTS = [
     { image: "/images/portofio-gallery2.jpg", title: "Одиночный ВЫКЛ, вид снизу" },
     { image: "/images/portofio-gallery3.jpg", title: "Парные ВЫКЛ, вид снизу" }
     ],
-    description: "UFO Portofino – для светлых минималистичных интерьеров, где нужен крайне выверенный и тонкий акцент «уровня Hi-End» без нарушения общей гармонии пространства.",
-    paragraph1: "За счет полностью отраженного от диска света можно использовать в качестве основного освещения небольшое зоны.",
-    paragraph2: "Материалы: алюминий, бельгийское стекло, латунь"
+    description: "Покрашенный в невероятно красивый бело-серый цвет легкий алюминиевый диск с торцом терракотового цвета мысленно переносит ваш интерьер на побережье Портофино, где вам просто нужно отодвинуть рукой белый развивающийся на ветру тюль, чтобы насладиться видом на Средиземное море.",
+    paragraph1: "За счет полностью отраженного от диска света можно использовать в качестве основного освещения небольшой зоны.",
+    paragraph2: "Материалы: алюминий, латунь"
   },
   {
     slug: "ufo-prive",
@@ -110,7 +111,7 @@ const CATALOG_PRODUCTS = [
     image: "/images/glass_wall-catalog.png",
     gallery: [
       { image: "/images/glass_wall-catalog.png", title: "UFO Glass Wall" },
-      { image: "/images/glass_wall-gallery1.JPG", title: "Одиночный ВЫКЛ, вид спереди" }
+      { image: "/images/glass_wall-gallery1.jpg", title: "Одиночный ВКЛ, вид спереди" }
     ],
     description: "UFO Glass Wall (премиальное матированное стекло) - представляет из себя настенную версию светильника UFO Glass",
     paragraph1: "Может быть использован в сателлитном использовании с подвесной версией для формирования композитного восприятия в освещении интерьера.",
@@ -167,8 +168,10 @@ const CATALOG_PRODUCTS = [
     ],
     image: "/images/antique-catalog.png",
     gallery: [
-      { image: "/images/antique-gallery1.PNG", title: "UFO Antique в интерьере"},
-      { image: "/images/antique-gallery2.jpg", title: "ВЫКЛ, крупным планом спереди"}
+      { image: "/images/antique-gallery1.PNG", title: "UFO Antique в интерьере 1"},
+      { image: "/images/antique-gallery2.jpg", title: "ВЫКЛ, крупным планом спереди 1"},
+      { image: "/images/antique-gallery3.jpg", title: "ВЫКЛ, крупным планом спереди 2"},
+      { image: "/images/antique-gallery4.jpg", title: "UFO Antique в интерьере 2"}
     ],
     description: "UFO Antique - матированное стекло в сочетании с центральным диском из итальянского травертина пористой текстуры и латунью.",
     paragraph1: "Формируют изысканный стиль, твердо декларируя, что премиальный стиль — это не всегда сложные формы и молча подчеркивают изысканный стиль своего владельца.",
