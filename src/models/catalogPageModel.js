@@ -150,7 +150,7 @@ const CATALOG_PRODUCTS = [
     image: "/images/myst_wall-catalog.png",
     gallery: [
       { image: "/images/myst_wall-catalog.png", title: "UFO Myst Wall"},
-      { image: "/images/myst_wall-gallery1.JPG", title: "Одиночный ВЫКЛ, вид спереди" }
+      { image: "/images/myst_wall-gallery1.PNG", title: "UFO Myst Wall в интерьере" }
     ],
     description: "UFO Myst Wall (премиальное матированное стекло дымчатого оттенка) - за счет дымчатого стекла наиболее подходит в качестве сдержанного атмосферного света и идеальны для формирования световых композиций за счет применения разных размеров.",
     paragraph1: "Идеальное решение для мастер-спален, прихожих, идеальное решение в качестве проходного ночного света и пр.",
