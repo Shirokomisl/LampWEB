@@ -1588,8 +1588,10 @@ p {
   overflow-x: auto;
   overflow-y: hidden;
   padding: 0.1rem 0.1rem 0.5rem;
-  /* scrollbar-width: thin; */
+  scrollbar-width: thin;
   scroll-snap-type: x proximity;
+  scrollbar-width: none; /* для Firefox */
+  -ms-overflow-style: none; /* для Internet Explorer и Edge */
 }
 
 .catalog-gallery-thumb {
@@ -1637,6 +1639,11 @@ p {
   justify-content: center;
   cursor: pointer;
   transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* для Chrome, Safari и Opera */
+.catalog-gallery-thumbs::-webkit-scrollbar {
+  display: none;
 }
 
 .catalog-gallery-arrow span {

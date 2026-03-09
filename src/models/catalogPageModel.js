@@ -26,14 +26,14 @@ const CATALOG_PRODUCTS = [
     ],
     image: "/images/glass_hanging-catalog.png",
     gallery: [
-      { image: "/images/glass_hanging-gallery1.jpg", title: "Парные в интерьере" },
       { image: "/images/glass_hanging-gallery2.jpg", title: "Одиночный ВКЛ, вид сверху" },
       { image: "/images/glass_hanging-gallery3.jpg", title: "Одиночный ВКЛ, вид снизу" },
       { image: "/images/glass_hanging-gallery4.jpg", title: "Одиночный ВЫКЛ, вид сверху" },
       { image: "/images/glass_hanging-gallery5.jpg", title: "Одиночный ВЫКЛ, вид снизу" },
       { image: "/images/glass_hanging-gallery6.jpg", title: "Парные ВЫКЛ, вид снизу" },
       { image: "/images/glass_hanging-gallery7.jpg", title: "Парные ВКЛ, вид снизу" },
-      { image: "/images/glass_hanging-gallery8.jpg", title: "Парные ВЫКЛ, вид сверху" }
+      { image: "/images/glass_hanging-gallery8.jpg", title: "Парные ВЫКЛ, вид сверху" },
+      { image: "/images/glass_hanging-gallery1.jpg", title: "Парные в интерьере" }
     ],
     description: "UFO Glass (премиальное матированное стекло) – наиболее универсальная модель подходящая под большинство интерьеров за счет нейтральности.",
     paragraph1: "Особенно выигрышно смотрится при разноуровневой композиции из разных размеров, где рассеянный матовым стеклом теплый свет перетекает от диска на диск – невероятная магия уюта.",
@@ -92,6 +92,11 @@ const CATALOG_PRODUCTS = [
     sizeOptions: [{ label: "XL", price: 18900, isDefault: true }],
     image: "/images/prive-catalog-cube.png",
     gallery: [
+      {image: "/images/prive-gallery1.jpg", title: "Одиночный ВЫКЛ, вид сверху"},
+      {image: "/images/prive-gallery2.jpg", title: "Одиночный ВЫКЛ, вид снизу"},
+      {image: "/images/prive-gallery3.jpg", title: "Одиночный ВЫКЛ, вид спереди"},
+      {image: "/images/prive-gallery4.jpg", title: "Одиночный ВЫКЛ, вид снизу вблизи"},
+      {image: "/images/prive-gallery5.jpg", title: "Одиночный ВЫКЛ, вид под углом"},
       {image: "/images/prive-vibe.jpg", title: "UFO Prive в интерьере"}
     ],
     description: "Очень часто, простые формы несут в себе более сложные идеи, заложенные в их создание и светильник UFO Prive является этим ярким примером. 100% премиальность в простых и лаконичных формах, прецизионное качество обработки массива латуни.",
@@ -110,8 +115,8 @@ const CATALOG_PRODUCTS = [
     ],
     image: "/images/glass_wall-catalog.png",
     gallery: [
-      { image: "/images/glass_wall-catalog.png", title: "UFO Glass Wall" },
-      { image: "/images/glass_wall-gallery1.jpg", title: "Одиночный ВКЛ, вид спереди" }
+      { image: "/images/glass_wall-gallery1.jpg", title: "Одиночный ВКЛ, вид спереди" },
+      { image: "/images/glass_wall-catalog.png", title: "UFO Glass Wall" }
     ],
     description: "UFO Glass Wall (премиальное матированное стекло) - представляет из себя настенную версию светильника UFO Glass",
     paragraph1: "Может быть использован в сателлитном использовании с подвесной версией для формирования композитного восприятия в освещении интерьера.",
@@ -129,9 +134,9 @@ const CATALOG_PRODUCTS = [
     ],
     image: "/images/pandora-catalog-cube.png",
     gallery: [
-      { image: "/images/pandora.JPG", title: "UFO Pandora в итерьере"},
       { image: "/images/pandora-gallery1.jpg", title: "Одиночный ВКЛ, вид спереди"},
-      { image: "/images/pandora-gallery2.jpg", title: "Одиночный ВЫКЛ, вид спереди"}
+      { image: "/images/pandora-gallery2.jpg", title: "Одиночный ВЫКЛ, вид спереди"},
+      { image: "/images/pandora.JPG", title: "UFO Pandora в итерьере"}
     ],
     description: "UFO Pandora – представьте себе поверхность неизведанной вам планеты, по которой текут реки, раскинуты океаны и песчаные дюны – невероятный космос прямо на ваших стенах.",
     paragraph1: "Нет двух абсолютно одинаковых листов каменного шпона, поэтому, как и модель Terra – каждый светильник — это абсолютный эксклюзив. Создавайте световые композиции тремя доступными размерами, разбивая все законы симметрии.",
@@ -168,9 +173,9 @@ const CATALOG_PRODUCTS = [
     ],
     image: "/images/antique-catalog.png",
     gallery: [
-      { image: "/images/antique-gallery1.PNG", title: "UFO Antique в интерьере 1"},
       { image: "/images/antique-gallery2.jpg", title: "ВЫКЛ, крупным планом спереди 1"},
       { image: "/images/antique-gallery3.jpg", title: "ВЫКЛ, крупным планом спереди 2"},
+      { image: "/images/antique-gallery1.PNG", title: "UFO Antique в интерьере 1"},
       { image: "/images/antique-gallery4.jpg", title: "UFO Antique в интерьере 2"}
     ],
     description: "UFO Antique - матированное стекло в сочетании с центральным диском из итальянского травертина пористой текстуры и латунью.",
