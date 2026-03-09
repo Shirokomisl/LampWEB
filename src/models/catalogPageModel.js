@@ -115,7 +115,6 @@ const CATALOG_PRODUCTS = [
     ],
     image: "/images/glass_wall-catalog.png",
     gallery: [
-      { image: "/images/glass_wall-gallery1.jpg", title: "Одиночный ВКЛ, вид спереди" },
       { image: "/images/glass_wall-catalog.png", title: "UFO Glass Wall" }
     ],
     description: "UFO Glass Wall (премиальное матированное стекло) - представляет из себя настенную версию светильника UFO Glass",
