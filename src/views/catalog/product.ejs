@@ -113,20 +113,38 @@
             </button>
           </div>
 
-          <div class="catalog-gallery-thumbs" data-gallery-thumbs>
-            <% productGallery.forEach((galleryItem, index) => { %>
-              <button
-                type="button"
-                class="catalog-gallery-thumb <%= index === 0 ? 'is-active' : '' %>"
-                data-gallery-thumb
-                data-gallery-index="<%= index %>"
-                data-gallery-image="<%= galleryItem.image %>"
-                data-gallery-title="<%= galleryItem.title %>"
-                aria-label="Открыть фото: <%= galleryItem.title %>"
-              >
-                <img src="<%= galleryItem.image %>" alt="<%= galleryItem.title %>" />
-              </button>
-            <% }) %>
+          <div class="catalog-gallery-thumbs-wrap">
+            <button
+              type="button"
+              class="catalog-gallery-scroll is-prev"
+              data-gallery-scroll-prev
+              aria-label="Прокрутить миниатюры влево"
+            >
+              <span>&lsaquo;</span>
+            </button>
+            <div class="catalog-gallery-thumbs" data-gallery-thumbs>
+              <% productGallery.forEach((galleryItem, index) => { %>
+                <button
+                  type="button"
+                  class="catalog-gallery-thumb <%= index === 0 ? 'is-active' : '' %>"
+                  data-gallery-thumb
+                  data-gallery-index="<%= index %>"
+                  data-gallery-image="<%= galleryItem.image %>"
+                  data-gallery-title="<%= galleryItem.title %>"
+                  aria-label="Открыть фото: <%= galleryItem.title %>"
+                >
+                  <img src="<%= galleryItem.image %>" alt="<%= galleryItem.title %>" />
+                </button>
+              <% }) %>
+            </div>
+            <button
+              type="button"
+              class="catalog-gallery-scroll is-next"
+              data-gallery-scroll-next
+              aria-label="Прокрутить миниатюры вправо"
+            >
+              <span>&rsaquo;</span>
+            </button>
           </div>
         </div>
       </section>

@@ -331,6 +331,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const mainImage = gallerySlider.querySelector("[data-gallery-main-image]");
     const prevButton = gallerySlider.querySelector("[data-gallery-prev]");
     const nextButton = gallerySlider.querySelector("[data-gallery-next]");
+    const thumbsTrack = gallerySlider.querySelector("[data-gallery-thumbs]");
+    const thumbsPrev = gallerySlider.querySelector("[data-gallery-scroll-prev]");
+    const thumbsNext = gallerySlider.querySelector("[data-gallery-scroll-next]");
     const thumbnailButtons = Array.from(gallerySlider.querySelectorAll("[data-gallery-thumb]"));
 
     if (mainImage && thumbnailButtons.length > 0) {
@@ -380,5 +383,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
       setActiveImage(currentIndex);
     }
+  }
+
+  if (gallerySlider && thumbsTrack) {
+    const scrollThumbsBy = (distance) => {
+      thumbsTrack.scrollBy({
+        left: distance,
+        behavior: "smooth"
+      });
+    };
+
+    if (thumbsPrev) {
+      thumbsPrev.addEventListener("click", () => {
+        scrollThumbsBy(-thumbsTrack.clientWidth * 0.7);
+      });
+    }
+
+    if (thumbsNext) {
+      thumbsNext.addEventListener("click", () => {
+        scrollThumbsBy(thumbsTrack.clientWidth * 0.7);
+      });
+    }
+
+    thumbsTrack.addEventListener(
+      "wheel",
+      (event) => {
+        const delta =
+          Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+
+        if (delta === 0) {
+          return;
+        }
+
+        event.preventDefault();
+        thumbsTrack.scrollLeft += delta;
+      },
+      { passive: false }
+    );
   }
 });

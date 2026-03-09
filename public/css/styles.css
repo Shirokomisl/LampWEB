@@ -1646,6 +1646,46 @@ p {
   display: none;
 }
 
+.catalog-gallery-thumbs {
+  width: 100%;
+  margin-inline: auto;
+}
+
+.catalog-gallery-thumbs-wrap {
+  width: min(100%, 980px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.catalog-gallery-scroll {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid rgba(24, 24, 24, 0.24);
+  background: rgba(244, 241, 235, 0.86);
+  color: rgba(24, 24, 24, 0.84);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.catalog-gallery-scroll:hover {
+  background: rgba(244, 241, 235, 1);
+  border-color: rgba(24, 24, 24, 0.46);
+  transform: translateY(-1px);
+}
+
+.catalog-gallery-scroll span {
+  font-size: 1.6rem;
+  line-height: 1;
+  transform: translateY(-1px);
+}
+
 .catalog-gallery-arrow span {
   font-size: 2rem;
   line-height: 1;
@@ -2668,6 +2708,15 @@ p {
     width: 100%;
     gap: 0.55rem;
     margin-top: 0.7rem;
+  }
+
+  .catalog-gallery-thumbs-wrap {
+    gap: 0.4rem;
+  }
+
+  .catalog-gallery-scroll {
+    width: 34px;
+    height: 34px;
   }
 
   .catalog-gallery-thumb {
