@@ -404,21 +404,5 @@ document.addEventListener("DOMContentLoaded", () => {
         scrollThumbsBy(thumbsTrack.clientWidth * 0.7);
       });
     }
-
-    thumbsTrack.addEventListener(
-      "wheel",
-      (event) => {
-        const delta =
-          Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
-
-        if (delta === 0) {
-          return;
-        }
-
-        event.preventDefault();
-        thumbsTrack.scrollLeft += delta;
-      },
-      { passive: false }
-    );
   }
 });

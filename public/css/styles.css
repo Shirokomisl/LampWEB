@@ -1671,6 +1671,8 @@ p {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  z-index: 2;
+  pointer-events: auto;
   transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
