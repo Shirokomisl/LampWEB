@@ -66,8 +66,6 @@ npm run dev
 PORT=3000
 HOST=0.0.0.0
 TRUST_PROXY=0
-SITE_URL=https://geometria-116.ru
-SITEMAP_CACHE_TTL_MS=21600000
 ```
 
 Для рабочей отправки заявок обязательно заполнить:
@@ -169,20 +167,14 @@ npm run logs:pm2
 4. Убедитесь, что письмо пришло на `CONTACT_RECEIVER_EMAIL`.
 5. Проверьте, что при некорректной отправке отрабатывают ошибки защиты.
 
-## 10. Sitemap и robots.txt (Google Search Console)
+## 10. Обновление на сервере (git + PM2)
 
-Сайт отдает:
-
-- `GET /sitemap.xml` — динамический sitemap (кэшируется на `SITEMAP_CACHE_TTL_MS`)
-- `GET /robots.txt` — содержит ссылку на sitemap
-
-Что нужно сделать на сервере:
-
-1. Убедиться, что в `.env` выставлен корректный `SITE_URL` (ваш основной домен).
-2. Перезапустить приложение после изменения env:
-   - `npx pm2 restart geometria-web --update-env`
-3. Проверить вручную:
-   - `https://ваш-домен/sitemap.xml`
-   - `https://ваш-домен/robots.txt`
-4. Добавить сайт в Google Search Console и отправить sitemap:
-   - URL: `https://ваш-домен/sitemap.xml`
+1. Забрать изменения:
+   - `git pull`
+2. Обновить зависимости, если изменились `package.json`/`package-lock.json`:
+   - `npm ci`
+3. Перезапустить PM2 (использовать глобальный `pm2`, не `npx pm2`):
+   - `pm2 restart geometria-web --update-env`
+4. Проверка:
+   - `pm2 status`
+   - `curl -I http://127.0.0.1:3000/`
