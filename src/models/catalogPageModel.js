@@ -459,5 +459,7 @@ const getCatalogProductData = (productSlug) => {
 module.exports = {
   getCatalogPageData,
   getCatalogProductData,
-  isCatalogType
+  isCatalogType,
+  getCatalogTypeSlugs: () => CATALOG_TYPES.map((typeItem) => typeItem.slug),
+  getCatalogProductSlugs: () => CATALOG_PRODUCTS.map((productItem) => productItem.slug)
 };
