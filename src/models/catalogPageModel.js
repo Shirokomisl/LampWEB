@@ -117,7 +117,7 @@ const CATALOG_PRODUCTS = [
     gallery: [
       { image: "/images/glass_wall-gallery2.jpg", title: "UFO Glass в интерьере"},
       { image: "/images/glass_wall-catalog.png", title: "UFO Glass Wall" },
-      { image: "/images/glass_wall-closelook.jpg", title: "UFO Glass в вблизи"}
+      { image: "/images/glass_wall-closelook.png", title: "UFO Glass в вблизи"}
     ],
     description: "UFO Glass Wall (премиальное матированное стекло) - представляет из себя настенную версию светильника UFO Glass",
     paragraph1: "Может быть использован в сателлитном использовании с подвесной версией для формирования композитного восприятия в освещении интерьера.",
