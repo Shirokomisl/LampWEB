@@ -1646,19 +1646,19 @@ p {
   display: none;
 }
 
-.catalog-gallery-thumbs {
-  width: 100%;
-  margin-inline: auto;
-}
+  .catalog-gallery-thumbs {
+    width: 100%;
+    margin-inline: auto;
+  }
 
-.catalog-gallery-thumbs-wrap {
-  width: min(100%, 980px);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 0.6rem;
-}
+  .catalog-gallery-thumbs-wrap {
+    width: min(100%, 980px);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 0.6rem;
+  }
 
 .catalog-gallery-scroll {
   width: 40px;

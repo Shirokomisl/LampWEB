@@ -116,8 +116,7 @@ const CATALOG_PRODUCTS = [
     image: "/images/glass_wall-catalog.png",
     gallery: [
       { image: "/images/glass_wall-gallery2.jpg", title: "UFO Glass в интерьере"},
-      { image: "/images/glass_wall-catalog.png", title: "UFO Glass Wall" },
-      { image: "/images/glass_wall-closelook.png", title: "UFO Glass в вблизи"}
+      { image: "/images/glass_wall-catalog.png", title: "UFO Glass Wall" }
     ],
     description: "UFO Glass Wall (премиальное матированное стекло) - представляет из себя настенную версию светильника UFO Glass",
     paragraph1: "Может быть использован в сателлитном использовании с подвесной версией для формирования композитного восприятия в освещении интерьера.",
@@ -137,7 +136,11 @@ const CATALOG_PRODUCTS = [
     gallery: [
       { image: "/images/pandora-gallery1.jpg", title: "Одиночный ВКЛ, вид спереди"},
       { image: "/images/pandora-gallery2.jpg", title: "Одиночный ВЫКЛ, вид спереди"},
-      { image: "/images/pandora.JPG", title: "UFO Pandora в итерьере"}
+      { image: "/images/pandora-gallery_texture.jpg", title: "текстура UFO Pandora"},
+      { image: "/images/pandora.JPG", title: "UFO Pandora в итерьере"},
+      { image: "/images/pandora-gallery3.jpg", title: "UFO Pandora в итерьере 2"},
+      { image: "/images/pandora-gallery4.jpg", title: "UFO Pandora в итерьере 3"},
+      { image: "/images/pandora-gallery5.jpg", title: "UFO Pandora в итерьере 4"},
     ],
     description: "UFO Pandora – представьте себе поверхность неизведанной вам планеты, по которой текут реки, раскинуты океаны и песчаные дюны – невероятный космос прямо на ваших стенах.",
     paragraph1: "Нет двух абсолютно одинаковых листов каменного шпона, поэтому, как и модель Terra – каждый светильник — это абсолютный эксклюзив. Создавайте световые композиции тремя доступными размерами, разбивая все законы симметрии.",
@@ -213,8 +216,10 @@ const CATALOG_PRODUCTS = [
     image: "/images/dea_ON-catalog.png",
     gallery: [
       { image: "/images/dea-gallery1.png", title: "ВКЛ, вид спереди"},
-      { image: "/images/dea-gallery2.jpg", title: "Dea в интерьере 1"},
-      { image: "/images/dea-gallery3.png", title: "Dea в интерьере 2"}
+      { image: "/images/dea-gallery5.png", title: "ВКЛ, вид со стороны"},
+      { image: "/images/dea-gallery4.png", title: "Подставка вблизи"},
+      { image: "/images/dea-gallery2.png", title: "ВКЛ, в интерьере 1"},
+      { image: "/images/dea-gallery3.png", title: "ВКЛ, в интерьере 2"}
     ],
     description: "Что вы видите, глядя на этот торшер? Какие образы рождаются в ваших ассоциациях? Мы видим идеальное Создание, материализованное из мира, где правит гармония линий и идеальных пропорций.",
     paragraph1: "Комбинация точно выверенного баланса, равновесия и изгиба от естественного сопротивления материалов, придает торшеру Dea неповторимо стильные формы, делая его однозначным High-Endoм на рынке дизайнерских торшеров.",
