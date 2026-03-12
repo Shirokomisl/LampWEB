@@ -215,7 +215,7 @@ const CATALOG_PRODUCTS = [
     sizeOptions: [{ label: "XL", price: 49900, isDefault: true }],
     image: "/images/dea_ON-catalog.png",
     gallery: [
-      { image: "/images/dea-gallery1.PNG", title: "ВКЛ, вид спереди"},
+      { image: "/images/dea-gallery1.png", title: "ВКЛ, вид спереди"},
       { image: "/images/dea-gallery4.jpg", title: "Подставка вблизи"},
       { image: "/images/dea-gallery2.jpg", title: "ВКЛ, в интерьере 1"},
       { image: "/images/dea-gallery3.jpg", title: "ВКЛ, в интерьере 2"}
