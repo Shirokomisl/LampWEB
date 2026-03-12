@@ -215,11 +215,10 @@ const CATALOG_PRODUCTS = [
     sizeOptions: [{ label: "XL", price: 49900, isDefault: true }],
     image: "/images/dea_ON-catalog.png",
     gallery: [
-      { image: "/images/dea-gallery1.png", title: "ВКЛ, вид спереди"},
-      { image: "/images/dea-gallery5.png", title: "ВКЛ, вид со стороны"},
-      { image: "/images/dea-gallery4.png", title: "Подставка вблизи"},
-      { image: "/images/dea-gallery2.png", title: "ВКЛ, в интерьере 1"},
-      { image: "/images/dea-gallery3.png", title: "ВКЛ, в интерьере 2"}
+      { image: "/images/dea-gallery1.PNG", title: "ВКЛ, вид спереди"},
+      { image: "/images/dea-gallery4.jpg", title: "Подставка вблизи"},
+      { image: "/images/dea-gallery2.jpg", title: "ВКЛ, в интерьере 1"},
+      { image: "/images/dea-gallery3.jpg", title: "ВКЛ, в интерьере 2"}
     ],
     description: "Что вы видите, глядя на этот торшер? Какие образы рождаются в ваших ассоциациях? Мы видим идеальное Создание, материализованное из мира, где правит гармония линий и идеальных пропорций.",
     paragraph1: "Комбинация точно выверенного баланса, равновесия и изгиба от естественного сопротивления материалов, придает торшеру Dea неповторимо стильные формы, делая его однозначным High-Endoм на рынке дизайнерских торшеров.",
