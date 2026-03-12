@@ -134,10 +134,9 @@ const CATALOG_PRODUCTS = [
     ],
     image: "/images/pandora-catalog-cube.png",
     gallery: [
-      { image: "/images/pandora-gallery1.jpg", title: "Одиночный ВКЛ, вид спереди"},
       { image: "/images/pandora-gallery2.jpg", title: "Одиночный ВЫКЛ, вид спереди"},
+      { image: "/images/pandora-gallery1.jpg", title: "Одиночный ВКЛ, вид спереди"},
       { image: "/images/pandora-gallery_texture.jpg", title: "текстура UFO Pandora"},
-      { image: "/images/pandora.JPG", title: "UFO Pandora в итерьере"},
       { image: "/images/pandora-gallery3.jpg", title: "UFO Pandora в итерьере 2"},
       { image: "/images/pandora-gallery4.jpg", title: "UFO Pandora в итерьере 3"},
       { image: "/images/pandora-gallery5.jpg", title: "UFO Pandora в итерьере 4"},
