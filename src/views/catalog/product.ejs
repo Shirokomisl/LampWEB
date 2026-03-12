@@ -93,7 +93,7 @@
       </section>
 
       <section id="product-gallery" class="catalog-gallery-section reveal">
-        <% const initialGalleryItem = productGallery[0] || { image: product.image, title: product.name }; %>
+        <% const initialGalleryItem = productGallery[0] || { image: product.image, title: product.name, type: "image", poster: "" }; %>
         <div class="catalog-gallery-slider" data-gallery-slider>
           <div class="catalog-gallery-stage">
             <button type="button" class="catalog-gallery-arrow is-prev" data-gallery-prev aria-label="Предыдущее фото">
@@ -105,7 +105,23 @@
                 data-gallery-main-image
                 src="<%= initialGalleryItem.image %>"
                 alt="<%= initialGalleryItem.title %>"
+                class="<%= initialGalleryItem.type === 'video' ? 'is-hidden' : '' %>"
               />
+              <video
+                data-gallery-main-video
+                playsinline
+                muted
+                loop
+                preload="none"
+                poster="<%= initialGalleryItem.poster || '' %>"
+                class="<%= initialGalleryItem.type === 'video' ? '' : 'is-hidden' %>"
+              >
+                <source
+                  data-gallery-main-video-source
+                  src="<%= initialGalleryItem.type === 'video' ? initialGalleryItem.image : '' %>"
+                  type="video/quicktime"
+                />
+              </video>
             </figure>
 
             <button type="button" class="catalog-gallery-arrow is-next" data-gallery-next aria-label="Следующее фото">
@@ -131,9 +147,14 @@
                   data-gallery-index="<%= index %>"
                   data-gallery-image="<%= galleryItem.image %>"
                   data-gallery-title="<%= galleryItem.title %>"
+                  data-gallery-type="<%= galleryItem.type || 'image' %>"
+                  data-gallery-poster="<%= galleryItem.poster || '' %>"
                   aria-label="Открыть фото: <%= galleryItem.title %>"
                 >
-                  <img src="<%= galleryItem.image %>" alt="<%= galleryItem.title %>" />
+                  <img
+                    src="<%= galleryItem.type === 'video' && galleryItem.poster ? galleryItem.poster : galleryItem.image %>"
+                    alt="<%= galleryItem.title %>"
+                  />
                 </button>
               <% }) %>
             </div>

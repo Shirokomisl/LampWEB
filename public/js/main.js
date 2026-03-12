@@ -329,6 +329,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (gallerySlider) {
     const mainImage = gallerySlider.querySelector("[data-gallery-main-image]");
+    const mainVideo = gallerySlider.querySelector("[data-gallery-main-video]");
+    const mainVideoSource = gallerySlider.querySelector("[data-gallery-main-video-source]");
     const prevButton = gallerySlider.querySelector("[data-gallery-prev]");
     const nextButton = gallerySlider.querySelector("[data-gallery-next]");
     const thumbsTrack = gallerySlider.querySelector("[data-gallery-thumbs]");
@@ -346,15 +348,40 @@ document.addEventListener("DOMContentLoaded", () => {
         currentIndex = (nextIndex + thumbnailButtons.length) % thumbnailButtons.length;
         const activeThumb = thumbnailButtons[currentIndex];
         const imageSrc = activeThumb.dataset.galleryImage;
+        const mediaType = activeThumb.dataset.galleryType || "image";
+        const mediaPoster = activeThumb.dataset.galleryPoster || "";
         const imageTitle =
           activeThumb.dataset.galleryTitle ||
           activeThumb.querySelector("img")?.alt ||
           "Фото товара";
 
-        if (imageSrc) {
-          mainImage.src = imageSrc;
+        if (mediaType === "video" && mainVideo && mainVideoSource) {
+          if (imageSrc) {
+            mainVideoSource.src = imageSrc;
+          }
+          if (mediaPoster) {
+            mainVideo.poster = mediaPoster;
+          } else {
+            mainVideo.removeAttribute("poster");
+          }
+
+          mainVideo.load();
+          mainVideo.play().catch(() => {});
+
+          mainVideo.classList.remove("is-hidden");
+          mainImage.classList.add("is-hidden");
+        } else {
+          if (imageSrc) {
+            mainImage.src = imageSrc;
+          }
+          mainImage.alt = imageTitle;
+          mainImage.classList.remove("is-hidden");
+
+          if (mainVideo) {
+            mainVideo.pause();
+            mainVideo.classList.add("is-hidden");
+          }
         }
-        mainImage.alt = imageTitle;
 
         thumbnailButtons.forEach((thumbButton, thumbIndex) => {
           const isCurrent = thumbIndex === currentIndex;
@@ -406,3 +433,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 });
+

@@ -198,9 +198,9 @@ const CATALOG_PRODUCTS = [
     image: "/images/terra-catalog.png",
     gallery: [
       { image: "/images/terra-gallery1.jpg", title: "L ВЫКЛ, вид спереди"},
-      { image: "/images/terra-gallery2.jpg", title: "L ВКЛ, вид спереди"},
       { image: "/images/terra-gallery3.jpg", title: "S ВЫКЛ, вид спереди"},
-      { image: "/images/terra-gallery4.jpg", title: "S ВКЛ, вид спереди"}
+      { image: "/images/terra-gallery4.jpg", title: "S ВКЛ, вид спереди"},
+      { image: "/images/terra-gallery5.jpg", title: "UFO Terra в интерьере"}
     ],
     description: "UFO Terra – невероятная магия натурального каменного шпона с выраженной сланцевой текстурой, которая очень красиво подчеркивается теплым растекающимся по камню светом.",
     paragraph1: "Центральный диск из массива латуни подчеркивает премиальный уровень светильника UFO Terra и еще больше добавляет теплоты в общую композицию.",

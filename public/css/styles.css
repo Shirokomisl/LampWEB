@@ -1580,6 +1580,19 @@ p {
   transition: opacity 0.25s ease;
 }
 
+.catalog-gallery-main video {
+  width: auto;
+  height: auto;
+  max-width: min(96%, 920px);
+  max-height: min(96%, 760px);
+  object-fit: contain;
+  display: block;
+}
+
+.catalog-gallery-main .is-hidden {
+  display: none;
+}
+
 .catalog-gallery-thumbs {
   width: min(100%, 980px);
   margin: 0.9rem auto 0;
