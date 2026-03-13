@@ -1,4 +1,4 @@
-const getHomePageData = () => {
+﻿const getHomePageData = () => {
   return {
     pageTitle: "GÉOMETRIA | Главная",
     headerLogo: "/images/logo-new_1920.png",
@@ -264,9 +264,9 @@ const getDesignersPageData = () => {
       catalogPdfHref: "/files/ufo-catalog.pdf"
     },
     requestDrawer: {
-      title: "Р—РђРџР РћРЎ 3D РњРћР”Р•Р›Р•Р™",
+      title: "ЗАПРОС 3D МОДЕЛЕЙ",
       subtitle:
-        "РћСЃС‚Р°РІСЊС‚Рµ Р·Р°РїСЂРѕСЃ РїРѕ С„РѕСЂРјРµ, Рё РјС‹ СЃРІСЏР¶РµРјСЃСЏ СЃ РІР°РјРё РІ Р±Р»РёР¶Р°Р№С€РµРµ РІСЂРµРјСЏ.",
+        "Оставьте запрос по форме, и мы свяжемся с вами в ближайшее время.",
       submitLabel: "ОТПРАВИТЬ",
       policyText:
         "Нажимая кнопку «Отправить», вы соглашаетесь на обработку персональных данных"

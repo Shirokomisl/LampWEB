@@ -175,18 +175,18 @@ p {
 }
 
 .designers-page .site-header {
-  position: absolute;
+  position: sticky;
   width: 100%;
-  border-bottom: none;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent);
-  backdrop-filter: none;
+  border-bottom: 1px solid var(--stroke);
+  background: rgba(240, 234, 226, 0.74);
+  backdrop-filter: blur(16px);
 }
 
 .designers-page .brand,
 .designers-page .site-nav a,
 .designers-page .menu-toggle {
-  color: #f5f1e8;
-  border-color: rgba(245, 241, 232, 0.55);
+  color: var(--text-main);
+  border-color: var(--stroke);
 }
 
 .contacts-page .brand-logo-image,
@@ -196,7 +196,7 @@ p {
 }
 
 .designers-page .brand-logo-image {
-  filter: brightness(0) invert(1);
+  filter: none;
 }
 
 .hero::before {
@@ -586,9 +586,9 @@ p {
 }
 
 .designers-hero {
-  background: #151311;
-  color: #f5f1e8;
-  padding: clamp(6rem, 12vw, 9rem) 0 clamp(4rem, 8vw, 6rem);
+  background: var(--bg-base);
+  color: var(--text-main);
+  padding: clamp(4.5rem, 10vw, 7.5rem) 0 clamp(4rem, 8vw, 6rem);
 }
 
 .designers-hero-inner {
@@ -610,7 +610,7 @@ p {
   letter-spacing: 0.22em;
   text-transform: uppercase;
   font-size: 0.78rem;
-  color: rgba(245, 241, 232, 0.72);
+  color: var(--text-muted);
 }
 
 .designers-title {
@@ -626,7 +626,7 @@ p {
   display: grid;
   gap: 0.9rem;
   max-width: 60ch;
-  color: rgba(245, 241, 232, 0.84);
+  color: rgba(27, 26, 24, 0.72);
   font-size: 1rem;
   line-height: 1.6;
 }
@@ -635,7 +635,7 @@ p {
   margin: 0.6rem 0 0;
   max-width: 52ch;
   font-size: 0.95rem;
-  color: rgba(245, 241, 232, 0.76);
+  color: rgba(27, 26, 24, 0.66);
 }
 
 .designers-actions {
@@ -646,9 +646,9 @@ p {
 }
 
 .designers-action {
-  border: 1px solid rgba(245, 241, 232, 0.55);
+  border: 1px solid var(--stroke);
   background: transparent;
-  color: #f5f1e8;
+  color: var(--text-main);
   padding: 0.85rem 1.2rem;
   text-transform: uppercase;
   letter-spacing: 0.18em;
@@ -661,18 +661,19 @@ p {
 }
 
 .designers-action.is-primary {
-  background: #1f1c19;
-  border-color: rgba(245, 241, 232, 0.6);
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #f8f4ee;
 }
 
 .designers-action.is-outline:hover,
 .designers-action.is-primary:hover {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(27, 26, 24, 0.08);
 }
 
 .designers-visual {
   margin: 0;
-  border: 1px solid rgba(245, 241, 232, 0.12);
+  border: 1px solid rgba(27, 26, 24, 0.12);
   overflow: hidden;
 }
 
@@ -2894,15 +2895,13 @@ p {
   }
 
   .contacts-page .site-nav,
-  .about-page .site-nav,
-  .designers-page .site-nav {
+  .about-page .site-nav {
     background: rgba(18, 18, 18, 0.95);
     border-color: rgba(255, 255, 255, 0.2);
   }
 
   .contacts-page .site-nav a,
-  .about-page .site-nav a,
-  .designers-page .site-nav a {
+  .about-page .site-nav a {
     color: #f5f1e8;
   }
 
