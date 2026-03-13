@@ -284,8 +284,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const requestDrawer = document.querySelector("[data-request-drawer]");
   const requestOverlay = document.querySelector("[data-request-overlay]");
-  const requestOpenButton = document.querySelector("[data-open-request]");
+  const requestOpenButtons = Array.from(document.querySelectorAll("[data-open-request]"));
   const requestCloseButton = document.querySelector("[data-request-close]");
+  const requestTitle = requestDrawer ? requestDrawer.querySelector("[data-request-title]") : null;
+  const requestSubtitle = requestDrawer ? requestDrawer.querySelector("[data-request-subtitle]") : null;
+  const requestTypeInput = requestDrawer ? requestDrawer.querySelector("[data-request-type-input]") : null;
+  const requestOriginInput = requestDrawer ? requestDrawer.querySelector("[data-request-origin-input]") : null;
 
   const closeRequestDrawer = () => {
     if (!requestDrawer || !requestOverlay) {
@@ -297,18 +301,44 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.remove("is-request-open");
   };
 
-  const openRequestDrawer = () => {
+  const openRequestDrawer = (triggerButton) => {
     if (!requestDrawer || !requestOverlay) {
       return;
     }
+
+    if (triggerButton) {
+      const nextTitle = triggerButton.dataset.requestTitle;
+      const nextSubtitle = triggerButton.dataset.requestSubtitle;
+      const nextType = triggerButton.dataset.requestType;
+      const nextOrigin = triggerButton.dataset.requestOrigin;
+
+      if (requestTitle && nextTitle) {
+        requestTitle.textContent = nextTitle;
+      }
+
+      if (requestSubtitle && nextSubtitle) {
+        requestSubtitle.textContent = nextSubtitle;
+      }
+
+      if (requestTypeInput) {
+        requestTypeInput.value = nextType || "";
+      }
+
+      if (requestOriginInput && nextOrigin) {
+        requestOriginInput.value = nextOrigin;
+      }
+    }
+
     requestDrawer.classList.add("is-open");
     requestOverlay.classList.add("is-open");
     requestDrawer.setAttribute("aria-hidden", "false");
     document.body.classList.add("is-request-open");
   };
 
-  if (requestOpenButton) {
-    requestOpenButton.addEventListener("click", openRequestDrawer);
+  if (requestOpenButtons.length > 0) {
+    requestOpenButtons.forEach((buttonItem) => {
+      buttonItem.addEventListener("click", () => openRequestDrawer(buttonItem));
+    });
   }
 
   if (requestCloseButton) {

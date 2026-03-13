@@ -13,6 +13,12 @@ const SMTP_SOCKET_TIMEOUT_MS = Number(process.env.CONTACT_SMTP_SOCKET_TIMEOUT_MS
 const SMTP_SEND_TIMEOUT_MS = Number(process.env.CONTACT_SMTP_SEND_TIMEOUT_MS || 20000);
 const SMTP_FORCE_IPV4 = String(process.env.CONTACT_SMTP_FORCE_IPV4 || "true") === "true";
 
+const REQUEST_TYPE_LABELS = {
+  "product-request": "Заявка на изделие",
+  "product-3d": "Запрос 3D модели для изделия",
+  "designers-3d": "Запрос 3D моделей (для дизайнеров)"
+};
+
 let smtpTransporter = null;
 let smtpTransporterCacheKey = "";
 
@@ -78,6 +84,8 @@ const validateContactSubmission = (formData) => {
   const formOrigin = normalizeSingleLine(formData.formOrigin, 40);
   const productName = normalizeSingleLine(formData.productName, 120);
   const productSize = normalizeSingleLine(formData.productSize, 16);
+  const requestTypeRaw = normalizeSingleLine(formData.requestType, 40);
+  const requestType = REQUEST_TYPE_LABELS[requestTypeRaw] ? requestTypeRaw : "";
 
   if (!name) {
     return { ok: false, code: "invalid_name" };
@@ -117,7 +125,8 @@ const validateContactSubmission = (formData) => {
       message,
       formOrigin: formOrigin || "site-form",
       productName,
-      productSize
+      productSize,
+      requestType
     }
   };
 };
@@ -297,6 +306,9 @@ const sendContactNotification = async ({ payload, sourcePath, req }) => {
       "Новая заявка с сайта GEOMETRIA",
       `Источник формы: ${payload.formOrigin}`,
       `Страница: ${sourcePath}`,
+      payload.requestType
+        ? `Тип запроса: ${REQUEST_TYPE_LABELS[payload.requestType]}`
+        : null,
       payload.productName ? `Изделие: ${payload.productName}` : null,
       payload.productSize ? `Размер: ${payload.productSize}` : null,
       `Имя: ${payload.name}`,
@@ -387,3 +399,9 @@ const processContactSubmission = async ({ req, sourcePath, formData }) => {
 module.exports = {
   processContactSubmission
 };
+
+
+
+
+
+

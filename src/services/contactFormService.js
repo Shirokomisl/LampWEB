@@ -22,6 +22,7 @@ const normalizePath = (pathValue) => {
 const isAllowedSourcePath = (pathValue) =>
   /^\/$/.test(pathValue) ||
   /^\/contacts$/.test(pathValue) ||
+  /^\/designers$/.test(pathValue) ||
   /^\/catalog\/product\/[a-z0-9-]+$/.test(pathValue);
 
 const resolveSafeSourcePath = (pathValue) => {

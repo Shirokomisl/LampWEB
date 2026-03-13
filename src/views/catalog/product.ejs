@@ -81,10 +81,27 @@
                   <%= productPrice.previewPriceValue %>
                 </p>
                 <div class="catalog-price-actions">
-                  <button type="button" class="catalog-price-request" data-open-request>
+                  <button
+                    type="button"
+                    class="catalog-price-request"
+                    data-open-request
+                    data-request-type="product-request"
+                    data-request-origin="product-request"
+                    data-request-title="ЗАЯВКА НА ИЗДЕЛИЕ"
+                    data-request-subtitle="Пожалуйста, оставьте заявку по форме, представленной ниже. Мы свяжемся с вами в ближайшее время."
+                  >
                     <%= productPrice.requestLabel %>
                   </button>
-                  <a href="/contacts"><%= productPrice.modelLabel %></a>
+                  <button
+                    type="button"
+                    data-open-request
+                    data-request-type="product-3d"
+                    data-request-origin="product-3d"
+                    data-request-title="ЗАПРОС 3D МОДЕЛИ"
+                    data-request-subtitle="Оставьте заявку, чтобы получить 3D модель выбранного светильника. Мы свяжемся с вами и уточним детали."
+                  >
+                    <%= productPrice.modelLabel %>
+                  </button>
                 </div>
               </div>
             </section>
@@ -250,12 +267,12 @@
     <div class="product-request-overlay" data-request-overlay></div>
     <aside class="product-request-drawer" data-request-drawer aria-hidden="true">
       <div class="product-request-header">
-        <h2>ЗАЯВКА НА ИЗДЕЛИЕ</h2>
+        <h2 data-request-title>ЗАЯВКА НА ИЗДЕЛИЕ</h2>
         <button type="button" class="product-request-close" data-request-close aria-label="Закрыть">
           &times;
         </button>
       </div>
-      <p class="product-request-subtitle">
+      <p class="product-request-subtitle" data-request-subtitle>
         Пожалуйста, оставьте заявку по форме, представленной ниже.
         Мы свяжемся с вами в ближайшее время.
       </p>
@@ -269,8 +286,9 @@
       <form class="product-request-form" action="<%= contactForm.action %>" method="post" novalidate>
         <input type="hidden" name="_csrf" value="<%= contactForm.csrfToken %>" />
         <input type="hidden" name="sourcePath" value="<%= contactForm.sourcePath %>" />
-        <input type="hidden" name="formOrigin" value="<%= contactForm.formOrigin %>" />
+        <input type="hidden" name="formOrigin" value="<%= contactForm.formOrigin %>" data-request-origin-input />
         <input type="hidden" name="formStartedAt" value="<%= contactForm.formStartedAt %>" />
+        <input type="hidden" name="requestType" value="product-request" data-request-type-input />
         <input type="hidden" name="productName" value="<%= product.name %>" />
         <input type="hidden" name="productSize" value="" data-product-size-input />
 

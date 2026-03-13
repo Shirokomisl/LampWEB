@@ -1,7 +1,8 @@
 const {
   getHomePageData,
   getContactsPageData,
-  getAboutPageData
+  getAboutPageData,
+  getDesignersPageData
 } = require("../models/productCatalogModel");
 const {
   getCatalogPageData,
@@ -17,16 +18,7 @@ const {
 } = require("../services/contactFormService");
 const { processContactSubmission } = require("../services/contactService");
 
-const placeholderPages = {
-  designers: {
-    pageTitle: "Для дизайнеров",
-    pageName: "Для дизайнеров",
-    placeholderLead:
-      "[Раздел-заглушка] Партнерская программа для дизайнеров в разработке.",
-    placeholderBody:
-      "[Текст-заглушка] Добавьте условия сотрудничества, бонусы и процесс оформления заявок."
-  }
-};
+const placeholderPages = {};
 
 const buildContactUiState = (req, sourcePath, formOrigin) => ({
   contactForm: buildContactFormView(req, sourcePath, formOrigin),
@@ -52,6 +44,14 @@ const renderContacts = (req, res) => {
 const renderAbout = (req, res) => {
   const viewModel = withBaseLayoutData(getAboutPageData());
   res.render("about/index", viewModel);
+};
+
+const renderDesigners = (req, res) => {
+  const viewModel = withBaseLayoutData(getDesignersPageData());
+  res.render("designers/index", {
+    ...viewModel,
+    ...buildContactUiState(req, "/designers", "designers-3d")
+  });
 };
 
 const renderCatalog = (req, res) => {
@@ -170,9 +170,11 @@ module.exports = {
   renderHome,
   renderContacts,
   renderAbout,
+  renderDesigners,
   renderCatalog,
   renderCatalogByType,
   renderCatalogProduct,
   renderPlaceholderPage,
   submitContact
 };
+
