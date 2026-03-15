@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
   <head>
     <%- include("../partials/head", { pageTitle }) %>
@@ -8,45 +8,58 @@
 
     <main class="designers-main">
       <section class="designers-hero">
-        <div class="designers-hero-inner">
-          <div class="designers-copy reveal">
-            <p class="designers-eyebrow"><%= hero.eyebrow %></p>
-            <h1 class="designers-title"><%= hero.title %></h1>
-
+        <div class="designers-grid">
+          <article class="designers-panel designers-panel--text reveal">
             <div class="designers-text">
-              <% hero.description.forEach((paragraphText) => { %>
-                <p><%= paragraphText %></p>
-              <% }) %>
+              <p><%= hero.description[0] %></p>
             </div>
+          </article>
 
-            <p class="designers-highlight"><%= hero.highlight %></p>
-
-            <div class="designers-actions">
-              <button
-                type="button"
-                class="designers-action is-primary"
-                data-open-request
-                data-request-type="<%= actions.request3dType %>"
-                data-request-origin="<%= actions.request3dOrigin %>"
-                data-request-title="<%= actions.request3dTitle %>"
-                data-request-subtitle="<%= actions.request3dSubtitle %>"
-              >
-                <%= actions.request3dLabel %>
-              </button>
-              <a
-                class="designers-action is-outline"
-                href="<%= actions.catalogPdfHref %>"
-                target="_blank"
-                rel="noopener"
-              >
-                <%= actions.catalogPdfLabel %>
-              </a>
-            </div>
-          </div>
-
-          <figure class="designers-visual reveal">
-            <img src="<%= hero.image %>" alt="Команда GEOMETRIA" />
+          <figure class="designers-panel designers-panel--media reveal">
+            <img src="<%= gridImages[0].src %>" alt="<%= gridImages[0].alt %>" loading="lazy" />
           </figure>
+
+          <article class="designers-panel designers-panel--text reveal">
+            <div class="designers-text">
+              <p><%= hero.description[1] %></p>
+            </div>
+          </article>
+
+          <figure class="designers-panel designers-panel--media reveal">
+            <img src="<%= gridImages[1].src %>" alt="<%= gridImages[1].alt %>" loading="lazy" />
+          </figure>
+
+          <article class="designers-panel designers-panel--text reveal">
+            <div class="designers-text">
+              <p><%= hero.highlight %></p>
+            </div>
+          </article>
+
+          <figure class="designers-panel designers-panel--media reveal">
+            <img src="<%= gridImages[2].src %>" alt="<%= gridImages[2].alt %>" loading="lazy" />
+          </figure>
+        </div>
+
+        <div class="designers-actions">
+          <button
+            type="button"
+            class="designers-action is-primary"
+            data-open-request
+            data-request-type="<%= actions.request3dType %>"
+            data-request-origin="<%= actions.request3dOrigin %>"
+            data-request-title="<%= actions.request3dTitle %>"
+            data-request-subtitle="<%= actions.request3dSubtitle %>"
+          >
+            <%= actions.request3dLabel %>
+          </button>
+          <a
+            class="designers-action is-outline"
+            href="<%= actions.catalogPdfHref %>"
+            target="_blank"
+            rel="noopener"
+          >
+            <%= actions.catalogPdfLabel %>
+          </a>
         </div>
       </section>
 
