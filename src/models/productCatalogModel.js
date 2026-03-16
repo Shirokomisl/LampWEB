@@ -1,7 +1,7 @@
 ﻿const getHomePageData = () => {
   return {
     pageTitle: "ГÉОМЕТРИЯ | Главная",
-    headerLogo: "/images/logo-ru_1920.png",
+    headerLogo: "/images/logo-ru.png",
     footerBrandName: "ГÉОМЕТРИЯ",
     hero: {
       eyebrow: "Свет имеет форму",
@@ -90,7 +90,7 @@
 const getContactsPageData = () => {
   return {
     pageTitle: "ГÉОМЕТРИЯ | Контакты",
-    headerLogo: "/images/logo-ru_1920.png",
+    headerLogo: "/images/logo-ru.png",
     footerBrandName: "ГÉОМЕТРИЯ",
     // footerNote:
     //   "[Юридическая заглушка] ООО «Название компании». ИНН/ОГРН и документы добавляются на этапе запуска.",
@@ -140,7 +140,7 @@ const getContactsPageData = () => {
 const getAboutPageData = () => {
   return {
     pageTitle: "ГÉОМЕТРИЯ | О бренде",
-    headerLogo: "/images/logo-ru_1920.png",
+    headerLogo: "/images/logo-ru.png",
     footerBrandName: "ГÉОМЕТРИЯ",
     // footerNote:
     //   "[Юридическая заглушка] ООО «Название компании». ИНН/ОГРН и документы добавляются на этапе запуска.",
@@ -240,7 +240,7 @@ const getAboutPageData = () => {
 const getDesignersPageData = () => {
   return {
     pageTitle: "ГÉОМЕТРИЯ | Для дизайнеров",
-    headerLogo: "/images/logo-ru_1920.png",
+    headerLogo: "/images/logo-ru.png",
     footerBrandName: "ГÉОМЕТРИЯ",
     hero: {
       eyebrow: "Для дизайнеров",

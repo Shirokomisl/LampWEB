@@ -372,7 +372,7 @@ const getCatalogPageData = (selectedTypeSlug = "all", selectedPriceSlug = "any")
 
   return {
     pageTitle: `ГÉОМЕТРИЯ | ${selectedType.label}`,
-    headerLogo: "/images/logo-ru_1920.png",
+    headerLogo: "/images/logo-ru.png",
     footerBrandName: "ГÉОМЕТРИЯ",
     // footerNote:
     //   "[Юридическая заглушка] ООО «Название компании». ИНН/ОГРН и документы добавляются на этапе запуска.",
@@ -420,7 +420,7 @@ const getCatalogProductData = (productSlug) => {
 
   return {
     pageTitle: `ГÉОМЕТРИЯ | ${productItem.name}`,
-    headerLogo: "/images/logo-ru_1920.png",
+    headerLogo: "/images/logo-ru.png",
     footerBrandName: "ГÉОМЕТРИЯ",
     // footerNote:
     //   "[Юридическая заглушка] ООО «Название компании». ИНН/ОГРН и документы добавляются на этапе запуска.",
