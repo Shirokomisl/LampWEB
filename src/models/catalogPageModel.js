@@ -462,7 +462,7 @@ const getCatalogProductData = (productSlug) => {
       messageLabel: "ОПИШИТЕ СВОЙ ВОПРОС *",
       submitLabel: "ОТПРАВИТЬ",
       policyText:
-        "Нажимая кнопку «Отправить», вы соглашаетесь на обработку персональных данных",
+        "Нажимая кнопку «Отправить», вы соглашаетесь с <a href=\"/files/user-agreement.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">пользовательским соглашением</a>",
       image: productImage
     }
   };

@@ -230,7 +230,7 @@
               <% } %>
 
               <button type="submit"><%= productContact.submitLabel %></button>
-              <p><%= productContact.policyText %></p>
+              <p><%- productContact.policyText %></p>
             </form>
           </div>
 
@@ -319,7 +319,7 @@
         <% } %>
 
         <button type="submit" class="product-request-submit">ОТПРАВИТЬ</button>
-        <p class="product-request-policy"><%= productContact.policyText %></p>
+        <p class="product-request-policy"><%- productContact.policyText %></p>
       </form>
     </aside>
 

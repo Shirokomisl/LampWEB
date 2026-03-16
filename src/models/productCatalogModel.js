@@ -115,7 +115,7 @@ const getContactsPageData = () => {
         { name: "Pinterest", short: "PN", href: "#" },
         { name: "YouTube", short: "YT", href: "#" }
       ],
-      // legalLines: ["ИП Пикулева Карина Ильдаровна", "ОГРНИП 320169000078972"],
+      legalLines: ["СЗ Тягунов Сергей Владимирович", "ИНН 165706755959"],
       officeImage: "/images/IMG_6454.jpg"
     },
     formBlock: {
@@ -124,7 +124,7 @@ const getContactsPageData = () => {
         "Пожалуйста, направьте ваш запрос по форме, представленной ниже. Мы свяжемся с вами в ближайшее время.",
       submitLabel: "ОТПРАВИТЬ",
       policyText:
-        "Нажимая кнопку «Отправить», вы соглашаетесь на обработку персональных данных"
+        "Нажимая кнопку «Отправить», вы соглашаетесь с <a href=\"/files/user-agreement.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">пользовательским соглашением</a>"
     },
     mapBlock: {
       mapImage:
@@ -283,7 +283,7 @@ const getDesignersPageData = () => {
         "Оставьте запрос по форме, и мы свяжемся с вами в ближайшее время.",
       submitLabel: "ОТПРАВИТЬ",
       policyText:
-        "Нажимая кнопку «Отправить», вы соглашаетесь на обработку персональных данных"
+        "Нажимая кнопку «Отправить», вы соглашаетесь с <a href=\"/files/user-agreement.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">пользовательским соглашением</a>"
     }
   };
 };
