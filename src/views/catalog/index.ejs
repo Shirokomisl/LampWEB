@@ -44,7 +44,10 @@
                   <div class="catalog-product-image">
                     <img src="<%= productItem.image %>" alt="<%= productItem.name %>" />
                   </div>
-                  <h2><%= productItem.name %></h2>
+                  <div class="catalog-product-title">
+                    <h2><%= productItem.name %></h2>
+                    <p class="catalog-product-title-ru"><%= productItem["ru-name"] %></p>
+                  </div>
                 </a>
               <% }) %>
             </div>
