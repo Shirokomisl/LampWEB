@@ -116,7 +116,7 @@ const getContactsPageData = () => {
         { name: "YouTube", short: "YT", href: "#" }
       ],
       legalLines: ["СЗ Тягунов Сергей Владимирович", "ИНН 165706755959"],
-      officeImage: "/images/IMG_6454.jpg"
+      officeImage: "/images/IMG_6453.jpeg"
     },
     formBlock: {
       title: "НАПИШИТЕ НАМ",

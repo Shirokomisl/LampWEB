@@ -16,8 +16,8 @@ const PRICE_RANGES = [
 const CATALOG_PRODUCTS = [
   {
     slug: "ufo-glass-hanging",
-    name: "UFO Glass",
-    "ru-name": "СТЕКЛО",
+    name: "СТЕКЛО",
+    "ru-name": "UFO Glass",
     typeSlug: "hanging",
     price: 11900,
     sizeOptions: [
@@ -42,8 +42,8 @@ const CATALOG_PRODUCTS = [
   },
   {
     slug: "ufo-myst-hanging",
-    name: "UFO Myst",
-    "ru-name": "ТУМАН",
+    name: "ТУМАН",
+    "ru-name": "UFO Myst",
     typeSlug: "hanging",
     price: 11900,
     sizeOptions: [
@@ -68,8 +68,8 @@ const CATALOG_PRODUCTS = [
   },
   {
     slug: "ufo-potrofino",
-    name: "UFO Potrofino",
-    "ru-name": "Портофино",
+    name: "ПОРТОФИНО",
+    "ru-name": "UFO Potrofino",
     typeSlug: "hanging",
     price: 11900,
     sizeOptions: [
@@ -89,8 +89,8 @@ const CATALOG_PRODUCTS = [
   },
   {
     slug: "ufo-prive",
-    name: "UFO Prive",
-    "ru-name": "ПРАЙВ",
+    name: "ПРАЙВ",
+    "ru-name": "UFO Prive",
     typeSlug: "hanging",
     price: 18900,
     sizeOptions: [{ label: "XL", price: 18900, isDefault: true }],
@@ -109,8 +109,8 @@ const CATALOG_PRODUCTS = [
   },
   {
     slug: "ufo-glass-wall",
-    name: "UFO Glass Wall",
-    "ru-name": "СТЕКЛО(СТЕНА)",
+    name: "СТЕКЛО(СТЕНА)",
+    "ru-name": "UFO Glass Wall",
     typeSlug: "wall",
     price: 10900,
     sizeOptions: [
@@ -129,8 +129,8 @@ const CATALOG_PRODUCTS = [
   },
   {
     slug: "ufo-pandora",
-    name: "UFO Pandora",
-    "ru-name": "Пандора",
+    name: "ПАНДОРА",
+    "ru-name": "UFO Pandora",
     typeSlug: "wall",
     price: 14900,
     sizeOptions: [
@@ -153,8 +153,8 @@ const CATALOG_PRODUCTS = [
   },
   {
     slug: "ufo-myst-wall",
-    name: "UFO Myst Wall",
-    "ru-name": "ТУМАН(СТЕНА)",
+    name: "ТУМАН(СТЕНА)",
+    "ru-name": "UFO Myst Wall",
     typeSlug: "wall",
     price: 10900,
     sizeOptions: [
@@ -173,8 +173,8 @@ const CATALOG_PRODUCTS = [
   },
   {
     slug: "ufo-antique",
-    name: "UFO Antique",
-    "ru-name": "АНТИЧНОСТЬ",
+    name: "АНТИЧНОСТЬ",
+    "ru-name": "UFO Antique",
     typeSlug: "wall",
     price: 12900,
     sizeOptions: [
@@ -195,8 +195,8 @@ const CATALOG_PRODUCTS = [
   },
   {
     slug: "ufo-terra",
-    name: "UFO Terra",
-    "ru-name": "ЗЕМЛЯ",
+    name: "ЗЕМЛЯ",
+    "ru-name": "UFO Terra",
     typeSlug: "wall",
     price: 14900,
     sizeOptions: [
@@ -217,8 +217,8 @@ const CATALOG_PRODUCTS = [
   },
   {
     slug: "dea",
-    name: "Dea",
-    "ru-name": "Деа",
+    name: "ДЕА",
+    "ru-name": "Dea",
     typeSlug: "floor",
     price: 49900,
     sizeOptions: [{ label: "XL", price: 49900, isDefault: true }],
