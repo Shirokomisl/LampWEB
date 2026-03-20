@@ -255,15 +255,15 @@ const getDesignersPageData = () => {
     },
     gridImages: [
       {
-        src: "/images/IMG_0932.jpg",
+        src: "/images/designers1.png",
         alt: "Производство светильников в мастерской"
       },
       {
-        src: "/images/hand-work.jpg",
+        src: "/images/designers2.png",
         alt: "Ручная работа над деталями светильника"
       },
       {
-        src: "/images/IMG_0933.jpg",
+        src: "/images/designers3.png",
         alt: "Финальная сборка и контроль качества"
       }
     ],
