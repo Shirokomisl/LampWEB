@@ -50,6 +50,46 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  const catalogPdfLink = document.querySelector("[data-catalog-pdf-hrefs]");
+
+  if (catalogPdfLink) {
+    catalogPdfLink.addEventListener("click", (event) => {
+      const rawHrefs = catalogPdfLink.dataset.catalogPdfHrefs || "[]";
+      let catalogPdfHrefs = [];
+
+      try {
+        const parsedHrefs = JSON.parse(rawHrefs);
+        if (Array.isArray(parsedHrefs)) {
+          catalogPdfHrefs = parsedHrefs
+            .map((hrefValue) => String(hrefValue).trim())
+            .filter(Boolean);
+        }
+      } catch (error) {
+        catalogPdfHrefs = [];
+      }
+
+      if (catalogPdfHrefs.length === 0) {
+        return;
+      }
+
+      event.preventDefault();
+      const openDelayMs = 650;
+      const openNextCatalogPdf = (index) => {
+        if (index >= catalogPdfHrefs.length) {
+          return;
+        }
+
+        window.open(catalogPdfHrefs[index], "_blank", "noopener,noreferrer");
+
+        if (index < catalogPdfHrefs.length - 1) {
+          window.setTimeout(() => openNextCatalogPdf(index + 1), openDelayMs);
+        }
+      };
+
+      openNextCatalogPdf(0);
+    });
+  }
+
   const productTabs = Array.from(document.querySelectorAll("[data-product-tab]"));
 
   if (productTabs.length > 0) {
@@ -463,4 +503,3 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 });
-

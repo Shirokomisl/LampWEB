@@ -54,7 +54,8 @@
           </button>
           <a
             class="designers-action is-outline"
-            href="<%= actions.catalogPdfHref %>"
+            href="<%= Array.isArray(actions.catalogPdfHref) && actions.catalogPdfHref.length > 0 ? actions.catalogPdfHref[0] : '#' %>"
+            data-catalog-pdf-hrefs="<%= JSON.stringify(Array.isArray(actions.catalogPdfHref) ? actions.catalogPdfHref : []) %>"
             target="_blank"
             rel="noopener"
           >
