@@ -275,7 +275,7 @@ const getDesignersPageData = () => {
       request3dType: "designers-3d",
       request3dOrigin: "designers-3d",
       catalogPdfLabel: "КАТАЛОГ В PDF",
-      catalogPdfHref: ["/files/ufo-catalog.pdf"]
+      catalogPdfHref: "/files/ufo-catalog.pdf"
     },
     requestDrawer: {
       title: "ЗАПРОС 3D МОДЕЛЕЙ",
