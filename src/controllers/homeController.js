@@ -25,11 +25,60 @@ const buildContactUiState = (req, sourcePath, formOrigin) => ({
   contactFeedback: getContactFeedback(req.query)
 });
 
+const SITE_URL = process.env.SITE_URL || "https://geometria-lamps.com";
+
+const buildSeoData = (path, title, description, image) => ({
+  currentPath: path,
+  canonicalUrl: `${SITE_URL}${path}`,
+  pageDescription: description,
+  ogImage: image ? `${SITE_URL}${image}` : `${SITE_URL}/images/logo-cube.png`
+});
+
+const buildOrganizationSchema = () => ({
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "GÉOMETRIA",
+  "url": SITE_URL,
+  "logo": `${SITE_URL}/images/logo-cube.png`,
+  "description": "Семейная мастерская дизайнерских светильников премиум-класса",
+  "foundingDate": "2023",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "RU"
+  }
+});
+
+const buildProductSchema = (product, price) => ({
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": product.name,
+  "description": product.description || "",
+  "image": `${SITE_URL}${product.image}`,
+  "brand": {
+    "@type": "Brand",
+    "name": "GÉOMETRIA"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": price,
+    "priceCurrency": "RUB",
+    "availability": "https://schema.org/InStock",
+    "url": `${SITE_URL}/catalog/product/${product.slug}`
+  }
+});
+
 const renderHome = (req, res) => {
   const viewModel = withBaseLayoutData(getHomePageData());
   res.render("home/index", {
     ...viewModel,
-    ...buildContactUiState(req, "/", "home")
+    ...buildContactUiState(req, "/", "home"),
+    ...buildSeoData(
+      "/",
+      "GÉOMETRIA | Дизайнерские светильники премиум-класса",
+      "ГÉОМЕТРИЯ — семейная мастерская дизайнерских светильников премиум-класса. Подвесные и настенные светильники UFO, торшеры из премиальных материалов.",
+      "/images/header-background.png"
+    ),
+    structuredData: buildOrganizationSchema()
   });
 };
 
@@ -37,27 +86,55 @@ const renderContacts = (req, res) => {
   const viewModel = withBaseLayoutData(getContactsPageData());
   res.render("contacts/index", {
     ...viewModel,
-    ...buildContactUiState(req, "/contacts", "contacts")
+    ...buildContactUiState(req, "/contacts", "contacts"),
+    ...buildSeoData(
+      "/contacts",
+      "Контакты | GÉOMETRIA",
+      "Свяжитесь с нами для заказа дизайнерских светильников GÉOMETRIA. Консультация и подбор светильников для вашего интерьера.",
+      "/images/logo-cube.png"
+    )
   });
 };
 
 const renderAbout = (req, res) => {
   const viewModel = withBaseLayoutData(getAboutPageData());
-  res.render("about/index", viewModel);
+  res.render("about/index", {
+    ...viewModel,
+    ...buildSeoData(
+      "/about",
+      "О нас | GÉOMETRIA",
+      "История создания семейной мастерской GÉOMETRIA. Философия дизайна и производства премиальных светильников.",
+      "/images/logo-cube.png"
+    )
+  });
 };
 
 const renderDesigners = (req, res) => {
   const viewModel = withBaseLayoutData(getDesignersPageData());
   res.render("designers/index", {
     ...viewModel,
-    ...buildContactUiState(req, "/designers", "designers-3d")
+    ...buildContactUiState(req, "/designers", "designers-3d"),
+    ...buildSeoData(
+      "/designers",
+      "Дизайнерам | GÉOMETRIA",
+      "3D-модели светильников GÉOMETRIA для дизайнеров интерьеров. Запросите модели для вашего проекта.",
+      "/images/logo-cube.png"
+    )
   });
 };
 
 const renderCatalog = (req, res) => {
   const selectedPriceSlug = req.query.price || "any";
   const viewModel = withBaseLayoutData(getCatalogPageData("all", selectedPriceSlug));
-  res.render("catalog/index", viewModel);
+  res.render("catalog/index", {
+    ...viewModel,
+    ...buildSeoData(
+      "/catalog",
+      "Каталог | GÉOMETRIA",
+      "Каталог дизайнерских светильников GÉOMETRIA: подвесные UFO Glass, UFO Myst, настенные UFO Pandora, UFO Terra, торшеры Dea.",
+      "/images/header-background.png"
+    )
+  });
 };
 
 const renderCatalogByType = (req, res) => {
@@ -78,7 +155,22 @@ const renderCatalogByType = (req, res) => {
 
   const selectedPriceSlug = req.query.price || "any";
   const viewModel = withBaseLayoutData(getCatalogPageData(typeSlug, selectedPriceSlug));
-  return res.render("catalog/index", viewModel);
+
+  const typeNames = {
+    hanging: "Подвесные светильники",
+    wall: "Настенные светильники",
+    floor: "Торшеры"
+  };
+
+  return res.render("catalog/index", {
+    ...viewModel,
+    ...buildSeoData(
+      `/catalog/type/${typeSlug}`,
+      `${typeNames[typeSlug] || "Каталог"} | GÉOMETRIA`,
+      `${typeNames[typeSlug] || "Светильники"} GÉOMETRIA премиум-класса. Дизайнерские решения для вашего интерьера.`,
+      "/images/header-background.png"
+    )
+  });
 };
 
 const renderCatalogProduct = (req, res) => {
@@ -98,9 +190,26 @@ const renderCatalogProduct = (req, res) => {
     });
   }
 
+  const productName = viewModel.product?.name || "Светильник";
+  const productDescription = viewModel.productAbout?.lead || "Дизайнерский светильник GÉOMETRIA";
+  const productImage = viewModel.product?.image || "/images/logo-cube.png";
+  const productPrice = viewModel.productPrice?.previewPriceRaw || viewModel.product?.price || 0;
+
   return res.render("catalog/product", {
     ...viewModel,
-    ...buildContactUiState(req, req.path, "catalog-product")
+    ...buildContactUiState(req, req.path, "catalog-product"),
+    ...buildSeoData(
+      `/catalog/product/${productSlug}`,
+      `${productName} | GÉOMETRIA`,
+      productDescription,
+      productImage
+    ),
+    structuredData: buildProductSchema({
+      name: productName,
+      description: productDescription,
+      image: productImage,
+      slug: productSlug
+    }, productPrice)
   });
 };
 

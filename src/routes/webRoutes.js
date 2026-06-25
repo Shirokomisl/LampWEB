@@ -1,6 +1,7 @@
 const express = require("express");
 const homeController = require("../controllers/homeController");
 const { contactRateLimiter } = require("../middleware/contactRateLimiter");
+const { generateSitemap } = require("../services/sitemapService");
 
 const router = express.Router();
 
@@ -13,5 +14,10 @@ router.get("/catalog/type/:typeSlug", homeController.renderCatalogByType);
 router.get("/catalog/product/:productSlug", homeController.renderCatalogProduct);
 router.post("/contact/submit", contactRateLimiter, homeController.submitContact);
 
-// Временная заглушка только для не реализованного раздела дизайнеров.
+// Sitemap
+router.get("/sitemap.xml", (req, res) => {
+  res.header("Content-Type", "application/xml");
+  res.send(generateSitemap());
+});
+
 module.exports = router;

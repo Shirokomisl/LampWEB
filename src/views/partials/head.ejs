@@ -6,8 +6,35 @@
 <title><%= pageTitle %></title>
 <meta
   name="description"
-  content="ГÉОМЕТРИЯ — семейная мастерская, основанная в 2023 году."
+  content="<%= typeof pageDescription !== 'undefined' ? pageDescription : 'ГÉОМЕТРИЯ — семейная мастерская дизайнерских светильников, основанная в 2023 году. Премиальные подвесные и настенные светильники UFO, торшеры.' %>"
 />
+<meta name="keywords" content="дизайнерские светильники, премиальные светильники, UFO светильники, подвесные светильники, настенные светильники, торшеры, GÉOMETRIA" />
+<link rel="canonical" href="<%= typeof canonicalUrl !== 'undefined' ? canonicalUrl : 'https://geometria-lamps.com' + (typeof currentPath !== 'undefined' ? currentPath : '') %>" />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="<%= typeof canonicalUrl !== 'undefined' ? canonicalUrl : 'https://geometria-lamps.com' + (typeof currentPath !== 'undefined' ? currentPath : '') %>" />
+<meta property="og:title" content="<%= pageTitle %>" />
+<meta property="og:description" content="<%= typeof pageDescription !== 'undefined' ? pageDescription : 'ГÉОМЕТРИЯ — семейная мастерская дизайнерских светильников, основанная в 2023 году.' %>" />
+<meta property="og:image" content="<%= typeof ogImage !== 'undefined' ? ogImage : 'https://geometria-lamps.com/images/logo-cube.png' %>" />
+<meta property="og:locale" content="ru_RU" />
+<meta property="og:site_name" content="GÉOMETRIA" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content="<%= typeof canonicalUrl !== 'undefined' ? canonicalUrl : 'https://geometria-lamps.com' + (typeof currentPath !== 'undefined' ? currentPath : '') %>" />
+<meta name="twitter:title" content="<%= pageTitle %>" />
+<meta name="twitter:description" content="<%= typeof pageDescription !== 'undefined' ? pageDescription : 'ГÉОМЕТРИЯ — семейная мастерская дизайнерских светильников, основанная в 2023 году.' %>" />
+<meta name="twitter:image" content="<%= typeof ogImage !== 'undefined' ? ogImage : 'https://geometria-lamps.com/images/logo-cube.png' %>" />
+
+<!-- Yandex verification (добавь свой код после регистрации) -->
+<!-- <meta name="yandex-verification" content="your-verification-code" /> -->
+
+<!-- Google verification (добавь свой код после регистрации) -->
+<!-- <meta name="google-site-verification" content="your-verification-code" /> -->
+
+<%- include("./structured-data") %>
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link

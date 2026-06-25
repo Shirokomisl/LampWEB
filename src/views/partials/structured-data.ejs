@@ -1,0 +1,5 @@
+<% if (typeof structuredData !== 'undefined' && structuredData) { %>
+<script type="application/ld+json">
+<%- JSON.stringify(structuredData) %>
+</script>
+<% } %>
