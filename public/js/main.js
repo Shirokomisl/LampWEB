@@ -392,8 +392,61 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       closeRequestDrawer();
+      closeInstructionPicker();
     }
   });
+
+  const instructionDrawer = document.querySelector("[data-instruction-drawer]");
+  const instructionOverlay = document.querySelector("[data-instruction-overlay]");
+  const instructionOpenButtons = Array.from(document.querySelectorAll("[data-open-instruction-picker]"));
+  const instructionCloseButton = document.querySelector("[data-instruction-close]");
+  const instructionPdfButtons = Array.from(document.querySelectorAll("[data-instruction-pdf]"));
+
+  const closeInstructionPicker = () => {
+    if (!instructionDrawer || !instructionOverlay) {
+      return;
+    }
+    instructionDrawer.classList.remove("is-open");
+    instructionOverlay.classList.remove("is-open");
+    instructionDrawer.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("is-instruction-open");
+  };
+
+  const openInstructionPicker = () => {
+    if (!instructionDrawer || !instructionOverlay) {
+      return;
+    }
+    instructionDrawer.classList.add("is-open");
+    instructionOverlay.classList.add("is-open");
+    instructionDrawer.setAttribute("aria-hidden", "false");
+    document.body.classList.add("is-instruction-open");
+  };
+
+  if (instructionOpenButtons.length > 0) {
+    instructionOpenButtons.forEach((buttonItem) => {
+      buttonItem.addEventListener("click", openInstructionPicker);
+    });
+  }
+
+  if (instructionCloseButton) {
+    instructionCloseButton.addEventListener("click", closeInstructionPicker);
+  }
+
+  if (instructionOverlay) {
+    instructionOverlay.addEventListener("click", closeInstructionPicker);
+  }
+
+  if (instructionPdfButtons.length > 0) {
+    instructionPdfButtons.forEach((buttonItem) => {
+      buttonItem.addEventListener("click", () => {
+        const pdfUrl = buttonItem.dataset.instructionPdf;
+        if (pdfUrl) {
+          window.open(pdfUrl, "_blank", "noopener,noreferrer");
+          closeInstructionPicker();
+        }
+      });
+    });
+  }
 
   const gallerySlider = document.querySelector("[data-gallery-slider]");
 

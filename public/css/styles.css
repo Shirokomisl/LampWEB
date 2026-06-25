@@ -3107,3 +3107,126 @@ p {
     flex-direction: column;
   }
 }
+
+.instruction-picker-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 8, 6, 0.65);
+  backdrop-filter: blur(6px);
+  z-index: 138;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.instruction-picker-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.instruction-picker-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(50vw, 600px);
+  height: 100vh;
+  background: #f6f2eb;
+  padding: clamp(2rem, 4vw, 3rem);
+  box-shadow: -20px 0 60px rgba(18, 14, 10, 0.18);
+  transform: translateX(100%);
+  transition: transform 0.35s ease;
+  z-index: 140;
+  display: grid;
+  align-content: start;
+  gap: 1.4rem;
+}
+
+.instruction-picker-drawer.is-open {
+  transform: translateX(0);
+}
+
+.instruction-picker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.instruction-picker-header h2 {
+  margin: 0;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  letter-spacing: 0.02em;
+  font-weight: 300;
+}
+
+.instruction-picker-close {
+  border: none;
+  background: transparent;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  color: rgba(24, 24, 24, 0.6);
+  transition: color 0.2s ease;
+}
+
+.instruction-picker-close:hover {
+  color: rgba(24, 24, 24, 0.9);
+}
+
+.instruction-picker-subtitle {
+  margin: 0;
+  max-width: 52ch;
+  color: rgba(24, 24, 24, 0.6);
+  font-size: 1rem;
+}
+
+.instruction-picker-buttons {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.instruction-picker-option {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 1.2rem 2rem;
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(125, 95, 64, 0.2);
+}
+
+.instruction-picker-option:hover {
+  background: var(--accent-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(125, 95, 64, 0.3);
+}
+
+.instruction-picker-option:active {
+  transform: translateY(0);
+}
+
+body.is-instruction-open {
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .instruction-picker-drawer {
+    width: 100vw;
+  }
+
+  .instruction-picker-header h2 {
+    font-size: clamp(1.4rem, 4vw, 1.8rem);
+  }
+
+  .instruction-picker-option {
+    font-size: 0.85rem;
+    padding: 1rem 1.5rem;
+  }
+}

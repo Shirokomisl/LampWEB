@@ -94,11 +94,7 @@
                   </button>
                   <button
                     type="button"
-                    data-open-request
-                    data-request-type="product-3d"
-                    data-request-origin="product-3d"
-                    data-request-title="ЗАПРОС 3D МОДЕЛИ"
-                    data-request-subtitle="Оставьте заявку, чтобы получить 3D модель выбранного светильника. Мы свяжемся с вами и уточним детали."
+                    data-open-instruction-picker
                   >
                     <%= productPrice.modelLabel %>
                   </button>
@@ -324,5 +320,26 @@
     </aside>
 
     <%- include("../partials/footer", { footerBrandName, footerNote: typeof footerNote !== "undefined" ? footerNote : undefined }) %>
+
+    <div class="instruction-picker-overlay" data-instruction-overlay></div>
+    <aside class="instruction-picker-drawer" data-instruction-drawer aria-hidden="true">
+      <div class="instruction-picker-header">
+        <h2>ИНСТРУКЦИЯ ПО МОНТАЖУ И ЭКСПЛУАТАЦИИ</h2>
+        <button type="button" class="instruction-picker-close" data-instruction-close aria-label="Закрыть">
+          &times;
+        </button>
+      </div>
+      <p class="instruction-picker-subtitle">
+        Выберите тип светильника для просмотра инструкции:
+      </p>
+      <div class="instruction-picker-buttons">
+        <button type="button" class="instruction-picker-option" data-instruction-pdf="/files/info-wall.pdf">
+          НАСТЕННЫЕ СВЕТИЛЬНИКИ
+        </button>
+        <button type="button" class="instruction-picker-option" data-instruction-pdf="/files/info-hanging.pdf">
+          ПОДВЕСНЫЕ СВЕТИЛЬНИКИ
+        </button>
+      </div>
+    </aside>
   </body>
 </html>

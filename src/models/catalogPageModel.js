@@ -472,7 +472,7 @@ const getCatalogProductData = (productSlug) => {
       sizeLabel: "ВЫБЕРИТЕ РАЗМЕР",
       sizeOptions,
       requestLabel: "ОСТАВИТЬ ЗАЯВКУ",
-      modelLabel: "ЗАПРОСИТЬ 3D МОДЕЛЬ"
+      modelLabel: "ИНСТРУКЦИЯ ПО МОНТАЖУ И ЭКСПЛУАТАЦИИ"
     },
     productGallery: galleryItems,
     similarProducts: similarItems.map((item) => ({
