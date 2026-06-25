@@ -22,7 +22,7 @@
 #### Google Search Console
 1. Зарегистрируйтесь: https://search.google.com/search-console
 2. Добавьте сайт и подтвердите владение
-3. Отправьте sitemap: `https://geometria-lamps.com/sitemap.xml`
+3. Отправьте sitemap: `https://www.geometria-116.ru/sitemap.xml`
 4. Получите код верификации и добавьте в `head.ejs`:
    ```html
    <meta name="google-site-verification" content="YOUR_CODE" />

@@ -25,7 +25,7 @@ const buildContactUiState = (req, sourcePath, formOrigin) => ({
   contactFeedback: getContactFeedback(req.query)
 });
 
-const SITE_URL = process.env.SITE_URL || "https://geometria-lamps.com";
+const SITE_URL = process.env.SITE_URL || "https://www.geometria-116.ru";
 
 const buildSeoData = (path, title, description, image) => ({
   currentPath: path,

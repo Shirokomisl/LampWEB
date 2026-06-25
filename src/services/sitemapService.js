@@ -1,6 +1,6 @@
 const { getCatalogPageData, getCatalogProductData } = require("../models/catalogPageModel");
 
-const SITE_URL = process.env.SITE_URL || "https://geometria-lamps.com";
+const SITE_URL = process.env.SITE_URL || "https://www.geometria-116.ru";
 
 const CATALOG_TYPES = ["all", "hanging", "wall", "floor"];
 
