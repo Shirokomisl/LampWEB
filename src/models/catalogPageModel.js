@@ -222,11 +222,11 @@ const CATALOG_PRODUCTS = [
     typeSlug: "wall",
     price: 14900,
  sizeOptions: [{ label: "XL", price: 49900, isDefault: true }],
-    image: "/images/hugo-catalog.png",
+    image: "/images/hugo-catalog2.png",
     gallery: [
-      { image: "/images/hugo-gallery1.jpg", title: "UFO Hugo в интерьере 1"},
-      { image: "/images/hugo-gallery3.jpg", title: "ВКЛ, вид спереди"},
-      { image: "/images/hugo-gallery2.jpg", title: "UFO Hugo в интерьере 2"},
+      { image: "/images/hugo-gallery1.png", title: "UFO Hugo в интерьере 1"},
+      { image: "/images/hugo-gallery3.png", title: "ВКЛ, вид спереди"},
+      { image: "/images/hugo-gallery2.png", title: "UFO Hugo в интерьере 2"},
       { image: "/images/hugo-gallery4.jpg", title: "UFO Hugo в интерьере 3"}
     ],
     description: "Серия UFO Hugo - оптимальное решение, как для частных интерьеров, так и для канала HoReCa, для которого он проектировался. ",
