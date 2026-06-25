@@ -216,6 +216,24 @@ const CATALOG_PRODUCTS = [
     paragraph2: "Материалы: натуральный каменный шпон, латунь, алюминий."
   },
   {
+    slug: "ufo-hugo",
+    name: "ХЬЮГО",
+    "ru-name": "UFO Hugo",
+    typeSlug: "wall",
+    price: 14900,
+ sizeOptions: [{ label: "XL", price: 49900, isDefault: true }],
+    image: "/images/hugo-catalog.png",
+    gallery: [
+      { image: "/images/hugo-gallery1.jpg", title: "UFO Hugo в интерьере 1"},
+      { image: "/images/hugo-gallery3.jpg", title: "ВКЛ, вид спереди"},
+      { image: "/images/hugo-gallery2.jpg", title: "UFO Hugo в интерьере 2"},
+      { image: "/images/hugo-gallery4.jpg", title: "UFO Hugo в интерьере 3"}
+    ],
+    description: "Серия UFO Hugo - оптимальное решение, как для частных интерьеров, так и для канала HoReCa, для которого он проектировался. ",
+    paragraph1: "Сочетание премиального дымчатого стекла и массива бронзы дарит невероятно теплую магию уюта и комфорта, подчеркивая при этом изысканность и премиальность окружающего интерьера. ",
+    paragraph2: "Идеальный вариант для размещения в мастер - спальнях, проходных зонах квартир, отелей, атмосферного освещения ресторанов и пр. Может быть изготовлен в влагозащитном исполнении."
+  },
+  {
     slug: "dea",
     name: "ДЕА",
     "ru-name": "Dea",
