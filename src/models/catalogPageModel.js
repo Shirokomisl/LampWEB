@@ -222,7 +222,7 @@ const CATALOG_PRODUCTS = [
     typeSlug: "wall",
     price: 14900,
     sizeOptions: [{ label: "XL", price: 49900, isDefault: true }],
-    image: "/images/hugo-catalog.png",
+    image: "/images/hugo-catalog2.png",
     gallery: [
       { image: "/images/hugo-gallery1.png", title: "UFO Hugo в интерьере 1"},
       { image: "/images/hugo-gallery2.png", title: "UFO Hugo в интерьере 2"},
