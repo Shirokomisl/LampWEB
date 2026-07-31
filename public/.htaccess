@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www\.geometria-116\.ru [NC]
+RewriteRule ^(.*)$ https://geometria-116.ru/$1 [R=301,L]
