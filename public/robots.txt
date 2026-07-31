@@ -7,7 +7,7 @@ Disallow: /api/
 Disallow: /*.json$
 
 # Sitemap
-Sitemap: https://www.geometria-116.ru/sitemap.xml
+Sitemap: https://geometria-116.ru/sitemap.xml
 
 # Основные поисковики
 User-agent: Googlebot
