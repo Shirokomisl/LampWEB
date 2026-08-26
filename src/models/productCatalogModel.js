@@ -97,9 +97,8 @@ const getContactsPageData = () => {
     hero: {
       brandLine: "ГÉОМЕТРИЯ",
       title: "КОНТАКТЫ",
-      // Временный loop-видео источник. Можно заменить на локальный mp4 в public/videos.
-      videoSrc: "/videos/contacts-video.MOV",
-      videoType: "video/quicktime",
+      videoSrc: "/videos/contacts-video.mp4",
+      videoType: "video/mp4",
       poster: "/images/studio-head.jpg"
     },
     contactInfo: {
@@ -147,8 +146,8 @@ const getAboutPageData = () => {
     introVideo: {
       brandLine: "ГÉОМЕТРИЯ",
       title: "О БРЕНДЕ",
-      videoSrc: "/videos/contacts-video.MOV",
-      videoType: "video/quicktime",
+      videoSrc: "/videos/contacts-video.mp4",
+      videoType: "video/mp4",
       poster: "/images/studio-head.jpg"
     },
     hero: {
@@ -190,8 +189,8 @@ const getAboutPageData = () => {
         title: "Ручная сборка в мастерской",
         description:
           "Все процессы выполняются вручную: подготовка деталей, подгонка элементов, финишная обработка и проверка качества света.",
-        videoSrc: "/videos/veneer_cutting.MOV",
-        videoType: "video/quicktime",
+        videoSrc: "/videos/veneer_cutting.mp4",
+        videoType: "video/mp4",
         poster: "/images/studio-head.jpg"
       },
       {
@@ -199,8 +198,8 @@ const getAboutPageData = () => {
         title: "Фактура, тактильность, долговечность",
         description:
           "Мы делаем акцент на материалах, которые раскрываются в интерьере по фактуре, глубине оттенка и тактильным ощущениям.",
-        videoSrc: "/videos/contacts-video.MOV",
-        videoType: "video/quicktime",
+        videoSrc: "/videos/contacts-video.mp4",
+        videoType: "video/mp4",
         poster: "/images/studio-head.jpg"
       }
     ],
