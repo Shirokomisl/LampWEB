@@ -22,6 +22,38 @@ const observer = new IntersectionObserver(
 
 revealItems.forEach((item) => observer.observe(item));
 
+// Sources for below-the-fold videos stay out of the initial HTML. Large videos
+// therefore cannot compete with the first screen; they start loading shortly
+// before the corresponding block enters the viewport.
+const deferredVideos = document.querySelectorAll("video.js-deferred-video");
+
+if (deferredVideos.length > 0) {
+  const videoObserver = new IntersectionObserver(
+    (entries, currentObserver) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        const video = entry.target;
+        const source = video.querySelector("source[data-src]");
+
+        if (source && source.dataset.src) {
+          source.src = source.dataset.src;
+          source.removeAttribute("data-src");
+          video.load();
+          video.play().catch(() => {});
+        }
+
+        currentObserver.unobserve(video);
+      });
+    },
+    { rootMargin: "400px 0px" }
+  );
+
+  deferredVideos.forEach((video) => videoObserver.observe(video));
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const anchorLinks = document.querySelectorAll('a[href^="#"]');
 

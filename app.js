@@ -53,7 +53,15 @@ app.use(
 
 app.use(express.urlencoded({ extended: false, limit: "25kb" }));
 app.use(express.json({ limit: "25kb" }));
-app.use(express.static(path.join(__dirname, "public")));
+// Static assets are reused on repeated visits instead of being validated on
+// every request. A week keeps updates reasonably quick even with stable URLs.
+app.use(
+  express.static(path.join(__dirname, "public"), {
+    maxAge: "7d",
+    etag: true,
+    lastModified: true
+  })
+);
 
 // Base locals for all EJS templates.
 // Prevents "is not defined" runtime errors in partial includes

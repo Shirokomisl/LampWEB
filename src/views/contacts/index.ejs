@@ -14,7 +14,7 @@
           muted
           loop
           playsinline
-          preload="auto"
+          preload="metadata"
           poster="<%= hero.poster %>"
         >
           <source src="<%= hero.videoSrc %>" type="<%= hero.videoType %>" />
@@ -54,7 +54,7 @@
           </aside>
 
           <div class="contacts-office-media reveal">
-            <img src="<%= contactInfo.officeImage %>" alt="Офис и шоурум" />
+            <img src="<%= contactInfo.officeImage %>" alt="Офис и шоурум" loading="lazy" decoding="async" />
           </div>
 
           <div class="contacts-form-card reveal">
@@ -109,9 +109,9 @@
 
       <section class="contacts-map">
         <div class="contacts-map-surface">
-          <img src="<%= mapBlock.mapImage %>" alt="Карта локации шоурума" />
+          <img src="<%= mapBlock.mapImage %>" alt="Карта локации шоурума" loading="lazy" decoding="async" />
           <article class="contacts-map-pin reveal">
-            <img src="<%= mapBlock.pinImage %>" alt="Локация шоурума" />
+            <img src="<%= mapBlock.pinImage %>" alt="Локация шоурума" loading="lazy" decoding="async" />
             <p><%= mapBlock.addressLabel %></p>
           </article>
           <a href="<%= mapBlock.mapLink %>" target="_blank" rel="noopener noreferrer">

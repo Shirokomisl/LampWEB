@@ -40,7 +40,7 @@
       <section class="catalog-product-detail-wrap">
         <div class="catalog-product-detail-grid">
           <aside class="catalog-product-sticky-visual reveal">
-            <img src="<%= product.stickyImage %>" alt="<%= product.name %>" />
+            <img src="<%= product.stickyImage %>" alt="<%= product.name %>" decoding="async" />
           </aside>
 
           <div class="catalog-product-detail-content">
@@ -118,6 +118,8 @@
                 data-gallery-main-image
                 src="<%= initialGalleryItem.image %>"
                 alt="<%= initialGalleryItem.title %>"
+                loading="lazy"
+                decoding="async"
                 class="<%= initialGalleryItem.type === 'video' ? 'is-hidden' : '' %>"
               />
               <video
@@ -167,6 +169,8 @@
                   <img
                     src="<%= galleryItem.type === 'video' && galleryItem.poster ? galleryItem.poster : galleryItem.image %>"
                     alt="<%= galleryItem.title %>"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </button>
               <% }) %>
@@ -231,7 +235,7 @@
           </div>
 
           <div class="catalog-product-contact-image">
-            <img src="<%= productContact.image %>" alt="<%= product.name %>" />
+            <img src="<%= productContact.image %>" alt="<%= product.name %>" loading="lazy" decoding="async" />
           </div>
         </div>
       </section>
@@ -249,7 +253,7 @@
             <% similarProducts.forEach((item) => { %>
               <a href="<%= item.href %>">
                 <div class="catalog-similar-image">
-                  <img src="<%= item.image %>" alt="<%= item.name %>" />
+                  <img src="<%= item.image %>" alt="<%= item.name %>" loading="lazy" decoding="async" />
                 </div>
                 <h3><%= item.name %></h3>
                 <p><%= item.description %></p>

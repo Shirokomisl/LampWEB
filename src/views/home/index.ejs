@@ -38,6 +38,7 @@
                   class="motto-logo"
                   src="<%= brandMotto.logoSign %>"
                   alt="<%= brandMotto.logoName %> logo"
+                  decoding="async"
                 />
                 <span class="motto-brand"><%= brandMotto.logoName %></span>
               </div>
@@ -47,6 +48,8 @@
                   class="motto-side-image"
                   src="<%= brandMotto.sideImage %>"
                   alt="Имидж бренда"
+                  loading="lazy"
+                  decoding="async"
                 />
               </figure>
 
@@ -78,7 +81,7 @@
                 aria-label="<%= collection.categoryTitle %>"
               >
                 <div class="collection-image-wrap">
-                  <img src="<%= collection.coverImage %>" alt="<%= collection.categoryTitle %>" />
+                  <img src="<%= collection.coverImage %>" alt="<%= collection.categoryTitle %>" loading="lazy" decoding="async" />
                 </div>
                 <div class="collection-shutter"></div>
                 <div class="collection-title">
@@ -96,7 +99,7 @@
             <% trustBlocks.forEach((block, index) => { %>
               <article class="trust-card reveal" style="--delay: <%= index * 110 %>ms">
                 <div class="trust-image-wrap">
-                  <img src="<%= block.image %>" alt="<%= block.title %>" />
+                  <img src="<%= block.image %>" alt="<%= block.title %>" loading="lazy" decoding="async" />
                 </div>
                 <h3 class="trust-title"><%= block.title %></h3>
               </article>
