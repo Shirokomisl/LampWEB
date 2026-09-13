@@ -218,9 +218,9 @@ const renderCatalogByType = (req, res) => {
 
 const renderCatalogProduct = (req, res) => {
   const { productSlug } = req.params;
-  const viewModel = withBaseLayoutData(getCatalogProductData(productSlug));
+  const productData = getCatalogProductData(productSlug);
 
-  if (!viewModel) {
+  if (!productData) {
     return res.status(404).render("placeholders/page", {
       pageTitle: "Товар не найден",
       pageName: "Каталог",
@@ -232,6 +232,8 @@ const renderCatalogProduct = (req, res) => {
       actionLabel: "Вернуться в каталог"
     });
   }
+
+  const viewModel = withBaseLayoutData(productData);
 
   const productName = viewModel.product?.displayName || viewModel.product?.name || "Светильник";
   const productType = viewModel.product?.productTypeLabel || "дизайнерский светильник";
