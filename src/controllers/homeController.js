@@ -28,6 +28,7 @@ const buildContactUiState = (req, sourcePath, formOrigin) => ({
 const SITE_URL = process.env.SITE_URL || "https://www.geometria-116.ru";
 
 const buildSeoData = (path, title, description, image) => ({
+  pageTitle: title,
   currentPath: path,
   canonicalUrl: `${SITE_URL}${path}`,
   pageDescription: description,
@@ -50,21 +51,63 @@ const buildOrganizationSchema = () => ({
 
 const buildProductSchema = (product, price) => ({
   "@context": "https://schema.org",
-  "@type": "Product",
-  "name": product.name,
-  "description": product.description || "",
-  "image": `${SITE_URL}${product.image}`,
-  "brand": {
-    "@type": "Brand",
-    "name": "GÉOMETRIA"
-  },
-  "offers": {
-    "@type": "Offer",
-    "price": price,
-    "priceCurrency": "RUB",
-    "availability": "https://schema.org/InStock",
-    "url": `${SITE_URL}/catalog/product/${product.slug}`
-  }
+  "@graph": [
+    {
+      "@type": "Product",
+      "name": product.displayName,
+      "description": product.description || "",
+      "image": product.images.map((imagePath) => `${SITE_URL}${imagePath}`),
+      "sku": product.slug,
+      "category": product.productTypeLabel,
+      "material": product.materialLabel,
+      "brand": {
+        "@type": "Brand",
+        "name": "GÉOMETRIA"
+      },
+      "additionalProperty": [
+        {
+          "@type": "PropertyValue",
+          "name": "Размеры",
+          "value": product.sizeSummary
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Производство",
+          "value": product.productionText
+        }
+      ],
+      "offers": {
+        "@type": "Offer",
+        "price": price,
+        "priceCurrency": "RUB",
+        "availability": "https://schema.org/InStock",
+        "url": `${SITE_URL}/catalog/product/${product.slug}`
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": SITE_URL
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Каталог",
+          "item": `${SITE_URL}/catalog`
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": product.displayName,
+          "item": `${SITE_URL}/catalog/product/${product.slug}`
+        }
+      ]
+    }
+  ]
 });
 
 const renderHome = (req, res) => {
@@ -190,25 +233,31 @@ const renderCatalogProduct = (req, res) => {
     });
   }
 
-  const productName = viewModel.product?.name || "Светильник";
+  const productName = viewModel.product?.displayName || viewModel.product?.name || "Светильник";
+  const productType = viewModel.product?.productTypeLabel || "дизайнерский светильник";
   const productDescription = viewModel.productAbout?.lead || "Дизайнерский светильник GÉOMETRIA";
   const productImage = viewModel.product?.image || "/images/logo-cube.png";
   const productPrice = viewModel.productPrice?.previewPriceRaw || viewModel.product?.price || 0;
+  const seoDescription = `${productName} — ${productType} GÉOMETRIA. ${productDescription}`.slice(0, 300);
 
   return res.render("catalog/product", {
     ...viewModel,
     ...buildContactUiState(req, req.path, "catalog-product"),
     ...buildSeoData(
       `/catalog/product/${productSlug}`,
-      `${productName} | GÉOMETRIA`,
-      productDescription,
+      `${productName} — ${productType} | GÉOMETRIA`,
+      seoDescription,
       productImage
     ),
     structuredData: buildProductSchema({
-      name: productName,
+      displayName: productName,
       description: productDescription,
-      image: productImage,
-      slug: productSlug
+      images: [productImage, ...(viewModel.productGallery || []).map((item) => item.image)],
+      slug: productSlug,
+      productTypeLabel: productType,
+      materialLabel: viewModel.product?.materialLabel || "",
+      sizeSummary: viewModel.product?.sizeSummary || "",
+      productionText: viewModel.product?.productionText || ""
     }, productPrice)
   });
 };

@@ -18,8 +18,8 @@
             <span>/</span>
             <a href="/catalog">Каталог</a>
           </p>
-          <h1><%= product.name %></h1>
-          <p class="catalog-product-year"><%= product.yearLabel %></p>
+          <h1><%= product.displayName %> — <%= product.productTypeLabel %></h1>
+          <p class="catalog-product-year"><%= product.name %> · GÉOMETRIA</p>
         </div>
       </section>
 
@@ -51,6 +51,29 @@
                   <p><%= paragraphText %></p>
                 <% }) %>
               </div>
+            </section>
+
+            <section class="catalog-product-section catalog-product-facts reveal" aria-labelledby="product-facts-title">
+              <h2 id="product-facts-title">Характеристики <%= product.displayName %></h2>
+              <dl class="catalog-product-facts-list">
+                <div>
+                  <dt>Тип</dt>
+                  <dd><%= product.productTypeLabel %></dd>
+                </div>
+                <div>
+                  <dt>Материалы</dt>
+                  <dd><%= product.materialLabel %></dd>
+                </div>
+                <div>
+                  <dt>Размеры</dt>
+                  <dd><%= product.sizeSummary %></dd>
+                </div>
+                <div>
+                  <dt>Изготовление</dt>
+                  <dd><%= product.productionText %></dd>
+                </div>
+              </dl>
+              <p class="catalog-product-facts-note"><%= productAbout.paragraphs[0] %></p>
             </section>
 
             <section id="product-price" class="catalog-product-section catalog-price-section reveal">

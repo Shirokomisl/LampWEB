@@ -45,8 +45,10 @@
                     <img src="<%= productItem.image %>" alt="<%= productItem.name %>" loading="lazy" decoding="async" />
                   </div>
                   <div class="catalog-product-title">
-                    <h2><%= productItem.name %></h2>
-                    <p class="catalog-product-title-ru"><%= productItem["ru-name"] %></p>
+                    <h2><%= productItem.displayName %></h2>
+                    <p class="catalog-product-title-ru"><%= productItem.productTypeLabel %></p>
+                    <p class="catalog-product-card-material"><%= productItem.materialLabel %></p>
+                    <p class="catalog-product-card-price">от <%= new Intl.NumberFormat("ru-RU").format(productItem.priceFrom) %> ₽</p>
                   </div>
                 </a>
               <% }) %>

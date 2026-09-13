@@ -261,6 +261,32 @@ const formatPrice = (priceValue) =>
 
 const getProductImage = (productItem) => productItem.image || "/images/hanging.jpg";
 
+const PRODUCT_TYPE_LABELS = {
+  hanging: "подвесной светильник",
+  wall: "настенный светильник",
+  floor: "торшер"
+};
+
+const getProductFacts = (productItem) => {
+  const sizeOptions = getSizeOptions(productItem);
+  const materialLabel = (productItem.paragraph2 || "")
+    .replace(/^Материалы:\s*/i, "")
+    .replace(/[.]$/, "");
+  const productTypeLabel = PRODUCT_TYPE_LABELS[productItem.typeSlug] || "дизайнерский светильник";
+  const displayName = productItem["ru-name"] || productItem.name;
+
+  return {
+    displayName,
+    productTypeLabel,
+    materialLabel,
+    sizeLabels: sizeOptions.map((optionItem) => optionItem.label),
+    sizeSummary: sizeOptions.map((optionItem) => optionItem.label).join(", "),
+    priceFrom: Math.min(...sizeOptions.map((optionItem) => optionItem.price)),
+    cardDescription: productItem.description,
+    productionText: "Изделие изготавливается вручную в мастерской GÉOMETRIA."
+  };
+};
+
 // Нормализует запись галереи из модели:
 // - строка: "/images/file.jpg"
 // - объект: { image: "/images/file.jpg", title: "Подпись" }
@@ -363,6 +389,7 @@ const isProductInRange = (productItem, rangeItem) =>
 
 const getProductCardModel = (productItem) => ({
   ...productItem,
+  ...getProductFacts(productItem),
   href: `/catalog/product/${productItem.slug}`
 });
 
@@ -450,6 +477,7 @@ const getCatalogProductData = (productSlug) => {
     ],
     product: {
       ...productItem,
+      ...getProductFacts(productItem),
       yearLabel: "2026",
       heroBackdropImage: "/images/header-background.png",
       image: productImage,
