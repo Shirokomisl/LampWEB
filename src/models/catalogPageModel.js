@@ -264,7 +264,7 @@ const CATALOG_PRODUCTS = [
       { label: "AZURE Linear", price: 8900 },
       { label: "AZURE Crystal", price: 9900 }
     ],
-    image: "/images/AZURE/AZURE/AZURE_jpg.jpg",
+    image: "/images/AZURE/AZURE/azure-main.png",
     gallery: [
       { image: "/images/AZURE/AZURE/AZURE_jpg.jpg", title: "Настольный светильник AZURE" },
       { image: "/images/AZURE/AZURE/AZURE Crystal.jpg", title: "AZURE Crystal с прозрачным плафоном" },
