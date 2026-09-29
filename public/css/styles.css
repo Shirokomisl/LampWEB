@@ -1605,6 +1605,14 @@ p {
   transition: border-color 0.25s ease, color 0.25s ease;
 }
 
+.catalog-size-picker-options.is-style-picker button {
+  padding: 0.4rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  overflow-wrap: anywhere;
+}
+
 .catalog-size-picker-options button:hover,
 .catalog-size-picker-options button.is-active {
   border-color: rgba(24, 24, 24, 0.74);
@@ -3284,5 +3292,14 @@ body.is-instruction-open {
   .instruction-picker-option {
     font-size: 0.85rem;
     padding: 1rem 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .catalog-gallery-slider,
+  .catalog-gallery-stage,
+  .catalog-gallery-main {
+    min-width: 0;
+    max-width: 100%;
   }
 }

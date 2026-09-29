@@ -2,7 +2,8 @@
   { slug: "all", label: "ВСЕ ИЗДЕЛИЯ" },
   { slug: "hanging", label: "ПОДВЕСНЫЕ" },
   { slug: "wall", label: "НАСТЕННЫЕ" },
-  { slug: "floor", label: "ТОРШЕР" }
+  { slug: "floor", label: "ТОРШЕР" },
+  { slug: "table", label: "НАСТОЛЬНЫЕ" }
 ];
 
 const PRICE_RANGES = [
@@ -250,6 +251,36 @@ const CATALOG_PRODUCTS = [
     description: "Что вы видите, глядя на этот торшер? Какие образы рождаются в ваших ассоциациях? Мы видим идеальное Создание, материализованное из мира, где правит гармония линий и идеальных пропорций.",
     paragraph1: "Комбинация точно выверенного баланса, равновесия и изгиба от естественного сопротивления материалов, придает торшеру Dea(Деа) неповторимо стильные формы, делая его однозначным High-Endoм на рынке дизайнерских торшеров.",
     paragraph2: "Торшер комплектуется двумя цветовыми решениями ткани абажура – Ambient (темный) и Grey (светло-серый). Вам остается выбрать один из двух вариантов, каждый их которых станет самостоятельным арх-объектом и подчеркнет безупречный стиль вашего интерьера."
+  },
+  {
+    slug: "azure",
+    name: "AZURE",
+    "ru-name": "AZURE",
+    typeSlug: "table",
+    price: 7900,
+    optionLabel: "Стиль",
+    styleOptions: [
+      { label: "AZURE", price: 7900, isDefault: true },
+      { label: "AZURE Linear", price: 8900 },
+      { label: "AZURE Crystal", price: 9900 }
+    ],
+    image: "/images/AZURE/AZURE/AZURE_jpg.jpg",
+    gallery: [
+      { image: "/images/AZURE/AZURE/AZURE_jpg.jpg", title: "Настольный светильник AZURE" },
+      { image: "/images/AZURE/AZURE/AZURE Crystal.jpg", title: "AZURE Crystal с прозрачным плафоном" },
+      { image: "/images/AZURE/AZURE/AZURE_entire collection.JPG", title: "Коллекция настольных светильников AZURE" },
+      { image: "/images/AZURE/AZURE/AZURE_entire collection-2.JPG", title: "Исполнения коллекции AZURE" },
+      { image: "/images/AZURE/AZURE/IMG_5437.jpeg", title: "Светильник коллекции AZURE" },
+      { image: "/images/AZURE/AZURE/IMG_8738.jpg", title: "Светильник коллекции AZURE" },
+      { image: "/images/AZURE/AZURE/IMG_8743.jpg", title: "Светильник коллекции AZURE" },
+      { image: "/images/AZURE/AZURE/IMG_8796.JPG", title: "Светильник коллекции AZURE" },
+      { image: "/images/AZURE/AZURE/IMG_8818.JPG", title: "Светильник коллекции AZURE" },
+      { image: "/images/AZURE/AZURE/PHOTO-2026-09-11-16-55-56.jpg", title: "Светильник коллекции AZURE" },
+      { image: "/images/AZURE/AZURE/PHOTO-2026-09-11-17-15-18.jpg", title: "Светильник коллекции AZURE" }
+    ],
+    description: "Настольный светильник коллекции AZURE, словно создан для того, чтобы добавить в Ваше пространство атмосферу комфорта, гармонии и умиротворения. Плафон лаконичной формы словно бережно удерживает свет внутри, а потом выпускает его тонкой золотой вуалью — так, что даже самый обычный вечер становится чуть камернее и теплее. Основание из натурального травертина идеального кремового оттенка и «теплый» массив бронзы, подчёркивает одновременно лаконичность и премиальность коллекции. Словно конструируя окружающее его пространство, светильник AZURE создает мягкие тени и уютные уголки, в этом свете хочется листать бумажные страницы, вести записи от руки или просто сидеть и никуда не торопиться.",
+    paragraph1: "Коллекция представлена в трёх исполнениях: AZURE с матовым белым плафоном, бронзой и натуральным травертином кремового цвета; AZURE Linear с травертиновыми нитями; AZURE Crystal с прозрачным плафоном и двунаправленным свечением.",
+    paragraph2: "Материалы: натуральный травертин, массив бронзы; плафоны коллекции представлены в матовом белом и прозрачном исполнении."
   }
 ];
 
@@ -264,11 +295,12 @@ const getProductImage = (productItem) => productItem.image || "/images/hanging.j
 const PRODUCT_TYPE_LABELS = {
   hanging: "подвесной светильник",
   wall: "настенный светильник",
-  floor: "торшер"
+  floor: "торшер",
+  table: "настольная лампа"
 };
 
 const getProductFacts = (productItem) => {
-  const sizeOptions = getSizeOptions(productItem);
+  const productOptions = getProductOptions(productItem);
   const materialLabel = (productItem.paragraph2 || "")
     .replace(/^Материалы:\s*/i, "")
     .replace(/[.]$/, "");
@@ -279,9 +311,10 @@ const getProductFacts = (productItem) => {
     displayName,
     productTypeLabel,
     materialLabel,
-    sizeLabels: sizeOptions.map((optionItem) => optionItem.label),
-    sizeSummary: sizeOptions.map((optionItem) => optionItem.label).join(", "),
-    priceFrom: Math.min(...sizeOptions.map((optionItem) => optionItem.price)),
+    optionLabel: productItem.optionLabel || "Размеры",
+    optionLabels: productOptions.map((optionItem) => optionItem.label),
+    optionSummary: productOptions.map((optionItem) => optionItem.label).join(", "),
+    priceFrom: Math.min(...productOptions.map((optionItem) => optionItem.price)),
     cardDescription: productItem.description,
     productionText: "Изделие изготавливается вручную в мастерской GÉOMETRIA."
   };
@@ -326,10 +359,12 @@ const getProductGallery = (productItem, similarItems) => {
   }));
 };
 
-const getSizeOptions = (productItem) => {
-  const configuredOptions = Array.isArray(productItem.sizeOptions)
-    ? productItem.sizeOptions
-    : [];
+const getProductOptions = (productItem) => {
+  const configuredOptions = Array.isArray(productItem.styleOptions)
+    ? productItem.styleOptions
+    : Array.isArray(productItem.sizeOptions)
+      ? productItem.sizeOptions
+      : [];
 
   const normalizedOptions = configuredOptions
     .filter(
@@ -449,14 +484,14 @@ const getCatalogProductData = (productSlug) => {
   ).slice(0, 3);
 
   const galleryItems = getProductGallery(productItem, similarItems);
-  const configuredSizeOptions = getSizeOptions(productItem);
+  const configuredOptions = getProductOptions(productItem);
   const defaultOption =
-    configuredSizeOptions.find((optionItem) => optionItem.isDefault) ||
-    configuredSizeOptions[0];
+    configuredOptions.find((optionItem) => optionItem.isDefault) ||
+    configuredOptions[0];
   const activeSizeLabel = defaultOption.label;
   const activeSizePrice = defaultOption.price;
 
-  const sizeOptions = configuredSizeOptions.map((optionItem) => ({
+  const productOptions = configuredOptions.map((optionItem) => ({
     label: optionItem.label,
     price: optionItem.price,
     formattedPrice: formatPrice(optionItem.price),
@@ -495,10 +530,15 @@ const getCatalogProductData = (productSlug) => {
       previewPriceValue: formatPrice(activeSizePrice),
       previewPriceRaw: activeSizePrice,
       configuratorTitle: "КОНФИГУРАТОР",
-      configuratorDescription:
-        "Выберите размер, чтобы узнать итоговую стоимость.",
-      sizeLabel: "ВЫБЕРИТЕ РАЗМЕР",
-      sizeOptions,
+      configuratorDescription: productItem.optionLabel
+        ? `Выберите исполнение коллекции ${productItem["ru-name"]}, чтобы увидеть его стоимость.`
+        : "Выберите размер, чтобы узнать итоговую стоимость.",
+      sizeLabel: productItem.optionLabel
+        ? `ВЫБЕРИТЕ ${productItem.optionLabel.toUpperCase()}`
+        : "ВЫБЕРИТЕ РАЗМЕР",
+      optionLabel: productItem.optionLabel || "размер",
+      options: productOptions,
+      isStylePicker: Boolean(productItem.optionLabel),
       requestLabel: "ОСТАВИТЬ ЗАЯВКУ",
       modelLabel: "ИНСТРУКЦИЯ ПО МОНТАЖУ И ЭКСПЛУАТАЦИИ"
     },

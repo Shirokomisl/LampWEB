@@ -2,7 +2,7 @@ const { getCatalogPageData, getCatalogProductData } = require("../models/catalog
 
 const SITE_URL = process.env.SITE_URL || "https://www.geometria-116.ru";
 
-const CATALOG_TYPES = ["all", "hanging", "wall", "floor"];
+const CATALOG_TYPES = ["all", "hanging", "wall", "floor", "table"];
 
 const PRODUCT_SLUGS = [
   "ufo-glass-hanging",
@@ -15,7 +15,8 @@ const PRODUCT_SLUGS = [
   "ufo-antique",
   "ufo-terra",
   "ufo-hugo",
-  "dea"
+  "dea",
+  "azure"
 ];
 
 const generateSitemap = () => {

@@ -67,8 +67,8 @@ const buildProductSchema = (product, price) => ({
       "additionalProperty": [
         {
           "@type": "PropertyValue",
-          "name": "Размеры",
-          "value": product.sizeSummary
+          "name": product.optionLabel,
+          "value": product.optionSummary
         },
         {
           "@type": "PropertyValue",
@@ -202,7 +202,8 @@ const renderCatalogByType = (req, res) => {
   const typeNames = {
     hanging: "Подвесные светильники",
     wall: "Настенные светильники",
-    floor: "Торшеры"
+    floor: "Торшеры",
+    table: "Настольные светильники"
   };
 
   return res.render("catalog/index", {
@@ -258,7 +259,8 @@ const renderCatalogProduct = (req, res) => {
       slug: productSlug,
       productTypeLabel: productType,
       materialLabel: viewModel.product?.materialLabel || "",
-      sizeSummary: viewModel.product?.sizeSummary || "",
+      optionLabel: viewModel.product?.optionLabel || "Размеры",
+      optionSummary: viewModel.product?.optionSummary || "",
       productionText: viewModel.product?.productionText || ""
     }, productPrice)
   });
