@@ -18,7 +18,7 @@
             <span>/</span>
             <a href="/catalog">Каталог</a>
           </p>
-          <h1><%= product.displayName %> — <%= product.productTypeLabel %></h1>
+          <h1><%= product.displayName %></h1>
           <p class="catalog-product-year"><%= product.name %> · GÉOMETRIA</p>
         </div>
       </section>
@@ -95,8 +95,7 @@
                       </button>
                     <% }) %>
                   </div>
-                    <dt><%= product.optionLabel %></dt>
-                    <dd><%= product.optionSummary %></dd>
+                </div>
 
               <div class="catalog-price-card">
                 <p class="catalog-price-label"><%= productPrice.previewPriceLabel %></p>
