@@ -452,22 +452,22 @@ p {
 
 .collection-card:nth-child(1) {
   z-index: 1;
-  clip-path: polygon(0 0, 53% 0, 43% 51%, 0 78%);
+  clip-path: polygon(0 0, 31% 0, 19% 100%, 0 100%);
 }
 
 .collection-card:nth-child(2) {
   z-index: 1;
-  clip-path: polygon(53% 0, 100% 0, 100% 45%, 57% 62%, 43% 51%);
+  clip-path: polygon(31% 0, 55% 0, 40% 100%, 19% 100%);
 }
 
 .collection-card:nth-child(3) {
   z-index: 2;
-  clip-path: polygon(0 78%, 43% 51%, 57% 62%, 48% 100%, 0 100%);
+  clip-path: polygon(55% 0, 79% 0, 64% 100%, 40% 100%);
 }
 
 .collection-card:nth-child(4) {
   z-index: 2;
-  clip-path: polygon(57% 62%, 100% 45%, 100% 100%, 48% 100%);
+  clip-path: polygon(79% 0, 100% 0, 100% 100%, 64% 100%);
 }
 
 .collection-image-wrap {
