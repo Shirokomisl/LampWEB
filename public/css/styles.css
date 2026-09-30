@@ -418,7 +418,7 @@ p {
 }
 
 .collection-grid-frame {
-  --collection-radius: 32px;
+  --collection-radius: 56px;
   position: relative;
   isolation: isolate;
   overflow: hidden;
