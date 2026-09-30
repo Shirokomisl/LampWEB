@@ -417,60 +417,84 @@ p {
   padding-inline: 1rem;
 }
 
+.collection-grid-frame {
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  clip-path: inset(0 round var(--radius-md));
+}
+
 .collection-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
+  position: relative;
+  isolation: isolate;
+  height: clamp(420px, 43vw, 640px);
+  overflow: hidden;
+  border-radius: inherit;
+  clip-path: inset(0 round var(--radius-md));
+  background: #f4f1eb;
 }
 
 .collection-card {
-  position: relative;
+  position: absolute;
+  inset: 0;
   display: block;
-  min-height: auto;
-  aspect-ratio: 3 / 4;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--stroke);
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
   overflow: hidden;
-  box-shadow: var(--shadow);
+  box-shadow: none;
+  color: #fff;
+  clip-path: none;
+}
+
+.collection-card:nth-child(1) {
+  z-index: 1;
+  clip-path: polygon(0 0, 53% 0, 43% 51%, 0 78%);
+}
+
+.collection-card:nth-child(2) {
+  z-index: 1;
+  clip-path: polygon(53% 0, 100% 0, 100% 45%, 57% 62%, 43% 51%);
+}
+
+.collection-card:nth-child(3) {
+  z-index: 2;
+  clip-path: polygon(0 78%, 43% 51%, 57% 62%, 48% 100%, 0 100%);
+}
+
+.collection-card:nth-child(4) {
+  z-index: 2;
+  clip-path: polygon(57% 62%, 100% 45%, 100% 100%, 48% 100%);
 }
 
 .collection-image-wrap {
-  height: 100%;
+  position: absolute;
+  inset: 6px;
 }
 
 .collection-image-wrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  object-position: center;
 }
 
-/* Светлая плашка текста: появляется снизу на hover в цвет фона сайта */
-.collection-shutter {
-  display: none;
-}
-
-.collection-title {
+.collection-separators {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%) translateY(0);
-  bottom: 1.28rem;
-  width: 90%;
-  max-width: max-content;
-  text-align: center;
-  color: #ffffff;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
-  font-size: 0.9rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  line-height: 1.35;
-  font-weight: 500;
-  opacity: 1;
+  inset: 0;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
-
-.collection-card:hover .collection-image-wrap img {
-  transform: scale(1.08) translateY(-1.8%);
+.collection-separators path {
+  fill: none;
+  stroke: var(--bg-base);
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
 }
 
 .collection-card:focus-visible {
@@ -2859,12 +2883,47 @@ p {
 }
 
 @media (max-width: 880px) {
+  .collection-grid-frame {
+    overflow: visible;
+    border-radius: 0;
+    clip-path: none;
+  }
+
   .collection-grid {
-    grid-template-columns: 1fr;
+    display: grid;
+    height: auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem;
+    overflow: visible;
+    border-radius: 0;
+    clip-path: none;
+    background: transparent;
   }
 
   .collection-card {
-    min-height: auto;
+    position: relative;
+    inset: auto;
+    min-width: 0;
+    aspect-ratio: 4 / 3;
+    border-radius: 5px;
+    overflow: hidden;
+    clip-path: none !important;
+  }
+
+  .collection-grid .collection-card:nth-child(1),
+  .collection-grid .collection-card:nth-child(2),
+  .collection-grid .collection-card:nth-child(3),
+  .collection-grid .collection-card:nth-child(4) {
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    width: auto;
+    height: auto;
+  }
+
+  .collection-separators {
+    display: none;
   }
 
   .motto-grid {
@@ -2873,6 +2932,17 @@ p {
 
   .motto-lines {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .collection-grid {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+  }
+
+  .collection-card {
+    aspect-ratio: 16 / 10;
   }
 }
 

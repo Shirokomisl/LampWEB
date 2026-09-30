@@ -72,23 +72,23 @@
 
       <section class="section-pad" id="catalog-preview">
         <div class="collection-grid-wrap">
-          <div class="collection-grid">
-            <% productCollections.forEach((collection, index) => { %>
-              <a
-                class="collection-card reveal"
-                style="--delay: <%= index * 130 %>ms"
-                href="<%= collection.href %>"
-                aria-label="<%= collection.categoryTitle %>"
-              >
-                <div class="collection-image-wrap">
-                  <img src="<%= collection.coverImage %>" alt="<%= collection.categoryTitle %>" loading="lazy" decoding="async" />
-                </div>
-                <div class="collection-shutter"></div>
-                <div class="collection-title">
-                  <span><%= collection.categoryTitle %></span>
-                </div>
-              </a>
-            <% }) %>
+          <div class="collection-grid-frame">
+            <div class="collection-grid">
+              <% productCollections.forEach((collection, index) => { %>
+                <a
+                  class="collection-card"
+                  href="<%= collection.href %>"
+                  aria-label="<%= collection.categoryTitle %>"
+                >
+                  <div class="collection-image-wrap">
+                    <img src="<%= collection.coverImage %>" alt="<%= collection.categoryTitle %>" loading="lazy" decoding="async" />
+                  </div>
+                </a>
+              <% }) %>
+              <svg class="collection-separators" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M 530 0 L 430 306 M 0 468 L 430 306 M 430 306 L 570 372 M 1000 270 L 570 372 M 570 372 L 480 600" />
+              </svg>
+            </div>
           </div>
         </div>
       </section>

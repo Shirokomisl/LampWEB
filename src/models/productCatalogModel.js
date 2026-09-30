@@ -44,6 +44,11 @@
         href: "/catalog/type/wall"
       },
       {
+        categoryTitle: "Настольные светильники AZURE",
+        coverImage: "/images/AZURE/AZURE/AZURE_entire collection.JPG",
+        href: "/catalog/type/table"
+      },
+      {
         categoryTitle: "Торшер Dea",
         coverImage: "/images/3.4.png",
         href: "/catalog/type/floor"
