@@ -446,6 +446,8 @@ p {
   box-shadow: none;
   color: #fff;
   clip-path: none;
+  cursor: pointer;
+  transition: clip-path 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .collection-card:nth-child(1) {
@@ -471,6 +473,8 @@ p {
 .collection-image-wrap {
   position: absolute;
   inset: 6px;
+  overflow: hidden;
+  transition: inset 0.65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .collection-image-wrap img {
@@ -478,6 +482,47 @@ p {
   height: 100%;
   object-fit: cover;
   object-position: center;
+  transform: scale(1);
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.collection-card-title {
+  position: absolute;
+  z-index: 2;
+  right: clamp(1rem, 2.5vw, 3rem);
+  bottom: clamp(1rem, 2.5vw, 2.5rem);
+  left: clamp(1rem, 2.5vw, 3rem);
+  color: #fff;
+  font-size: clamp(0.78rem, 1.2vw, 1.15rem);
+  letter-spacing: 0.16em;
+  line-height: 1.35;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.4s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+.collection-card:hover .collection-image-wrap,
+.collection-card:focus-visible .collection-image-wrap {
+  inset: 0;
+}
+
+.collection-card:hover,
+.collection-card:focus-visible {
+  z-index: 20;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.collection-card:hover .collection-image-wrap img,
+.collection-card:focus-visible .collection-image-wrap img {
+  transform: scale(1.08);
+}
+
+.collection-card:hover .collection-card-title,
+.collection-card:focus-visible .collection-card-title {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .collection-separators {
@@ -2907,6 +2952,13 @@ p {
     border-radius: 5px;
     overflow: hidden;
     clip-path: none !important;
+  }
+
+  .collection-card-title {
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    font-size: 0.72rem;
   }
 
   .collection-grid .collection-card:nth-child(1),
