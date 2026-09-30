@@ -418,9 +418,11 @@ p {
 }
 
 .collection-grid-frame {
+  --collection-radius: 32px;
+  position: relative;
+  isolation: isolate;
   overflow: hidden;
-  border-radius: var(--radius-md);
-  clip-path: inset(0 round var(--radius-md));
+  border-radius: var(--collection-radius);
 }
 
 .collection-grid {
@@ -429,7 +431,6 @@ p {
   height: clamp(420px, 43vw, 640px);
   overflow: hidden;
   border-radius: inherit;
-  clip-path: inset(0 round var(--radius-md));
   background: #f4f1eb;
 }
 
@@ -2885,8 +2886,7 @@ p {
 @media (max-width: 880px) {
   .collection-grid-frame {
     overflow: visible;
-    border-radius: 0;
-    clip-path: none;
+    border-radius: var(--collection-radius);
   }
 
   .collection-grid {
@@ -2895,8 +2895,7 @@ p {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.55rem;
     overflow: visible;
-    border-radius: 0;
-    clip-path: none;
+    border-radius: inherit;
     background: transparent;
   }
 
