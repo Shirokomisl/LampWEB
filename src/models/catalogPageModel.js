@@ -285,7 +285,7 @@ const CATALOG_PRODUCTS = [
     price: 8900,
     optionLabel: "Стиль",
     styleOptions: getAzureStyleOptions("azure-linear"),
-    image: "/images/AZURE/AZURE/main-linear.webp",
+    image: "/images/AZURE/linear/main-linear.webp",
     gallery: [
       { image: "/images/AZURE/linear/linear-gallery1.webp", title: "Исполнения коллекции AZURE" },
       { image: "/images/AZURE/linear/linear-gallery2.webp", title: "Коллекция настольных светильников AZURE" },
@@ -305,7 +305,7 @@ const CATALOG_PRODUCTS = [
     price: 9900,
     optionLabel: "Стиль",
     styleOptions: getAzureStyleOptions("azure-crystal"),
-    image: "/images/AZURE/AZURE/main-crystal.webp",
+    image: "/images/AZURE/crystal/main-crystal.webp",
     gallery: [
       { image: "/images/AZURE/crystal/crystal-gallery1.webp", title: "Исполнения коллекции AZURE" },
       { image: "/images/AZURE/crystal/crystal-gallery2.webp", title: "Коллекция настольных светильников AZURE" },
