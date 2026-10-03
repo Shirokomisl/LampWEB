@@ -28,19 +28,19 @@
         "ГÉОМЕТРИЯ – молодой, но динамично развивающийся бренд поддерживающий концепцию, что простые формы несут в себе более сложный замысел, заложенный в их создание. Мы не работаем с прямыми источниками света – мы рисуем образы с помощью отраженного и рассеянного света, наполняя помещение особой атмоcферой уюта и комфорта.",
         "Наш слоган: 'Свет имеет форму' - особым смыслом передает концепцию наших продуктов, каждый их которых сделан исключительно вручную и согрет теплом наших рук."
       ],
-      sideImage: "/images/motto.PNG",
+      sideImage: "/images/other/motto.webp",
       aboutLabel: "ПОДРОБНЕЕ О БРЕНДЕ",
       aboutHref: "/about"
     },
     productCollections: [
       {
         categoryTitle: "Подвесные светильники UFO Hanging",
-        coverImage: "/images/interier-hanging.jpg",
+        coverImage: "/images/other/interier-hanging.webp",
         href: "/catalog/type/hanging"
       },
       {
         categoryTitle: "Настенные светильники UFO Wall",
-        coverImage: "/images/wall-card-engle.jpg",
+        coverImage: "/images/other/wall-card-engle.webp",
         href: "/catalog/type/wall"
       },
       {
@@ -57,15 +57,15 @@
     trustBlocks: [
       {
         title: "УНИКАЛЬНАЯ ТЕКСТУРА МАТЕРИАЛА",
-        image: "/images/texture.jpg"
+        image: "/images/other/texture.webp"
       },
       {
         title: "РУЧНАЯ РАБОТА",
-        image: "/images/hand-work.jpg"
+        image: "/images/other/hand-work.webp"
       },
       {
         title: "ВЫСОКОКАЧЕСТВЕННОЕ СЫРЬЕ",
-        image: "/images/quality.jpg"
+        image: "/images/other/quality.webp"
       }
     ],
     brandStatement: {
@@ -104,7 +104,7 @@ const getContactsPageData = () => {
       title: "КОНТАКТЫ",
       videoSrc: "/videos/contacts-video.mp4",
       videoType: "video/mp4",
-      poster: "/images/studio-head.jpg"
+      poster: "/images/other/studio-head.webp"
     },
     contactInfo: {
       phoneDisplay: "7 900 325 47 10",
@@ -120,7 +120,7 @@ const getContactsPageData = () => {
         { name: "YouTube", short: "YT", href: "#" }
       ],
       legalLines: ["СЗ Тягунов Сергей Владимирович", "ИНН 165706755959"],
-      officeImage: "/images/IMG_6453.jpeg"
+      officeImage: "/images/other/IMG_6453.webp"
     },
     formBlock: {
       title: "НАПИШИТЕ НАМ",
@@ -133,7 +133,7 @@ const getContactsPageData = () => {
     mapBlock: {
       mapImage:
         "/images/yandex-cards.png",
-      pinImage: "/images/office-image.jpg",
+      pinImage: "/images/other/office-image.webp",
       addressLabel: "ПРОСПЕКТ ПОБЕДЫ, 159",
       mapLinkLabel: "ОТКРЫТЬ В ЯНДЕКС КАРТАХ",
       mapLink: "https://yandex.com/maps/org/salon_m_z_gallery_tts_mzlife/1131107486/?ll=49.211029%2C55.799493&z=17.2"
@@ -153,7 +153,7 @@ const getAboutPageData = () => {
       title: "О БРЕНДЕ",
       videoSrc: "/videos/contacts-video.mp4",
       videoType: "video/mp4",
-      poster: "/images/studio-head.jpg"
+      poster: "/images/other/studio-head.webp"
     },
     hero: {
       eyebrow: "О БРЕНДЕ",
@@ -184,7 +184,7 @@ const getAboutPageData = () => {
         caption: "НАША ЭСТЕТИКА"
       },
       {
-        image: "/images/stone-veneer.png",
+        image: "/images/other/stone-veneer.webp",
         caption: "НЕОБРАБОТАННЫЙ КАМЕННЫЙ ШПОН"
       }
     ],
@@ -196,7 +196,7 @@ const getAboutPageData = () => {
           "Все процессы выполняются вручную: подготовка деталей, подгонка элементов, финишная обработка и проверка качества света.",
         videoSrc: "/videos/veneer_cutting.mp4",
         videoType: "video/mp4",
-        poster: "/images/studio-head.jpg"
+        poster: "/images/other/studio-head.webp"
       },
       {
         eyebrow: "Материалы",
@@ -205,7 +205,7 @@ const getAboutPageData = () => {
           "Мы делаем акцент на материалах, которые раскрываются в интерьере по фактуре, глубине оттенка и тактильным ощущениям.",
         videoSrc: "/videos/contacts-video.mp4",
         videoType: "video/mp4",
-        poster: "/images/studio-head.jpg"
+        poster: "/images/other/studio-head.webp"
       }
     ],
     iconFeatures: [
@@ -230,7 +230,7 @@ const getAboutPageData = () => {
     },
     storyPhotosBottom: [
       {
-        image: "/images/hand-work.jpg",
+        image: "/images/other/hand-work.webp",
         caption: "НЕИСПОЛЬЗОВАННЫЙ ПОДВЕС"
       },
       {
@@ -255,19 +255,19 @@ const getDesignersPageData = () => {
       ],
       highlight:
         "Мы предлагаем дизайнерам и комплектаторам привлекательные условия сотрудничества в виде гибкого ценообразования, расширенной складской программы, кастомизации под персональные требования ваших заказчиков в самые короткие сроки. Мы не где-то там, мы здесь, свои и без ложной гордости заявляем: «Сделано в Казани для лучших интерьеров России».",
-      image: "/images/IMG_6454.jpg"
+      image: "/images/other/oIMG_6454.webp"
     },
     gridImages: [
       {
-        src: "/images/designers1.png",
+        src: "/images/other/designers1.webp",
         alt: "Производство светильников в мастерской"
       },
       {
-        src: "/images/designers2.png",
+        src: "/images/other/designers2.webp",
         alt: "Ручная работа над деталями светильника"
       },
       {
-        src: "/images/designers3.png",
+        src: "/images/other/designers3.webp",
         alt: "Финальная сборка и контроль качества"
       }
     ],
