@@ -298,7 +298,7 @@ const CATALOG_PRODUCTS = [
     ],
     description: "AZURE Linear — настольный светильник с матовым плафоном, бронзовыми деталями и выразительными травертиновыми нитями.",
     paragraph1: "Линейная фактура натурального камня подчёркивает вертикальную форму плафона и делает светильник выразительным интерьерным акцентом.",
-    paragraph2: "Материалы: натуральный травертин, массив бронзы и матовый плафон."
+    paragraph2: "Материалы: нити травертина, массив бронзы, матовый плафон."
   },
   {
     slug: "azure-crystal",
@@ -308,7 +308,7 @@ const CATALOG_PRODUCTS = [
     price: 9900,
     optionLabel: "Стиль",
     styleOptions: getAzureStyleOptions("azure-crystal"),
-    image: "/images/AZURE/AZURE/main-crystal.png",
+    image: "/images/AZURE/AZURE/main-crystal.jpg",
     gallery: [
       { image: "/images/AZURE/AZURE/IMG_8818.JPG", title: "AZURE Crystal в интерьере" },
       { image: "/images/AZURE/AZURE/AZURE Crystal.jpg", title: "Исполнения коллекции AZURE" },
@@ -316,7 +316,7 @@ const CATALOG_PRODUCTS = [
     ],
     description: "AZURE Crystal — настольный светильник с прозрачным рифлёным плафоном и двунаправленным свечением.",
     paragraph1: "Прозрачный плафон раскрывает фактуру стекла и создаёт выразительную игру света, сохраняя характерные для коллекции бронзовые детали и основание из травертина.",
-    paragraph2: "Материалы: прозрачное стекло, натуральный травертин и массив бронзы."
+    paragraph2: "Материалы: прозрачное стекло, натуральный травертин, массив бронзы."
   },
   {
     slug: "dea",
