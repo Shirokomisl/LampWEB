@@ -14,6 +14,20 @@ const PRICE_RANGES = [
   { slug: "200k-plus", label: "ОТ 200 000", min: 200000, max: Number.POSITIVE_INFINITY }
 ];
 
+const AZURE_STYLE_MODELS = [
+  { slug: "azure", label: "AZURE", price: 7900 },
+  { slug: "azure-linear", label: "AZURE Linear", price: 8900 },
+  { slug: "azure-crystal", label: "AZURE Crystal", price: 9900 }
+];
+
+const getAzureStyleOptions = (activeSlug) =>
+  AZURE_STYLE_MODELS.map((styleModel) => ({
+    label: styleModel.label,
+    price: styleModel.price,
+    href: `/catalog/product/${styleModel.slug}`,
+    isDefault: styleModel.slug === activeSlug
+  }));
+
 const CATALOG_PRODUCTS = [
   {
     slug: "ufo-glass-hanging",
@@ -241,13 +255,10 @@ const CATALOG_PRODUCTS = [
     typeSlug: "table",
     price: 7900,
     optionLabel: "Стиль",
-    styleOptions: [
-      { label: "AZURE", price: 7900, isDefault: true },
-      { label: "AZURE Linear", price: 8900 },
-      { label: "AZURE Crystal", price: 9900 }
-    ],
-    image: "/images/AZURE/AZURE/azure-main.png",
+    styleOptions: getAzureStyleOptions("azure"),
+    image: "/images/AZURE/AZURE/IMG_8743.jpg",
     gallery: [
+      { image: "/images/AZURE/AZURE/IMG_8743.jpg", title: "AZURE с матовым белым плафоном" },
       { image: "/images/AZURE/AZURE/AZURE_jpg.jpg", title: "Настольный светильник AZURE" },
       { image: "/images/AZURE/AZURE/AZURE Crystal.jpg", title: "AZURE Crystal с прозрачным плафоном" },
       { image: "/images/AZURE/AZURE/AZURE_entire collection.JPG", title: "Коллекция настольных светильников AZURE" },
@@ -261,8 +272,46 @@ const CATALOG_PRODUCTS = [
       { image: "/images/AZURE/AZURE/PHOTO-2026-09-11-17-15-18.jpg", title: "Светильник коллекции AZURE" }
     ],
     description: "AZURE — настольный светильник с основанием из кремового травертина, деталями из бронзы и лаконичным плафоном. Мягкий свет создаёт уютную атмосферу для чтения и спокойного отдыха.",
-    paragraph1: "Коллекция представлена в трёх исполнениях: AZURE с матовым белым плафоном, бронзой и натуральным травертином кремового цвета; AZURE Linear с травертиновыми нитями; AZURE Crystal с прозрачным плафоном и двунаправленным свечением.",
+    paragraph1: "AZURE сочетает матовый белый плафон, детали из бронзы и основание из натурального травертина кремового цвета.",
     paragraph2: "Материалы: натуральный травертин, массив бронзы; плафоны коллекции представлены в матовом белом и прозрачном исполнении."
+  },
+  {
+    slug: "azure-linear",
+    name: "AZURE LINEAR",
+    "ru-name": "AZURE Linear",
+    typeSlug: "table",
+    price: 8900,
+    optionLabel: "Стиль",
+    styleOptions: getAzureStyleOptions("azure-linear"),
+    image: "/images/AZURE/AZURE/IMG_8738.jpg",
+    gallery: [
+      { image: "/images/AZURE/AZURE/IMG_8738.jpg", title: "AZURE Linear с травертиновыми нитями" },
+      { image: "/images/AZURE/AZURE/IMG_8796.JPG", title: "Исполнения коллекции AZURE" },
+      { image: "/images/AZURE/AZURE/AZURE_entire collection.JPG", title: "Коллекция настольных светильников AZURE" },
+      { image: "/images/AZURE/AZURE/IMG_5437.jpeg", title: "Светильник коллекции AZURE" }
+    ],
+    description: "AZURE Linear — настольный светильник с матовым плафоном, бронзовыми деталями и выразительными травертиновыми нитями.",
+    paragraph1: "Линейная фактура натурального камня подчёркивает вертикальную форму плафона и делает светильник выразительным интерьерным акцентом.",
+    paragraph2: "Материалы: натуральный травертин, массив бронзы и матовый плафон."
+  },
+  {
+    slug: "azure-crystal",
+    name: "AZURE CRYSTAL",
+    "ru-name": "AZURE Crystal",
+    typeSlug: "table",
+    price: 9900,
+    optionLabel: "Стиль",
+    styleOptions: getAzureStyleOptions("azure-crystal"),
+    image: "/images/AZURE/AZURE/AZURE_jpg.jpg",
+    gallery: [
+      { image: "/images/AZURE/AZURE/AZURE_jpg.jpg", title: "AZURE Crystal с прозрачным плафоном" },
+      { image: "/images/AZURE/AZURE/IMG_8818.JPG", title: "AZURE Crystal в интерьере" },
+      { image: "/images/AZURE/AZURE/AZURE Crystal.jpg", title: "Исполнения коллекции AZURE" },
+      { image: "/images/AZURE/AZURE/IMG_8796.JPG", title: "Коллекция настольных светильников AZURE" }
+    ],
+    description: "AZURE Crystal — настольный светильник с прозрачным рифлёным плафоном и двунаправленным свечением.",
+    paragraph1: "Прозрачный плафон раскрывает фактуру стекла и создаёт выразительную игру света, сохраняя характерные для коллекции бронзовые детали и основание из травертина.",
+    paragraph2: "Материалы: прозрачное стекло, натуральный травертин и массив бронзы."
   },
   {
     slug: "dea",
@@ -378,6 +427,7 @@ const getProductOptions = (productItem) => {
     .map((optionItem) => ({
       label: optionItem.label.trim(),
       price: optionItem.price,
+      href: typeof optionItem.href === "string" ? optionItem.href : "",
       isDefault: Boolean(optionItem.isDefault)
     }));
 
@@ -495,7 +545,10 @@ const getCatalogProductData = (productSlug) => {
     label: optionItem.label,
     price: optionItem.price,
     formattedPrice: formatPrice(optionItem.price),
-    isActive: optionItem.label === activeSizeLabel
+    href: optionItem.href,
+    isActive: optionItem.href
+      ? optionItem.href === `/catalog/product/${productItem.slug}`
+      : optionItem.label === activeSizeLabel
   }));
 
   return {

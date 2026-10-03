@@ -16,7 +16,9 @@ const PRODUCT_SLUGS = [
   "ufo-terra",
   "ufo-hugo",
   "dea",
-  "azure"
+  "azure",
+  "azure-linear",
+  "azure-crystal"
 ];
 
 const generateSitemap = () => {

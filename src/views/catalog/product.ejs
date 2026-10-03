@@ -84,15 +84,25 @@
                   <span><%= productPrice.sizeLabel %></span>
                   <div class="catalog-size-picker-options <%= productPrice.options.length === 1 ? 'is-single' : '' %> <%= productPrice.isStylePicker ? 'is-style-picker' : '' %>">
                     <% productPrice.options.forEach((sizeItem) => { %>
-                      <button
-                        type="button"
-                        class="<%= sizeItem.isActive ? 'is-active' : '' %>"
-                        data-size-option
-                        data-size-price="<%= sizeItem.price %>"
-                        aria-label="<%= sizeItem.label %>: <%= sizeItem.formattedPrice %>"
-                      >
-                        <%= sizeItem.label %>
-                      </button>
+                      <% if (productPrice.isStylePicker && sizeItem.href) { %>
+                        <a
+                          class="<%= sizeItem.isActive ? 'is-active' : '' %>"
+                          href="<%= sizeItem.href %>"
+                          <% if (sizeItem.isActive) { %>aria-current="page"<% } %>
+                        >
+                          <%= sizeItem.label %>
+                        </a>
+                      <% } else { %>
+                        <button
+                          type="button"
+                          class="<%= sizeItem.isActive ? 'is-active' : '' %>"
+                          data-size-option
+                          data-size-price="<%= sizeItem.price %>"
+                          aria-label="<%= sizeItem.label %>: <%= sizeItem.formattedPrice %>"
+                        >
+                          <%= sizeItem.label %>
+                        </button>
+                      <% } %>
                     <% }) %>
                   </div>
                 </div>
