@@ -1681,11 +1681,7 @@ p {
 .catalog-size-picker-options.is-style-picker button,
 .catalog-size-picker-options.is-style-picker a {
   padding: 0.4rem;
-  font-size: 0.82rem;
-  letter-spacing: 0.02em;
-  text-transform: none;
   overflow-wrap: anywhere;
-  color: inherit;
   text-decoration: none;
 }
 
