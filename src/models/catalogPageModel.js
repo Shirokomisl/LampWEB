@@ -360,6 +360,7 @@ const getProductFacts = (productItem) => {
     .replace(/[.]$/, "");
   const productTypeLabel = PRODUCT_TYPE_LABELS[productItem.typeSlug] || "дизайнерский светильник";
   const displayName = productItem["ru-name"] || productItem.name;
+  const hasMultipleSizes = Array.isArray(productItem.sizeOptions) && productItem.sizeOptions.length > 1;
 
   return {
     displayName,
@@ -373,7 +374,10 @@ const getProductFacts = (productItem) => {
         return dimension ? `${optionItem.label} - ${dimension} мм` : optionItem.label;
       })
       .join(", "),
-    priceFrom: Math.min(...productOptions.map((optionItem) => optionItem.price)),
+    hasMultipleSizes,
+    catalogPrice: hasMultipleSizes
+      ? Math.min(...productItem.sizeOptions.map((optionItem) => optionItem.price))
+      : productItem.price,
     cardDescription: productItem.description,
     productionText: "Изделие изготавливается вручную в мастерской GÉOMETRIA."
   };

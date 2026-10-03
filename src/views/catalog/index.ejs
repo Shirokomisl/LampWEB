@@ -48,7 +48,7 @@
                     <h2><%= productItem.displayName %></h2>
                     <p class="catalog-product-title-ru"><%= productItem.productTypeLabel %></p>
                     <p class="catalog-product-card-material"><%= productItem.materialLabel %></p>
-                    <p class="catalog-product-card-price">от <%= new Intl.NumberFormat("ru-RU").format(productItem.priceFrom) %> ₽</p>
+                    <p class="catalog-product-card-price"><% if (productItem.hasMultipleSizes) { %>от <% } %><%= new Intl.NumberFormat("ru-RU").format(productItem.catalogPrice) %> ₽</p>
                   </div>
                 </a>
               <% }) %>
