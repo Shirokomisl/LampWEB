@@ -48,16 +48,16 @@ const CATALOG_PRODUCTS = [
       { label: "M", price: 11900, isDefault: true },
       { label: "L", price: 14900 }
     ],
-    image: "/images/GLASS/HANGING/glass_hanging-catalog.png",
+    image: "/images/webp/glass_hanging-catalog.webp",
     gallery: [
-      { image: "/images/GLASS/HANGING/glass_hanging-gallery2.jpg", title: "Одиночный ВКЛ, вид сверху" },
-      { image: "/images/GLASS/HANGING/glass_hanging-gallery3.jpg", title: "Одиночный ВКЛ, вид снизу" },
-      { image: "/images/GLASS/HANGING/glass_hanging-gallery4.jpg", title: "Одиночный ВЫКЛ, вид сверху" },
-      { image: "/images/GLASS/HANGING/glass_hanging-gallery5.jpg", title: "Одиночный ВЫКЛ, вид снизу" },
-      { image: "/images/GLASS/HANGING/glass_hanging-gallery6.jpg", title: "Парные ВЫКЛ, вид снизу" },
-      { image: "/images/GLASS/HANGING/glass_hanging-gallery7.jpg", title: "Парные ВКЛ, вид снизу" },
-      { image: "/images/GLASS/HANGING/glass_hanging-gallery8.jpg", title: "Парные ВЫКЛ, вид сверху" },
-      { image: "/images/GLASS/HANGING/glass_hanging-gallery1.jpg", title: "Парные в интерьере" }
+      { image: "/images/webp/glass_hanging-gallery2.webp", title: "Одиночный ВКЛ, вид сверху" },
+      { image: "/images/webp/glass_hanging-gallery3.webp", title: "Одиночный ВКЛ, вид снизу" },
+      { image: "/images/webp/glass_hanging-gallery4.webp", title: "Одиночный ВЫКЛ, вид сверху" },
+      { image: "/images/webp/glass_hanging-gallery5.webp", title: "Одиночный ВЫКЛ, вид снизу" },
+      { image: "/images/webp/glass_hanging-gallery6.webp", title: "Парные ВЫКЛ, вид снизу" },
+      { image: "/images/webp/glass_hanging-gallery7.webp", title: "Парные ВКЛ, вид снизу" },
+      { image: "/images/webp/glass_hanging-gallery8.webp", title: "Парные ВЫКЛ, вид сверху" },
+      { image: "/images/webp/glass_hanging-gallery1.webp", title: "Парные в интерьере" }
     ],
     description: "UFO Glass(Стекло) (премиальное матированное стекло) – наиболее универсальная модель подходящая под большинство интерьеров за счет нейтральности.",
     paragraph1: "Особенно выигрышно смотрится при разноуровневой композиции из разных размеров, где рассеянный матовым стеклом теплый свет перетекает от диска на диск – невероятная магия уюта.",
@@ -74,16 +74,16 @@ const CATALOG_PRODUCTS = [
       { label: "M", price: 11900, isDefault: true },
       { label: "L", price: 14900 }
     ],
-    image: "/images/MYST/HANGING/myst_hanging-catalog.png",
+    image: "/images/webp/myst_hanging-catalog.webp",
     gallery: [
-      { image: "/images/MYST/HANGING/myst_hanging-gallery2.jpg", title: "Одиночный ВКЛ, вид сверху" },
-      { image: "/images/MYST/HANGING/myst_hanging-gallery3.jpg", title: "Одиночный ВКЛ, вид снизу" },
-      { image: "/images/MYST/HANGING/myst_hanging-gallery4.jpg", title: "Одиночный ВЫКЛ, вид сверху" },
-      { image: "/images/MYST/HANGING/myst_hanging-gallery5.jpg", title: "Одиночный ВЫКЛ, вид снизу" },
-      { image: "/images/MYST/HANGING/myst_hanging-gallery6.jpg", title: "Парные ВКЛ, вид сверху" },
-      { image: "/images/MYST/HANGING/myst_hanging-gallery7.jpg", title: "Парные ВЫКЛ, вид сверху" },
-      { image: "/images/MYST/HANGING/myst_hanging-gallery8.jpg", title: "Парные ВЫКЛ, вид снизу" },
-      { image: "/images/MYST/HANGING/myst_hanging-gallery9.png", title: "UFO Myst в интерьере" },
+      { image: "/images/webp/myst_hanging-gallery2.webp", title: "Одиночный ВКЛ, вид сверху" },
+      { image: "/images/webp/myst_hanging-gallery3.webp", title: "Одиночный ВКЛ, вид снизу" },
+      { image: "/images/webp/myst_hanging-gallery4.webp", title: "Одиночный ВЫКЛ, вид сверху" },
+      { image: "/images/webp/myst_hanging-gallery5.webp", title: "Одиночный ВЫКЛ, вид снизу" },
+      { image: "/images/webp/myst_hanging-gallery6.webp", title: "Парные ВКЛ, вид сверху" },
+      { image: "/images/webp/myst_hanging-gallery7.webp", title: "Парные ВЫКЛ, вид сверху" },
+      { image: "/images/webp/myst_hanging-gallery8.webp", title: "Парные ВЫКЛ, вид снизу" },
+      { image: "/images/webp/myst_hanging-gallery9.webp", title: "UFO Myst в интерьере" },
     ],
     description: "UFO Myst(Туман) (премиальное матированное стекло дымчатого оттенка) – мастер-спальни частных интерьеров, номерной фонд стильных отелей, ночной проходной свет, когда нужно максимально бережно сохранить сон или подготовиться к нему.",
     paragraph1: "Отличное решение по размещению над прикроватными тумбами в спальне - свисающий разноуровневый монтаж, особенно для высоких потолков (3+ метра).",
@@ -100,11 +100,11 @@ const CATALOG_PRODUCTS = [
       { label: "M", price: 11900, isDefault: true },
       { label: "L", price: 14900 }
     ],
-    image: "/images/PORTOFINO/potrofino-catalog.png",
+    image: "/images/webp/potrofino-catalog.webp",
     gallery: [
-    { image: "/images/PORTOFINO/portofio-gallery1.jpg", title: "Одиночный ВЫКЛ, крупный план" },
-    { image: "/images/PORTOFINO/portofio-gallery2.jpg", title: "Одиночный ВЫКЛ, вид снизу" },
-    { image: "/images/PORTOFINO/portofio-gallery3.jpg", title: "Парные ВЫКЛ, вид снизу" }
+    { image: "/images/webp/portofio-gallery1.webp", title: "Одиночный ВЫКЛ, крупный план" },
+    { image: "/images/webp/portofio-gallery2.webp", title: "Одиночный ВЫКЛ, вид снизу" },
+    { image: "/images/webp/portofio-gallery3.webp", title: "Парные ВЫКЛ, вид снизу" }
     ],
     description: "Покрашенный в невероятно красивый бело-серый цвет легкий алюминиевый диск с торцом терракотового цвета мысленно переносит ваш интерьер на побережье Портофино, где вам просто нужно отодвинуть рукой белый развивающийся на ветру тюль, чтобы насладиться видом на Средиземное море.",
     paragraph1: "За счет полностью отраженного от диска света можно использовать в качестве основного освещения небольшой зоны.",
@@ -117,14 +117,14 @@ const CATALOG_PRODUCTS = [
     typeSlug: "hanging",
     price: 18900,
     sizeOptions: [{ label: "XL", price: 18900, isDefault: true }],
-    image: "/images/PRIVE/prive-catalog-cube.png",
+    image: "/images/webp/prive-catalog-cube.webp",
     gallery: [
-      {image: "/images/PRIVE/prive-gallery1.jpg", title: "Одиночный ВЫКЛ, вид сверху"},
-      {image: "/images/PRIVE/prive-gallery2.jpg", title: "Одиночный ВЫКЛ, вид снизу"},
-      {image: "/images/PRIVE/prive-gallery3.jpg", title: "Одиночный ВЫКЛ, вид спереди"},
-      {image: "/images/PRIVE/prive-gallery4.jpg", title: "Одиночный ВЫКЛ, вид снизу вблизи"},
-      {image: "/images/PRIVE/prive-gallery5.jpg", title: "Одиночный ВЫКЛ, вид под углом"},
-      {image: "/images/PRIVE/prive-vibe.jpg", title: "UFO Prive в интерьере"}
+      {image: "/images/webp/prive-gallery1.webp", title: "Одиночный ВЫКЛ, вид сверху"},
+      {image: "/images/webp/prive-gallery2.webp", title: "Одиночный ВЫКЛ, вид снизу"},
+      {image: "/images/webp/prive-gallery3.webp", title: "Одиночный ВЫКЛ, вид спереди"},
+      {image: "/images/webp/prive-gallery4.webp", title: "Одиночный ВЫКЛ, вид снизу вблизи"},
+      {image: "/images/webp/prive-gallery5.webp", title: "Одиночный ВЫКЛ, вид под углом"},
+      {image: "/images/webp/prive-vibe.webp", title: "UFO Prive в интерьере"}
     ],
     description: "Очень часто, простые формы несут в себе более сложные идеи, заложенные в их создание и светильник UFO Prive(Прайв) является этим ярким примером. 100% премиальность в простых и лаконичных формах, прецизионное качество обработки массива латуни.",
     paragraph1: "Тончайший подвес фокусирует внимание на безупречных деталях UFO Prive, а свободная геометрия провода добавляет логичной и управляемой сложности в общую композицию.",
@@ -141,10 +141,10 @@ const CATALOG_PRODUCTS = [
       { label: "M", price: 10900, isDefault: true },
       { label: "L", price: 13900 }
     ],
-    image: "/images/GLASS/WALL/glass_wall-catalog.png",
+    image: "/images/webp/glass_wall-catalog.webp",
     gallery: [
-      { image: "/images/GLASS/WALL/glass_wall-gallery2.jpg", title: "UFO Glass в интерьере"},
-      { image: "/images/GLASS/WALL/glass_wall-catalog.png", title: "UFO Glass Wall" }
+      { image: "/images/webp/glass_wall-gallery2.webp", title: "UFO Glass в интерьере"},
+      { image: "/images/webp/glass_wall-catalog.webp", title: "UFO Glass Wall" }
     ],
     description: "UFO Glass Wall(Стекло) (премиальное матированное стекло) - представляет из себя настенную версию светильника UFO Glass(Стекло)",
     paragraph1: "Может быть использован в сателлитном использовании с подвесной версией для формирования композитного восприятия в освещении интерьера.",
@@ -161,14 +161,14 @@ const CATALOG_PRODUCTS = [
       { label: "M", price: 14900, isDefault: true },
       { label: "L", price: 19900 }
     ],
-    image: "/images/PANDORA/pandora-catalog-cube.png",
+    image: "/images/webp/pandora-catalog-cube.webp",
     gallery: [
-      { image: "/images/PANDORA/pandora-gallery2.jpg", title: "Одиночный ВЫКЛ, вид спереди"},
-      { image: "/images/PANDORA/pandora-gallery1.jpg", title: "Одиночный ВКЛ, вид спереди"},
-      { image: "/images/PANDORA/pandora-gallery_texture.jpg", title: "текстура UFO Pandora"},
-      { image: "/images/PANDORA/pandora-gallery3.jpg", title: "UFO Pandora в итерьере 2"},
-      { image: "/images/PANDORA/pandora-gallery4.jpg", title: "UFO Pandora в итерьере 3"},
-      { image: "/images/PANDORA/pandora-gallery5.jpg", title: "UFO Pandora в итерьере 4"},
+      { image: "/images/webp/pandora-gallery2.webp", title: "Одиночный ВЫКЛ, вид спереди"},
+      { image: "/images/webp/pandora-gallery1.webp", title: "Одиночный ВКЛ, вид спереди"},
+      { image: "/images/webp/pandora-gallery_texture.webp", title: "текстура UFO Pandora"},
+      { image: "/images/webp/pandora-gallery3.webp", title: "UFO Pandora в итерьере 2"},
+      { image: "/images/webp/pandora-gallery4.webp", title: "UFO Pandora в итерьере 3"},
+      { image: "/images/webp/pandora-gallery5.webp", title: "UFO Pandora в итерьере 4"},
     ],
     description: "UFO Pandora(Пандора) – представьте себе поверхность неизведанной вам планеты, по которой текут реки, раскинуты океаны и песчаные дюны – невероятный космос прямо на ваших стенах.",
     paragraph1: "Нет двух абсолютно одинаковых листов каменного шпона, поэтому, как и модель Terra – каждый светильник — это абсолютный эксклюзив. Создавайте световые композиции тремя доступными размерами, разбивая все законы симметрии.",
@@ -185,10 +185,10 @@ const CATALOG_PRODUCTS = [
       { label: "M", price: 10900, isDefault: true },
       { label: "L", price: 13900 }
     ],
-    image: "/images/MYST/WALL/myst_wall-catalog.png",
+    image: "/images/webp/myst_wall-catalog.webp",
     gallery: [
-      { image: "/images/MYST/WALL/myst_wall-catalog.png", title: "UFO Myst Wall"},
-      { image: "/images/MYST/WALL/myst_wall-gallery1.PNG", title: "UFO Myst Wall в интерьере" }
+      { image: "/images/webp/myst_wall-catalog.webp", title: "UFO Myst Wall"},
+      { image: "/images/webp/myst_wall-gallery1.webp", title: "UFO Myst Wall в интерьере" }
     ],
     description: "UFO Myst Wall(Туман) (премиальное матированное стекло дымчатого оттенка) - за счет дымчатого стекла наиболее подходит в качестве сдержанного атмосферного света и идеальны для формирования световых композиций за счет применения разных размеров.",
     paragraph1: "Идеальное решение для мастер-спален, прихожих, идеальное решение в качестве проходного ночного света и пр.",
@@ -205,12 +205,12 @@ const CATALOG_PRODUCTS = [
       { label: "M", price: 12900, isDefault: true },
       { label: "L", price: 15900 }
     ],
-    image: "/images/ANTIQUE/antique-catalog.png",
+    image: "/images/webp/antique-catalog.webp",
     gallery: [
-      { image: "/images/ANTIQUE/antique-gallery2.jpg", title: "ВЫКЛ, крупным планом спереди 1"},
-      { image: "/images/ANTIQUE/antique-gallery3.jpg", title: "ВЫКЛ, крупным планом спереди 2"},
-      { image: "/images/ANTIQUE/antique-gallery1.PNG", title: "UFO Antique в интерьере 1"},
-      { image: "/images/ANTIQUE/antique-gallery4.jpg", title: "UFO Antique в интерьере 2"}
+      { image: "/images/webp/antique-gallery2.webp", title: "ВЫКЛ, крупным планом спереди 1"},
+      { image: "/images/webp/antique-gallery3.webp", title: "ВЫКЛ, крупным планом спереди 2"},
+      { image: "/images/webp/antique-gallery1.webp", title: "UFO Antique в интерьере 1"},
+      { image: "/images/webp/antique-gallery4.webp", title: "UFO Antique в интерьере 2"}
     ],
     description: "UFO Antique(Античность) - матированное стекло в сочетании с центральным диском из итальянского травертина пористой текстуры и латунью.",
     paragraph1: "Формируют изысканный стиль, твердо декларируя, что премиальный стиль — это не всегда сложные формы и молча подчеркивают изысканный стиль своего владельца.",
@@ -227,12 +227,12 @@ const CATALOG_PRODUCTS = [
       { label: "M", price: 14900, isDefault: true },
       { label: "L", price: 19900 }
     ],
-    image: "/images/TERRA/terra-catalog.png",
+    image: "/images/webp/terra-catalog.webp",
     gallery: [
-      { image: "/images/TERRA/terra-gallery1.jpg", title: "L ВЫКЛ, вид спереди"},
-      { image: "/images/TERRA/terra-gallery3.jpg", title: "S ВЫКЛ, вид спереди"},
-      { image: "/images/TERRA/terra-gallery4.jpg", title: "S ВКЛ, вид спереди"},
-      { image: "/images/TERRA/terra-gallery5.jpg", title: "UFO Terra в интерьере"}
+      { image: "/images/webp/terra-gallery1.webp", title: "L ВЫКЛ, вид спереди"},
+      { image: "/images/webp/terra-gallery3.webp", title: "S ВЫКЛ, вид спереди"},
+      { image: "/images/webp/terra-gallery4.webp", title: "S ВКЛ, вид спереди"},
+      { image: "/images/webp/terra-gallery5.webp", title: "UFO Terra в интерьере"}
     ],
     description: "UFO Terra(Земля) – невероятная магия натурального каменного шпона с выраженной сланцевой текстурой, которая очень красиво подчеркивается теплым растекающимся по камню светом.",
     paragraph1: "Центральный диск из массива латуни подчеркивает премиальный уровень светильника UFO Terra(Земля) и еще больше добавляет теплоты в общую композицию.",
@@ -245,12 +245,12 @@ const CATALOG_PRODUCTS = [
     typeSlug: "wall",
     price: 13500,
     sizeOptions: [{ label: "XS", price: 13500, isDefault: true }],
-    image: "/images/HUGO/hugo-catalog2.png",
+    image: "/images/webp/hugo-catalog2.webp",
     gallery: [
-      { image: "/images/HUGO/hugo-gallery1.png", title: "UFO Hugo в интерьере 1"},
-      { image: "/images/HUGO/hugo-gallery2.png", title: "UFO Hugo в интерьере 2"},
-      { image: "/images/HUGO/hugo-gallery4.png", title: "ВКЛ, вид спереди"},
-      { image: "/images/HUGO/hugo-gallery3.jpg", title: "UFO Hugo в интерьере 3"}
+      { image: "/images/webp/hugo-gallery1.webp", title: "UFO Hugo в интерьере 1"},
+      { image: "/images/webp/hugo-gallery2.webp", title: "UFO Hugo в интерьере 2"},
+      { image: "/images/webp/hugo-gallery4.webp", title: "ВКЛ, вид спереди"},
+      { image: "/images/webp/hugo-gallery3.webp", title: "UFO Hugo в интерьере 3"}
     ],
     description: "Серия UFO Hugo(Хьюго) - оптимальное решение, как для частных интерьеров, так и для канала HoReCa, для которого он проектировался.",
     paragraph1: "Сочетание премиального дымчатого стекла и массива бронзы дарит невероятно теплую магию уюта и комфорта, подчеркивая при этом изысканность и премиальность окружающего интерьера.",
@@ -325,12 +325,12 @@ const CATALOG_PRODUCTS = [
     typeSlug: "floor",
     price: 49900,
     sizeOptions: [{ label: "XL", price: 49900, isDefault: true }],
-    image: "/images/DEA/dea_ON-catalog.png",
+    image: "/images/webp/dea_ON-catalog.webp",
     gallery: [
-      { image: "/images/DEA/dea-gallery1.png", title: "ВКЛ, вид спереди"},
-      { image: "/images/DEA/dea-gallery4.jpg", title: "Подставка вблизи"},
-      { image: "/images/DEA/dea-gallery2.jpg", title: "ВКЛ, в интерьере 1"},
-      { image: "/images/DEA/dea-gallery3.jpg", title: "ВКЛ, в интерьере 2"}
+      { image: "/images/webp/dea-gallery1.webp", title: "ВКЛ, вид спереди"},
+      { image: "/images/webp/dea-gallery4.webp", title: "Подставка вблизи"},
+      { image: "/images/webp/dea-gallery2.webp", title: "ВКЛ, в интерьере 1"},
+      { image: "/images/webp/dea-gallery3.webp", title: "ВКЛ, в интерьере 2"}
     ],
     description: "Что вы видите, глядя на этот торшер? Какие образы рождаются в ваших ассоциациях? Мы видим идеальное Создание, материализованное из мира, где правит гармония линий и идеальных пропорций.",
     paragraph1: "Комбинация точно выверенного баланса, равновесия и изгиба от естественного сопротивления материалов, придает торшеру Dea(Деа) неповторимо стильные формы, делая его однозначным High-Endoм на рынке дизайнерских торшеров.",
