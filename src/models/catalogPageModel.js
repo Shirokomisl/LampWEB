@@ -325,7 +325,7 @@ const CATALOG_PRODUCTS = [
     typeSlug: "floor",
     price: 49900,
     sizeOptions: [{ label: "XL", price: 49900, isDefault: true }],
-    image: "/images/webp/dea_ON-catalog.webp",
+    image: "/images/DEA/dea_ON-catalog.png",
     gallery: [
       { image: "/images/webp/dea-gallery1.webp", title: "ВКЛ, вид спереди"},
       { image: "/images/webp/dea-gallery4.webp", title: "Подставка вблизи"},
