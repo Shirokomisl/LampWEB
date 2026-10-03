@@ -14,6 +14,14 @@ const PRICE_RANGES = [
   { slug: "200k-plus", label: "ОТ 200 000", min: 200000, max: Number.POSITIVE_INFINITY }
 ];
 
+const SIZE_DIMENSIONS = {
+  S: 350,
+  M: 450,
+  L: 550,
+  XS: 250,
+  XL: 600
+};
+
 const AZURE_STYLE_MODELS = [
   { slug: "azure", label: "AZURE", price: 7900 },
   { slug: "azure-linear", label: "AZURE Linear", price: 8900 },
@@ -206,7 +214,7 @@ const CATALOG_PRODUCTS = [
     ],
     description: "UFO Antique(Античность) - матированное стекло в сочетании с центральным диском из итальянского травертина пористой текстуры и латунью.",
     paragraph1: "Формируют изысканный стиль, твердо декларируя, что премиальный стиль — это не всегда сложные формы и молча подчеркивают изысканный стиль своего владельца.",
-    paragraph2: "Материалы: бельгийское стекло, латунь, турецкий травертин. Рекомендованная инсталляция: ассиметричное размещение 3-х разных размеров (L, M и S)"
+    paragraph2: "Материалы: бельгийское стекло, латунь, турецкий травертин."
   },
   {
     slug: "ufo-terra",
@@ -235,8 +243,8 @@ const CATALOG_PRODUCTS = [
     name: "ХЬЮГО",
     "ru-name": "UFO Hugo",
     typeSlug: "wall",
-    price: 14900,
-    sizeOptions: [{ label: "XL", price: 49900, isDefault: true }],
+    price: 13500,
+    sizeOptions: [{ label: "XS", price: 13500, isDefault: true }],
     image: "/images/HUGO/hugo-catalog2.png",
     gallery: [
       { image: "/images/HUGO/hugo-gallery1.png", title: "UFO Hugo в интерьере 1"},
@@ -246,7 +254,7 @@ const CATALOG_PRODUCTS = [
     ],
     description: "Серия UFO Hugo(Хьюго) - оптимальное решение, как для частных интерьеров, так и для канала HoReCa, для которого он проектировался.",
     paragraph1: "Сочетание премиального дымчатого стекла и массива бронзы дарит невероятно теплую магию уюта и комфорта, подчеркивая при этом изысканность и премиальность окружающего интерьера.",
-    paragraph2: "Идеальный вариант для размещения в мастер - спальнях, проходных зонах квартир, отелей, атмосферного освещения ресторанов и пр. Может быть изготовлен в влагозащитном исполнении."
+    paragraph2: "Материалы: премиальное дымчатое стекло, массив бронзы."
   },
   {
     slug: "azure",
@@ -273,7 +281,7 @@ const CATALOG_PRODUCTS = [
     ],
     description: "AZURE — настольный светильник с основанием из кремового травертина, деталями из бронзы и лаконичным плафоном. Мягкий свет создаёт уютную атмосферу для чтения и спокойного отдыха.",
     paragraph1: "AZURE сочетает матовый белый плафон, детали из бронзы и основание из натурального травертина кремового цвета.",
-    paragraph2: "Материалы: натуральный травертин, массив бронзы; плафоны коллекции представлены в матовом белом и прозрачном исполнении."
+    paragraph2: "Материалы: натуральный травертин, массив бронзы."
   },
   {
     slug: "azure-linear",
@@ -329,7 +337,7 @@ const CATALOG_PRODUCTS = [
     ],
     description: "Что вы видите, глядя на этот торшер? Какие образы рождаются в ваших ассоциациях? Мы видим идеальное Создание, материализованное из мира, где правит гармония линий и идеальных пропорций.",
     paragraph1: "Комбинация точно выверенного баланса, равновесия и изгиба от естественного сопротивления материалов, придает торшеру Dea(Деа) неповторимо стильные формы, делая его однозначным High-Endoм на рынке дизайнерских торшеров.",
-    paragraph2: "Торшер комплектуется двумя цветовыми решениями ткани абажура – Ambient (темный) и Grey (светло-серый). Вам остается выбрать один из двух вариантов, каждый их которых станет самостоятельным арх-объектом и подчеркнет безупречный стиль вашего интерьера."
+    paragraph2: "Материалы: металл, латунь, алюминий."
   }
 ];
 
@@ -362,7 +370,12 @@ const getProductFacts = (productItem) => {
     materialLabel,
     optionLabel: productItem.optionLabel || "Размеры",
     optionLabels: productOptions.map((optionItem) => optionItem.label),
-    optionSummary: productOptions.map((optionItem) => optionItem.label).join(", "),
+    optionSummary: productOptions
+      .map((optionItem) => {
+        const dimension = SIZE_DIMENSIONS[optionItem.label];
+        return dimension ? `${optionItem.label} - ${dimension} мм` : optionItem.label;
+      })
+      .join(", "),
     priceFrom: Math.min(...productOptions.map((optionItem) => optionItem.price)),
     cardDescription: productItem.description,
     productionText: "Изделие изготавливается вручную в мастерской GÉOMETRIA."
