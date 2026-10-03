@@ -308,7 +308,7 @@ const CATALOG_PRODUCTS = [
     price: 9900,
     optionLabel: "Стиль",
     styleOptions: getAzureStyleOptions("azure-crystal"),
-    image: "/images/AZURE/AZURE/main-crystal.jpg",
+    image: "/images/AZURE/AZURE/main-crystal.png",
     gallery: [
       { image: "/images/AZURE/AZURE/IMG_8818.JPG", title: "AZURE Crystal в интерьере" },
       { image: "/images/AZURE/AZURE/AZURE Crystal.jpg", title: "Исполнения коллекции AZURE" },
