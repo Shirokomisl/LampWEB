@@ -50,7 +50,7 @@
       },
       {
         categoryTitle: "Торшер Dea",
-        coverImage: "/images/3.4.png",
+        coverImage: "/images/DEA/3.4.png",
         href: "/catalog/type/floor"
       }
     ],
@@ -180,7 +180,7 @@ const getAboutPageData = () => {
     ],
     storyPhotosTop: [
       {
-        image: "/images/glass_hanging-gallery6.jpg",
+        image: "/images/GLASS/HANGING/glass_hanging-gallery6.jpg",
         caption: "НАША ЭСТЕТИКА"
       },
       {
@@ -234,7 +234,7 @@ const getAboutPageData = () => {
         caption: "НЕИСПОЛЬЗОВАННЫЙ ПОДВЕС"
       },
       {
-        image: "/images/glass_hanging-gallery7.jpg",
+        image: "/images/GLASS/HANGING/glass_hanging-gallery7.jpg",
         caption: "НАША ЭСТЕТИКА"
       }
     ]
