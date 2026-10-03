@@ -266,7 +266,7 @@ const CATALOG_PRODUCTS = [
     styleOptions: getAzureStyleOptions("azure"),
     image: "/images/AZURE/AZURE/IMG_8743.jpg",
     gallery: [
-      { image: "/images/AZURE/AZURE/IMG_8743.jpg", title: "AZURE с матовым белым плафоном" },
+      { image: "/images/AZURE/PHOTO-2026-10-01-15-08-18-nobackground.png", title: "AZURE с матовым белым плафоном" },
       { image: "/images/AZURE/AZURE/AZURE_jpg.jpg", title: "Настольный светильник AZURE" },
       { image: "/images/AZURE/AZURE/AZURE Crystal.jpg", title: "AZURE Crystal с прозрачным плафоном" },
       { image: "/images/AZURE/AZURE/AZURE_entire collection.JPG", title: "Коллекция настольных светильников AZURE" },
@@ -293,7 +293,7 @@ const CATALOG_PRODUCTS = [
     styleOptions: getAzureStyleOptions("azure-linear"),
     image: "/images/AZURE/AZURE/IMG_8738.jpg",
     gallery: [
-      { image: "/images/AZURE/AZURE/IMG_8738.jpg", title: "AZURE Linear с травертиновыми нитями" },
+      { image: "/images/AZURE/AZURE/PHOTO-2026-10-01-12-10-24-nobackground.png", title: "AZURE Linear с травертиновыми нитями" },
       { image: "/images/AZURE/AZURE/IMG_8796.JPG", title: "Исполнения коллекции AZURE" },
       { image: "/images/AZURE/AZURE/AZURE_entire collection.JPG", title: "Коллекция настольных светильников AZURE" },
       { image: "/images/AZURE/AZURE/IMG_5437.jpeg", title: "Светильник коллекции AZURE" }
@@ -312,7 +312,7 @@ const CATALOG_PRODUCTS = [
     styleOptions: getAzureStyleOptions("azure-crystal"),
     image: "/images/AZURE/AZURE/AZURE_jpg.jpg",
     gallery: [
-      { image: "/images/AZURE/AZURE/AZURE_jpg.jpg", title: "AZURE Crystal с прозрачным плафоном" },
+      { image: "/images/AZURE/AZURE/PHOTO-2026-09-30-16-29-53-nobackground.png", title: "AZURE Crystal с прозрачным плафоном" },
       { image: "/images/AZURE/AZURE/IMG_8818.JPG", title: "AZURE Crystal в интерьере" },
       { image: "/images/AZURE/AZURE/AZURE Crystal.jpg", title: "Исполнения коллекции AZURE" },
       { image: "/images/AZURE/AZURE/IMG_8796.JPG", title: "Коллекция настольных светильников AZURE" }
