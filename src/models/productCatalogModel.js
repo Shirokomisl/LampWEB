@@ -45,12 +45,12 @@
       },
       {
         categoryTitle: "Настольные светильники AZURE",
-        coverImage: "/images/AZURE/AZURE/AZURE_entire collection.JPG",
+        coverImage: "/images/other/azure-card.webp",
         href: "/catalog/type/table"
       },
       {
         categoryTitle: "Торшер Dea",
-        coverImage: "/images/webp/3.4.webp",
+        coverImage: "/images/other/3.4.webp",
         href: "/catalog/type/floor"
       }
     ],
