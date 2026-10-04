@@ -34,22 +34,22 @@
     },
     productCollections: [
       {
-        categoryTitle: "Подвесные светильники UFO Hanging",
+        categoryTitle: "Подвесные светильники",
         coverImage: "/images/other/interier-hanging.webp",
         href: "/catalog/type/hanging"
       },
       {
-        categoryTitle: "Настенные светильники UFO Wall",
-        coverImage: "/images/other/wall-card-engle.webp",
-        href: "/catalog/type/wall"
-      },
-      {
-        categoryTitle: "Настольные светильники AZURE",
+        categoryTitle: "Настольные светильники",
         coverImage: "/images/other/azure-card.webp",
         href: "/catalog/type/table"
       },
       {
-        categoryTitle: "Торшер Dea",
+        categoryTitle: "Настенные светильники",
+        coverImage: "/images/other/wall-card-engle.webp",
+        href: "/catalog/type/wall"
+      },
+      {
+        categoryTitle: "Торшеры",
         coverImage: "/images/other/3.4.webp",
         href: "/catalog/type/floor"
       }
