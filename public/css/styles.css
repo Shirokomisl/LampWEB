@@ -521,7 +521,7 @@ p {
   bottom: calc(clamp(1rem, 2.5vw, 2.5rem) - 5px);
   left: var(--collection-title-left, 0%);
   width: var(--collection-title-width, 100%);
-  color: #000;
+  color: #ffffff;
   font-size: clamp(1rem, 1vw, 1rem);
   letter-spacing: 0.12em;
   line-height: 1.35;
