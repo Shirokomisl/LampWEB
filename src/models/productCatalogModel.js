@@ -34,17 +34,17 @@
     },
     productCollections: [
       {
-        categoryTitle: "Подвесные светильники",
-        coverImage: "/images/other/interier-hanging.webp",
+        categoryTitle: "Подвесные",
+        coverImage: "/images/other/hanging.webp",
         href: "/catalog/type/hanging"
       },
       {
-        categoryTitle: "Настольные светильники",
+        categoryTitle: "Настольные",
         coverImage: "/images/other/azure-card.webp",
         href: "/catalog/type/table"
       },
       {
-        categoryTitle: "Настенные светильники",
+        categoryTitle: "Настенные",
         coverImage: "/images/other/wall-card-engle.webp",
         href: "/catalog/type/wall"
       },
