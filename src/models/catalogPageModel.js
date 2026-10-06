@@ -86,7 +86,8 @@ const CATALOG_PRODUCTS = [
       { image: "/images/webp/myst_hanging-gallery9.webp", title: "UFO Myst в интерьере" },
     ],
     description: "UFO Myst(Туман) (премиальное матированное стекло дымчатого оттенка) – мастер-спальни частных интерьеров, номерной фонд стильных отелей, ночной проходной свет, когда нужно максимально бережно сохранить сон или подготовиться к нему.",
-    paragraph1: "Отличное решение по размещению над прикроватными тумбами в спальне - свисающий разноуровневый монтаж, особенно для высоких потолков (3+ метра)."
+    paragraph1: "Отличное решение по размещению над прикроватными тумбами в спальне - свисающий разноуровневый монтаж, особенно для высоких потолков (3+ метра).",
+    paragraph2: "Материалы: алюминий, бельгийское стекло, латунь."
   },
   {
     slug: "ufo-potrofino",
@@ -588,9 +589,8 @@ const getCatalogProductData = (productSlug) => {
     productAbout: {
       lead: productItem.description,
       paragraphs: [
-        productItem.paragraph1,
-        productItem.paragraph2
-      ]
+        productItem.paragraph1
+      ].filter(Boolean)
     },
     productPrice: {
       previewPriceLabel: "ИТОГОВАЯ СТОИМОСТЬ",
