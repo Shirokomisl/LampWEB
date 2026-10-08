@@ -1,28 +1,10 @@
-const { getCatalogPageData, getCatalogProductData } = require("../models/catalogPageModel");
+const { getCatalogPageData } = require("../models/catalogPageModel");
 
-const SITE_URL = process.env.SITE_URL || "https://www.geometria-116.ru";
-
-const CATALOG_TYPES = ["all", "hanging", "wall", "floor", "table"];
-
-const PRODUCT_SLUGS = [
-  "ufo-glass-hanging",
-  "ufo-myst-hanging",
-  "ufo-potrofino",
-  "ufo-prive",
-  "ufo-glass-wall",
-  "ufo-pandora",
-  "ufo-myst-wall",
-  "ufo-antique",
-  "ufo-terra",
-  "ufo-hugo",
-  "dea",
-  "azure",
-  "azure-linear",
-  "azure-crystal"
-];
+const SITE_URL = process.env.SITE_URL || "https://geometria-116.ru";
 
 const generateSitemap = () => {
   const now = new Date().toISOString();
+  const catalogData = getCatalogPageData("all");
 
   const urls = [];
 
@@ -57,10 +39,9 @@ const generateSitemap = () => {
   });
 
   // Страницы каталога по типам
-  CATALOG_TYPES.forEach((typeSlug) => {
-    const href = typeSlug === "all" ? "/catalog" : `/catalog/type/${typeSlug}`;
+  catalogData.catalogTypes.forEach((type) => {
     urls.push({
-      loc: `${SITE_URL}${href}`,
+      loc: `${SITE_URL}${type.href}`,
       lastmod: now,
       changefreq: "weekly",
       priority: "0.9"
@@ -68,9 +49,9 @@ const generateSitemap = () => {
   });
 
   // Страницы продуктов
-  PRODUCT_SLUGS.forEach((productSlug) => {
+  catalogData.products.forEach((product) => {
     urls.push({
-      loc: `${SITE_URL}/catalog/product/${productSlug}`,
+      loc: `${SITE_URL}${product.href}`,
       lastmod: now,
       changefreq: "weekly",
       priority: "0.8"
