@@ -375,6 +375,9 @@ const processContactSubmission = async ({ req, sourcePath, formData }) => {
       "ECONNREFUSED",
       "ENETUNREACH",
       "EHOSTUNREACH",
+      "ENOTFOUND",
+      "EDNS",
+      "EAI_AGAIN",
       "smtp_send_timeout"
     ]);
     const mappedCode = smtpNetworkErrorCodes.has(error?.code)
