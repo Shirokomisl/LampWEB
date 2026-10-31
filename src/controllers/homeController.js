@@ -202,7 +202,7 @@ const renderCatalogByType = (req, res) => {
   const typeNames = {
     hanging: "Подвесные светильники",
     wall: "Настенные светильники",
-    floor: "Торшеры",
+    floor: "Торшер",
     table: "Настольные светильники"
   };
 

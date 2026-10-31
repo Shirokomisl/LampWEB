@@ -40,7 +40,8 @@ app.use(
           "'self'",
           "https://www.google.com",
           "https://www.google-analytics.com",
-          "https://*.google-analytics.com"
+          "https://*.google-analytics.com",
+          "https://analytics.google.com"
         ],
         frameSrc: ["'self'", "https://www.google.com"],
         mediaSrc: ["'self'", "blob:", "data:"],
